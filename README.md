@@ -1,2 +1,0 @@
-# eventhandlers
-Party event App 
