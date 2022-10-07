@@ -1,3 +1,4 @@
+
 import './App.css'
 import {useState,useEffect} from 'react'
 import {AppContainer} from './App.styled'
@@ -14,6 +15,7 @@ import Checkout from '../Checkout/Checkout'
 
 
 
+
 const App = () => {
 
 //USER STATE 
@@ -25,11 +27,14 @@ const authUser = (val)=>{
 }
 
 
+
 //LOGOUT 
 const logout = (val)=>{
   setUser({user:null})
   localStorage.removeItem('token')
+
 }
+
 
 
 //GET LOCALDATA AND SET USER 
@@ -48,6 +53,7 @@ const updateUserState =()=>{
   return
 }
 }
+
 
 
 // USE EFFECT TO FETCH FROM LOCAL STATE
