@@ -1,12 +1,6 @@
-import './App.css'
+import './App.css';
 import {useState,useEffect} from 'react'
-
-
-
-
-import {
-  AppContainer
-} from './App.styled'
+import {AppContainer} from './App.styled'
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu'
 import AuthPage from '../Auth/AuthPage'
