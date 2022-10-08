@@ -11,14 +11,12 @@ module.exports = {
 };
 
 async function create(req, res) {
-
   try {
    const hashedPassword = await bcrypt.hash(req.body.password,parseInt(process.env.SALT_ROUNDS))
     const user = await User.create({
       name: req.body.name, 
       email:req.body.email, 
       password:hashedPassword});
-
     // creating a jwt: 
     // the first parameter specifies what we want to put into the token (in this case, our user document)
     // the second parameter is a "secret" code. This lets our server verify if an incoming jwt is legit or not.

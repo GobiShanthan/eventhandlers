@@ -1,4 +1,6 @@
 import {Link} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../../redux/reducers/LoginSlice';
 import {
     MenuContainer,
     MenuLeft,
@@ -6,13 +8,19 @@ import {
     MenuRight
 } from './Menu.styled'
 
-const Menu = ({user,logout}) => {
+const Menu = () => {
+  const dispatch = useDispatch()
+  const {userInfo} = useSelector(state => state.login)
+  const logout = () => {
+    dispatch(logoutUser())
+  }
+
   return (
     <MenuContainer>
         <MenuLeft><Link to='/'>EVENT HANDLERS</Link></MenuLeft>
-        <MenuMid>{user && user.user && user.user.name}</MenuMid>
+        <MenuMid>{userInfo && userInfo.name ? userInfo.name : ''}</MenuMid>
         <MenuRight>
-        {user && user.user ? <h1 onClick={()=>logout()}>Logout</h1>:<Link to='/auth'><h3>Login</h3></Link>}
+        {userInfo && userInfo.name ? <h1 onClick={()=>logout()}>Logout</h1>:<Link to='/auth'><h3>Login</h3></Link>}
         </MenuRight>
     </MenuContainer>
   )

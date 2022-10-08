@@ -1,8 +1,6 @@
 import './App.css'
 import {useState,useEffect} from 'react'
-
-
-
+import { useSelector} from 'react-redux'
 
 import {
   AppContainer
@@ -16,22 +14,7 @@ import Home from '../Homepage/Homepage'
 
 const App = () => {
 
-//USER STATE 
-const [user,setUser] = useState(null)
-
-//SET USER WITH LOGIN OR SIGNUP
-const authUser = (val)=>{
-  setUser({user:val})
-}
-
-
-
-//LOGOUT 
-const logout = (val)=>{
-  setUser({user:null})
-  localStorage.removeItem('token')
-}
-
+// const {name} = userInfo
 
 //GET LOCALDATA AND SET USER 
 const updateUserState =()=>{
@@ -43,7 +26,7 @@ const updateUserState =()=>{
       token = null
     }else{
       let userData = payload.user
-      setUser({user:userData})
+      
   }
 }else{
   return
@@ -59,10 +42,10 @@ updateUserState()
 
   return (
     <AppContainer>
-      <Menu user={user} logout={logout}/>
+      <Menu user='louis'/>
       <Routes>
       <Route path='/' element={<Home />}/>
-      <Route path='/auth' element={<AuthPage user={user} authUser={authUser} /> }/>
+      <Route path='/auth' element={<AuthPage /> }/>
       <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppContainer>
