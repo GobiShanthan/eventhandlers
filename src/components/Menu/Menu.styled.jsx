@@ -4,7 +4,6 @@ import {motion} from 'framer-motion'
 export const MenuContainer = styled(motion.div)`
 height:5vh;
 width:100vw;
-background-color:blue;
 position:absolute;
 top:0px;
 display:grid;
@@ -14,19 +13,23 @@ align-items:center;
 `
 
 export const MenuLeft = styled(motion.div)`
-background-color:green;
 justify-self:center;
 `
 
 export const MenuMid = styled(motion.div)`
-
-background-color:purple;
 justify-self:center;
 `
 
 export const MenuRight = styled(motion.div)`
-
-background-color:yellow;
 justify-self:center;
+`
+
+export const LogStatusTitle = styled(motion.button)`
+justify-self:center;
+color:black;
+padding:10px;
+color:white;
+background-color:#ad974f;
+
 `
 

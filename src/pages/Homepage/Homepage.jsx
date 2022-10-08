@@ -1,5 +1,5 @@
 import React from 'react'
-import outside from '../../images/outside.png'
+import outside from '../../images/outside.jpg'
 
 
 import {

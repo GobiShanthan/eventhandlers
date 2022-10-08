@@ -1,18 +1,24 @@
 import {Link} from 'react-router-dom'
+import MenuItem from '../MenuItems/MenuItem'
 import {
     MenuContainer,
     MenuLeft,
     MenuMid,
-    MenuRight
+    MenuRight,
+    LogStatusTitle
 } from './Menu.styled'
 
 const Menu = ({user,logout}) => {
   return (
     <MenuContainer>
         <MenuLeft><Link to='/'>EVENT HANDLERS</Link></MenuLeft>
-        <MenuMid>{user && user.user && user.user.name}</MenuMid>
+        <MenuMid></MenuMid>
         <MenuRight>
-        {user && user.user ? <h1 onClick={()=>logout()}>Logout</h1>:<Link to='/auth'><h3>Login</h3></Link>}
+        <MenuItem/>
+        <MenuItem/>
+        <MenuItem/>
+        <MenuItem/>
+        {user && user.user ? <LogStatusTitle onClick={()=>logout()}>Logout</LogStatusTitle>:<Link to='/auth'><LogStatusTitle>Login</LogStatusTitle></Link>}
         </MenuRight>
     </MenuContainer>
   )
