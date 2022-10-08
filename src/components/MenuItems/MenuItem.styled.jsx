@@ -15,5 +15,6 @@ export const MenuItemContainer = styled(motion.button)`
 height:50px;
 width:100px;
 background-color:${lightGold} ;
+margin:4px;
 
 `

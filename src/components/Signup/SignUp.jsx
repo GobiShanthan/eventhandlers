@@ -56,12 +56,9 @@ const SignUp = ({authUser}) => {
     <SignUpContainer>
       <SignUpForm onSubmit={(e)=>handleSubmit(e)}>
       <SignUpTitle>Sign Up</SignUpTitle>
-    
-      
         <Input placeholder="Enter name" required  name='name' value={signData.name}  onChange={ handleChange}/>
         <Input placeholder='Enter email' required name ='email'   value={signData.email} onChange={handleChange}/>
         <Input placeholder='Enter password' required name='password' value={signData.password} onChange={handleChange}/>
-
         <Button>Submit</Button>
       </SignUpForm>
 

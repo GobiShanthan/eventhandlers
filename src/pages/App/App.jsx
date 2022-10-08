@@ -12,7 +12,7 @@ import Cart from '../Cart/Cart'
 import AddPackage from '../AddPackage/AddPackage'
 import ViewPackage from '../ViewPackage/ViewPackage'
 import Checkout from '../Checkout/Checkout'
-
+import Packages from '../Packages/Packages'
 
 
 
@@ -71,6 +71,7 @@ updateUserState()
       <Route path='/vendors' element={<AllVendors />} />
       <Route path='/vendor/:id' element={<VendorDetail />} />
       <Route path='/cart' element={<Cart />} />
+      <Route path='/packages' element={<Packages user={user} />} />
       <Route path='/package/add' element={<AddPackage />} />
       <Route path='/package/:id' element={<ViewPackage />} />
       <Route path='/checkout' element={<Checkout />} />

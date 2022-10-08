@@ -22,6 +22,8 @@ justify-self:center;
 
 export const MenuRight = styled(motion.div)`
 justify-self:center;
+display:flex;
+margin-right:2vw;
 `
 
 export const LogStatusTitle = styled(motion.button)`
