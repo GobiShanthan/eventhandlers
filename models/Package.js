@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-
+const ObjectId = require('mongodb').ObjectId;
 
 const reviewSchema = new Schema({
   userId:{type: Schema.Types.ObjectId, ref: "User", required: true},
@@ -30,6 +30,19 @@ const packageSchema = new Schema(
 packageSchema.statics.getAllPackages = async function () {
   return this.find({});
 };
+
+//GET ALL PACKAGES PARAMS USERS
+packageSchema.statics.getByUser = async function (userId) {
+  let id = ObjectId(userId)
+  return await this.find({user:id})
+}
+
+//GET ALL PACKAGES PARAMS USERS
+packageSchema.statics.getByUserId = async function (userId) {
+  let id = ObjectId(userId)
+  return await this.find({user:id})
+}
+
 
 //CREATE PACKAGE
 packageSchema.statics.createPackage = async function (req) {
@@ -71,8 +84,8 @@ packageSchema.statics.updatePackage = async function (req) {
 
 
 //DELETE PACKEAGE 
-packageSchema.statics.deletePackage = async function (req) {
-  let foundPackage = await this.findById(req.params._id)
+packageSchema.statics.deletePackage = async function (pkId) {
+  let foundPackage = await this.findById(pkId)
   foundPackage.delete()
   return 'Package deleted'
 };

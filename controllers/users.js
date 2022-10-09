@@ -3,6 +3,7 @@ const User = require("../models/User");
 module.exports = {
   create,
   login,
+  getVendors
 };
 
 //CREATE USER
@@ -23,5 +24,17 @@ async function login(req, res) {
   } catch(err) {
     res.status(500)
     res.json('Invalid Credentials')
+  }
+}
+
+
+// LOGIN USER 
+async function getVendors(req, res) {
+  try {
+    let data = await User.getVendors()
+    res.status(200).json(data);
+  } catch(err) {
+    res.status(500)
+    res.json(err)
   }
 }

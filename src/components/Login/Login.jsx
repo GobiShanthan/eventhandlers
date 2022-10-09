@@ -10,7 +10,6 @@ import {
 } from './Login.styled';
 
 const Login = () => {
-  
   const dispatch = useDispatch();
   const [signData, setSignData] = useState({
     name:'',
@@ -29,32 +28,6 @@ const Login = () => {
     await loginUser({email:signData.email, password:signData.password},dispatch)
   }
 
-  // const  handleSubmit = async(e)=>{
-  //   e.preventDefault()
-
-  //   try {
-  //     //1 POST our new user to our server
-
-  //     const options ={
-  //       method:'POST',
-  //       headers:{
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body:JSON.stringify({
-  //         email:signData.email,
-  //         password:signData.password})
-  //     }
-  //     const fetchResponse = await fetch('/api/users/login',options)
-  //     if(!fetchResponse.ok) throw new Error('Fetch failed - Bad request')
-  //     let token = await fetchResponse.json()
-  //     localStorage.setItem('token',token)
-  //     let user = JSON.parse(window.atob(token.split('.')[1])).user
-  //     authUser(user)
-  //   } catch (err) {
-  //     console.log("LoginForm error", err);
-  //     setSignData({...signData,error:err})
-  //   }
-  // }
 
 
   return (

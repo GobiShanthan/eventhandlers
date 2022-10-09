@@ -55,11 +55,11 @@ updateUserState()
       <Routes>
       <Route path='/' element={<Home />}/>
       <Route path='/vendors' element={<AllVendors />} />
-      <Route path='/vendor/:id' element={<VendorDetail />} />
+      <Route path='/vendors/:id' element={<VendorDetail />} />
       <Route path='/cart' element={<Cart />} />
       <Route path='/packages' element={<Packages />} />
       <Route path='/package/add' element={<AddPackage />} />
-      <Route path='/package/:id' element={<ViewPackage />} />
+      <Route path='/package/:id' element={<Packages />} />
       <Route path='/checkout' element={<Checkout />} />
 
 

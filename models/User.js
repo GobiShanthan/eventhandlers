@@ -64,8 +64,10 @@ userSchema.statics.loginUser = async function(req){
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
 }
 
-
-
+// GET ALL VENDORS 
+userSchema.statics.getVendors = async function(){
+  return await this.find({isVendor:true})
+}
 
 
 

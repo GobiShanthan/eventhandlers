@@ -14,6 +14,7 @@ import {
 const Homepage = () => {
   return (
     <HomeContainer background ={outside} >
+      <h1>hello</h1>
     </HomeContainer>
   )
 }

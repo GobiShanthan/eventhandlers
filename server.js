@@ -25,6 +25,7 @@ app.use('/api/users', require('./routes/users'));
 
 
 /*--------------------------AUTHORIZATION BELOW THIS LINE -------------------------------*/
+
 app.use(require('./config/auth'))
 
 

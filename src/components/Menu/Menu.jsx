@@ -25,7 +25,7 @@ const Menu = () => {
           { userInfo && userInfo.name&&
         <>
         <MenuItem name='packages' link='packages'/>
-        <MenuItem name='Vendors' link=''/>
+        <MenuItem name='Vendors' link='/vendors'/>
         <MenuItem name='Cart' link=''/>
         <MenuItem name='About' link=''/>
         </> }
