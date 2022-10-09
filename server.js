@@ -22,6 +22,15 @@ app.use('/api/users', require('./routes/users'));
 
 
 
+
+
+/*--------------------------AUTHORIZATION BELOW THIS LINE -------------------------------*/
+app.use(require('./config/auth'))
+
+
+app.use('/api/packages',require('./routes/packages'))
+
+/*--------------------------AUTHORIZATION ABOVE THIS LINE -------------------------------*/
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
