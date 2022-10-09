@@ -22,7 +22,7 @@ const Menu = () => {
         <MenuLeft><Link to='/'>EVENT HANDLERS</Link></MenuLeft>
         <MenuMid>{userInfo && userInfo.name ? userInfo.name : ''}</MenuMid>
         <MenuRight>
-          { user && user.user&&
+          { userInfo && userInfo.name&&
         <>
         <MenuItem name='packages' link='packages'/>
         <MenuItem name='Vendors' link=''/>

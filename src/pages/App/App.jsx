@@ -57,7 +57,7 @@ updateUserState()
       <Route path='/vendors' element={<AllVendors />} />
       <Route path='/vendor/:id' element={<VendorDetail />} />
       <Route path='/cart' element={<Cart />} />
-      <Route path='/packages' element={<Packages user={user} />} />
+      <Route path='/packages' element={<Packages />} />
       <Route path='/package/add' element={<AddPackage />} />
       <Route path='/package/:id' element={<ViewPackage />} />
       <Route path='/checkout' element={<Checkout />} />
@@ -65,7 +65,7 @@ updateUserState()
 
 
 
-      <Route path='/auth' element={<AuthPage user={user} authUser={authUser} /> }/>
+      <Route path='/auth' element={<AuthPage /> }/>
       <Route path="*" element={<Navigate to="/" replace />} />
       
       </Routes>
