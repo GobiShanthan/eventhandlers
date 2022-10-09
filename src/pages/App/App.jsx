@@ -1,8 +1,11 @@
 
 import './App.css'
-import {useState,useEffect} from 'react'
-import {AppContainer} from './App.styled'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import {useEffect} from 'react'
+
+import {
+  AppContainer
+} from './App.styled'
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu'
 import AuthPage from '../Auth/AuthPage'
 import Home from '../Homepage/Homepage'
@@ -18,23 +21,6 @@ import Packages from '../Packages/Packages'
 
 const App = () => {
 
-//USER STATE 
-const [user,setUser] = useState(null)
-
-//SET USER WITH LOGIN OR SIGNUP
-const authUser = (val)=>{
-  setUser({user:val})
-}
-
-
-
-//LOGOUT 
-const logout = (val)=>{
-  setUser({user:null})
-  localStorage.removeItem('token')
-
-}
-
 
 
 //GET LOCALDATA AND SET USER 
@@ -47,7 +33,7 @@ const updateUserState =()=>{
       token = null
     }else{
       let userData = payload.user
-      setUser({user:userData})
+      
   }
 }else{
   return
@@ -65,13 +51,13 @@ updateUserState()
 
   return (
     <AppContainer>
-      <Menu user={user} logout={logout}/>
+      <Menu user='louis'/>
       <Routes>
       <Route path='/' element={<Home />}/>
       <Route path='/vendors' element={<AllVendors />} />
       <Route path='/vendor/:id' element={<VendorDetail />} />
       <Route path='/cart' element={<Cart />} />
-      <Route path='/packages' element={<Packages user={user} />} />
+      <Route path='/packages' element={<Packages />} />
       <Route path='/package/add' element={<AddPackage />} />
       <Route path='/package/:id' element={<ViewPackage />} />
       <Route path='/checkout' element={<Checkout />} />
@@ -79,7 +65,7 @@ updateUserState()
 
 
 
-      <Route path='/auth' element={<AuthPage user={user} authUser={authUser} /> }/>
+      <Route path='/auth' element={<AuthPage /> }/>
       <Route path="*" element={<Navigate to="/" replace />} />
       
       </Routes>

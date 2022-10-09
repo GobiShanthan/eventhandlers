@@ -1,4 +1,6 @@
 import {Link} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../../redux/reducers/LoginSlice';
 import MenuItem from '../MenuItems/MenuItem'
 import {
     MenuContainer,
@@ -8,20 +10,26 @@ import {
     LogStatusTitle
 } from './Menu.styled'
 
-const Menu = ({user,logout}) => {
+const Menu = () => {
+  const dispatch = useDispatch()
+  const {userInfo} = useSelector(state => state.login)
+  const logout = () => {
+    dispatch(logoutUser())
+  }
+
   return (
     <MenuContainer>
         <MenuLeft><Link to='/'>EVENT HANDLERS</Link></MenuLeft>
-        <MenuMid></MenuMid>
+        <MenuMid>{userInfo && userInfo.name ? userInfo.name : ''}</MenuMid>
         <MenuRight>
-          { user && user.user&&
+          { userInfo && userInfo.name&&
         <>
         <MenuItem name='packages' link='packages'/>
         <MenuItem name='Vendors' link=''/>
         <MenuItem name='Cart' link=''/>
         <MenuItem name='About' link=''/>
         </> }
-        {user && user.user ? <LogStatusTitle onClick={()=>logout()}>Logout</LogStatusTitle>:<Link to='/auth'><LogStatusTitle>Login</LogStatusTitle></Link>}
+        {userInfo && userInfo.name ? <LogStatusTitle onClick={()=>logout()}>Logout</LogStatusTitle>:<Link to='/auth'><LogStatusTitle>Login</LogStatusTitle></Link>}
         </MenuRight>
     </MenuContainer>
   )

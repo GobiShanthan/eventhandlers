@@ -1,4 +1,6 @@
-import {useState} from 'react'
+import {useState, useEffect } from 'react'
+import {useSelector} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 import Login from '../../components/Login/Login'
 import SignUp from '../../components/Signup/SignUp'
 
@@ -12,15 +14,21 @@ import {
 
 
 
-const AuthPage = ({authUser}) => {
-  
+const AuthPage = () => {
+  const {userInfo} = useSelector(state => state.login)
+  const navigate = useNavigate()
   const [login,setLogin] = useState(false)
 
-  
+  useEffect(() => {
+    if (userInfo && userInfo.name) {
+      navigate("/")
+    } 
+  }, [userInfo])
+
   return (
     <AuthContainer>
         <AuthFormWrapper>
-        {login? <Login authUser={authUser}/> :<SignUp authUser={authUser} />}
+        {login? <Login /> :<SignUp />}
         <AuthButton onClick={()=>setLogin(!login)}>{login?'SignUp':'Login'}</AuthButton>
         </AuthFormWrapper>
     </AuthContainer>
