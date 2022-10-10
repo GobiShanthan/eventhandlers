@@ -15,6 +15,8 @@ import Button from '@mui/material/Button';
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
+import {Map} from "../../components/Map/Map"
+
 //REDUX IMPORTS
 import { useDispatch,useSelector } from "react-redux";
 import {createPackage} from '../../redux/apiCalls/package'
@@ -172,6 +174,8 @@ const AddPackage = () => {
             
           </FormText>
 
+          <Map />
+          
           <FormImage>
             <Image
               src={
