@@ -14,26 +14,6 @@ import { MyTextInput } from "../FormFields/FormFields"
 
 const Login = () => {
   const dispatch = useDispatch();
-  // const [signData, setSignData] = useState({
-  //   name:'',
-  //   email:'',
-  //   password:'',
-  //   error:''
-  // })
-
-  
-
-
-  // const handleChange = (e) => {
-  //   setSignData({...signData,[e.target.name]: e.target.value})
-  // }
-
-  // const onSubmit = async (e) => {
-  //   e.preventDefault()
-  //   await loginUser({email:signData.email, password:signData.password},dispatch)
-  // }
-
-
 
   return (
     <>
@@ -75,8 +55,6 @@ const Login = () => {
             type="text"
             placeholder="Password"
           />
-        {/* <MyTextInput placeholder='Enter email' required name ='email'   value={signData.email} onChange={handleChange}/> */}
-        {/* <MyTextInput placeholder='Enter password' required name='password' value={signData.password} onChange={handleChange}/> */}
         <button type="submit">Submit</button>
       </Form>
     </LoginContainer>
