@@ -1,0 +1,163 @@
+import React from 'react';
+import { Formik, Form, useField } from 'formik';
+import * as Yup from 'yup';
+import { useDispatch } from "react-redux";
+import { signupUser } from "../../redux/apiCalls/signup";
+
+import {
+    Grid,
+    makeStyles,
+    Card,
+    CardContent,
+    MenuItem,
+    InputLabel,
+    Select,
+    CardActions,
+    Button,
+    CardHeader,
+    FormControl,
+  } from "@material-ui/core"
+
+
+const MyTextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input className="text-input" {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  );
+};
+
+const MyCheckbox = ({ children, ...props }) => {
+  const [field, meta] = useField({ ...props, type: 'checkbox' });
+  return (
+    <div>
+      <label className="checkbox-input">
+        <input type="checkbox" {...field} {...props} />
+        {children}
+      </label>
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </div>
+  );
+};
+
+const MySelect = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <select {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </div>
+  );
+};
+
+const lowercaseRegEx = /(?=.*[a-z])/
+const uppercaseRegEx = /(?=.*[A-Z])/
+const numericRegEx = /(?=.*[0-9])/
+const lengthRegEx = /(?=.{6,})/
+
+
+const SignupForm = () => {
+    const dispatch = useDispatch();
+  return (
+    <>
+    <Card>
+    <CardHeader title="Sign up!"></CardHeader>
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+        //   isVendor: false, 
+        //   vendorType: '', 
+        }}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .max(15, 'Must be 15 characters or less')
+            .required('Required'),
+          email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+            password: Yup.string()
+            .matches(lowercaseRegEx, "Must contain one lowercase alphabetical character!")
+            .matches(uppercaseRegEx, "Must contain one uppercase alphabetical character!")
+            .matches(numericRegEx, "Must contain one numeric character!")
+            .matches(lengthRegEx, "Must contain 6 characters!")
+            .required("Required!"),
+        //   isVendor: Yup.boolean(),
+        //   vendorType: Yup.string()
+        //     .oneOf(
+        //       ['venue', 'caterer', 'photographer', 'decor'],
+        //       'Invalid Vendor Type'
+        //     ),
+        })}
+        onSubmit={ async (values, { setSubmitting }) => {
+        //   setTimeout(() => {
+        //     alert(JSON.stringify(values, null, 2));
+        //     setSubmitting(false);
+        //   }, 400);
+            console.log(values);
+            await signupUser(
+              {
+                name: values.name,
+                email: values.email,
+                password: values.password,
+              },
+              dispatch
+            );
+        }}
+      >
+        <Form>
+            <CardContent>
+                
+          <MyTextInput
+            label="Name"
+            name="name"
+            type="text"
+            placeholder="Jane"
+          />
+
+          <MyTextInput
+            label="Email Address"
+            name="email"
+            type="email"
+            placeholder="jane@formik.com"
+          />
+
+          <MyTextInput
+            label="Password"
+            name="password"
+            type="text"
+            placeholder="Password"
+          />
+
+          {/* <MyCheckbox name="isVendor">Are you a vendor?</MyCheckbox> */}
+
+          {/* <MySelect label="Vendor Type" name="vendorType">
+            <option value="">Select a vendor type</option>
+            <option value="venue">Venue</option>
+            <option value="caterer">Caterer</option>
+            <option value="photographer">Photographer</option>
+            <option value="decor">Decor</option>
+          </MySelect> */}
+            </CardContent>
+
+
+          <Button><button type="submit">Submit</button></Button>
+        </Form>
+      </Formik>
+    </Card>
+    </>
+  );
+};
+
+export default SignupForm
