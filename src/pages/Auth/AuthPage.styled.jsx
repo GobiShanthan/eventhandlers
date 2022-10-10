@@ -5,7 +5,7 @@ export const AuthContainer = styled(motion.div)`
 margin-top:7vh;
 height:100vh;
 width:100vw;
-color:white;
+color:black;
 display:flex;
 justify-content:center;
 align-items:center;
