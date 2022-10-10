@@ -4,20 +4,6 @@ import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
 import { signupUser } from "../../redux/apiCalls/signup";
 
-import {
-    Grid,
-    makeStyles,
-    Card,
-    CardContent,
-    MenuItem,
-    InputLabel,
-    Select,
-    CardActions,
-    Button,
-    CardHeader,
-    FormControl,
-  } from "@material-ui/core"
-
 
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -70,8 +56,7 @@ const SignupForm = () => {
     const dispatch = useDispatch();
   return (
     <>
-    <Card>
-    <CardHeader title="Sign up!"></CardHeader>
+<h1>Sign up!</h1>
       <Formik
         initialValues={{
           name: '',
@@ -116,9 +101,7 @@ const SignupForm = () => {
             );
         }}
       >
-        <Form>
-            <CardContent>
-                
+        <Form>  
           <MyTextInput
             label="Name"
             name="name"
@@ -149,13 +132,10 @@ const SignupForm = () => {
             <option value="photographer">Photographer</option>
             <option value="decor">Decor</option>
           </MySelect> */}
-            </CardContent>
-
-
-          <Button><button type="submit">Submit</button></Button>
+          <button type="submit">Submit</button>
         </Form>
       </Formik>
-    </Card>
+
     </>
   );
 };
