@@ -49,7 +49,7 @@ export function Map() {
       style: 'button',
     });
       map.on('geosearch/showlocation', (result) => {
-      // console.log(result.location)
+    //   console.log(result.location)
       setLatLng([result.location.y, result.location.x])
     })
       // map.on('geosearch/marker/dragend', () => {})
