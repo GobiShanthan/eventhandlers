@@ -2,7 +2,7 @@ import {useState, useEffect } from 'react'
 import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import Login from '../../components/Login/Login'
-import SignUp from '../../components/Signup/SignUp'
+import SignUpForm from '../../components/SignUpForm/SignUpForm'
 
 import {
     AuthContainer,
@@ -28,7 +28,7 @@ const AuthPage = () => {
   return (
     <AuthContainer>
         <AuthFormWrapper>
-        {login? <Login /> :<SignUp />}
+        {login? <Login /> :<SignUpForm />}
         <AuthButton onClick={()=>setLogin(!login)}>{login?'SignUp':'Login'}</AuthButton>
         </AuthFormWrapper>
     </AuthContainer>
