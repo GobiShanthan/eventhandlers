@@ -32,7 +32,7 @@ const SignupForm = () => {
           email: Yup.string()
             .email('Invalid email address')
             .required('Required'),
-            password: Yup.string()
+          password: Yup.string()
             .matches(lowercaseRegEx, "Must contain one lowercase alphabetical character!")
             .matches(uppercaseRegEx, "Must contain one uppercase alphabetical character!")
             .matches(numericRegEx, "Must contain one numeric character!")
