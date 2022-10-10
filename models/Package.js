@@ -17,7 +17,7 @@ const packageSchema = new Schema(
     description: { type: String },
     price: { type: Number, required: true },
     capacity: { type: String },
-    photos: { type: Array }
+    photos: { type: String }
   },
   {
     timestamps: true,
@@ -54,7 +54,7 @@ packageSchema.statics.createPackage = async function (req) {
     price,
     description: description && description,
     capacity: capacity && capacity,
-    photo: photo && photo,
+    photos: photo && photo,
   });
   console.log('created')
   return 'Package created'
