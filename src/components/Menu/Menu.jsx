@@ -26,7 +26,7 @@ const Menu = () => {
         <>
         <MenuItem name='packages' link='packages'/>
         <MenuItem name='Vendors' link='/vendors'/>
-        <MenuItem name='Cart' link=''/>
+        <MenuItem name='Cart' link='/cart'/>
         <MenuItem name='About' link=''/>
         </> }
         {userInfo && userInfo.name ? <LogStatusTitle onClick={()=>logout()}>Logout</LogStatusTitle>:<Link to='/auth'><LogStatusTitle>Login</LogStatusTitle></Link>}
