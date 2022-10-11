@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 import { DataGrid } from '@mui/x-data-grid';
+import Search from '../../components/Search/Search'
 
 
 const AllVendors = () => {
@@ -68,8 +69,6 @@ const AllVendors = () => {
   },[vendors])
 
 
-
-
   return (
     <div style={{ height: 400, width: '100%', marginTop: '10vh'}}>
     <DataGrid
@@ -79,6 +78,7 @@ const AllVendors = () => {
       pageSize={5}
       rowsPerPageOptions={[5]}
     />
+    <Search />
   </div>
   )
 }
