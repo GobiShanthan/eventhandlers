@@ -112,14 +112,32 @@ const AddPackage = () => {
             createPackage(data, dispatch);
             navigate(`/vendors/${userId && userId}`);
           });
-        }
-      );
-    } else {
-      createPackage(formData, dispatch);
-    }
-  };
+      }
+        );
+      }else{
+      
+          createPackage(formData,dispatch)
+      }
 
-  //-----------------DONT CHANGE------------------------
+    }
+
+//-----------------DONT CHANGE------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>
