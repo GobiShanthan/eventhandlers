@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { signupUser } from "../../redux/apiCalls/signup";
 import { MyTextInput } from "../FormFields/FormFields"
 
+import TextField from '@mui/material/TextField';
+
 
 const lowercaseRegEx = /(?=.*[a-z])/
 const uppercaseRegEx = /(?=.*[A-Z])/
