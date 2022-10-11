@@ -3,7 +3,7 @@ const User = require("../models/User");
 module.exports = {
   create,
   login,
-  getVendors
+  getVendors,
 };
 
 //CREATE USER
@@ -16,25 +16,24 @@ async function create(req, res) {
   }
 }
 
-// LOGIN USER 
+// LOGIN USER
 async function login(req, res) {
   try {
-    let token = await User.loginUser(req)
+    let token = await User.loginUser(req);
     res.status(200).json(token);
-  } catch(err) {
-    res.status(500)
-    res.json('Invalid Credentials')
+  } catch (err) {
+    res.status(500);
+    res.json("Invalid Credentials");
   }
 }
 
-
-// LOGIN USER 
+// LOGIN USER
 async function getVendors(req, res) {
   try {
-    let data = await User.getVendors()
+    let data = await User.getVendors();
     res.status(200).json(data);
-  } catch(err) {
-    res.status(500)
-    res.json(err)
+  } catch (err) {
+    res.status(500);
+    res.json(err);
   }
 }

@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { signupUser } from "../../redux/apiCalls/signup";
 import { MyTextInput } from "../FormFields/FormFields"
 
+import TextField from '@mui/material/TextField';
+
 
 const lowercaseRegEx = /(?=.*[a-z])/
 const uppercaseRegEx = /(?=.*[A-Z])/
@@ -32,7 +34,7 @@ const SignupForm = () => {
           email: Yup.string()
             .email('Invalid email address')
             .required('Required'),
-            password: Yup.string()
+          password: Yup.string()
             .matches(lowercaseRegEx, "Must contain one lowercase alphabetical character!")
             .matches(uppercaseRegEx, "Must contain one uppercase alphabetical character!")
             .matches(numericRegEx, "Must contain one numeric character!")
