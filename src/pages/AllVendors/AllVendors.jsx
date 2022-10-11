@@ -71,6 +71,7 @@ const AllVendors = () => {
 
   return (
     <div style={{ height: 400, width: '100%', marginTop: '10vh'}}>
+      
     <DataGrid
       getRowId={(row) => row._id}
       rows={vendors && vendors}
