@@ -5,6 +5,11 @@ const logger = require('morgan');
 const app = express();
 const cors = require('cors');
 
+//socket.io imports
+const server = require('http').createServer(app);
+let io = require('./io')
+io.attach(server)
+
 
 require('dotenv').config();
 require('./config/database');
@@ -40,7 +45,7 @@ app.get('/*', function(req, res) {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, function() {
+server.listen(port, function() {
   console.log(`Express app running on port ${port}`)
 });
 

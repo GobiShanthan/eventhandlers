@@ -7,9 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 
 //socket-io imports
-// import * as serviceWorker from './serviceWorker';
 import io from 'socket.io-client'
-let socket = io("http://192.168.1.53:3000");
+let socket = io();
 socket.on('message from server', function(msg){
 alert(msg);
 });
