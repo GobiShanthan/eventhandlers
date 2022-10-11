@@ -69,6 +69,21 @@ userSchema.statics.getVendors = async function(){
   return await this.find({isVendor:true})
 }
 
+// GET ALL VENDORS 
+userSchema.statics.updateUser = async function(req){
+  const {name, email} = req.body
+
+  let user = this.find({_id:req.user._id})
+  user.name = name ? name : user.name
+  user.email = email ? email: user.email
+  user.save()
+  return 'successfully updated user'
+}
+
+
+
+
+
 
 
 module.exports = mongoose.model("User", userSchema);

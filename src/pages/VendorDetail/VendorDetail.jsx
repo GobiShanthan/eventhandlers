@@ -26,6 +26,9 @@ const VendorDetail = () => {
   const [data, setData] = useState(null)
   const params = useParams()
   const vendorId = params['id']
+
+
+  
   const {userInfo} = useSelector((state)=>state.login)
 
   let userId = userInfo && userInfo._id ? userInfo._id:null
