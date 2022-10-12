@@ -64,10 +64,6 @@ const AddPackage = () => {
 
   //FORM USESTATE
   const [formData, setFormData] = useState({
-    // title: "",
-    // description: "",
-    // price: 0,
-    // capacity: "",
     image: null,
   });
 
@@ -79,59 +75,59 @@ const AddPackage = () => {
   // ONCHANGE TO RUN
 
   //----------------DONT CHANGE -------------------------
-  const onSubmit = (e) => {
-    //HANDLES IMAGE UPDATE WITH SUBMIT
-    e.preventDefault();
-    if (formData.image) {
-      const imageRef = ref(storage, `images/${formData.image.name + v4()}`);
-      const uploadTask = uploadBytesResumable(imageRef, formData.image);
+  // const onSubmit = (e) => {
+  //   //HANDLES IMAGE UPDATE WITH SUBMIT
+  //   e.preventDefault();
+  //   if (formData.image) {
+  //     const imageRef = ref(storage, `images/${formData.image.name + v4()}`);
+  //     const uploadTask = uploadBytesResumable(imageRef, formData.image);
 
-      // Register three observers:
-      // 1. 'state_changed' observer, called any time the state changes
-      // 2. Error observer, called on failure
-      // 3. Completion observer, called on successful completion
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          // Observe state change events such as progress, pause, and resume
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-          }
-        },
-        (error) => {
-          // Handle unsuccessful uploads
-          console.log(error);
-        },
-        () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            const data = {
-              title: formData.title,
-              description: formData.description,
-              price: formData.price,
-              capacity: formData.capacity,
-              photo: downloadURL,
-            };
-            createPackage(data, dispatch);
-            navigate(`/vendors/${userId && userId}`);
-          });
-        }
-      );
-    } else {
-      createPackage(formData, dispatch);
-    }
-  };
+  //     // Register three observers:
+  //     // 1. 'state_changed' observer, called any time the state changes
+  //     // 2. Error observer, called on failure
+  //     // 3. Completion observer, called on successful completion
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         // Observe state change events such as progress, pause, and resume
+  //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+  //         const progress =
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         console.log("Upload is " + progress + "% done");
+  //         switch (snapshot.state) {
+  //           case "paused":
+  //             console.log("Upload is paused");
+  //             break;
+  //           case "running":
+  //             console.log("Upload is running");
+  //             break;
+  //           default:
+  //         }
+  //       },
+  //       (error) => {
+  //         // Handle unsuccessful uploads
+  //         console.log(error);
+  //       },
+  //       () => {
+  //         // Handle successful uploads on complete
+  //         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           const data = {
+  //             title: formData.title,
+  //             description: formData.description,
+  //             price: formData.price,
+  //             capacity: formData.capacity,
+  //             photo: downloadURL,
+  //           };
+  //           createPackage(data, dispatch);
+  //           navigate(`/vendors/${userId && userId}`);
+  //         });
+  //       }
+  //     );
+  //   } else {
+  //     createPackage(formData, dispatch);
+  //   }
+  // };
 
   //-----------------DONT CHANGE------------------------
 
@@ -140,17 +136,68 @@ const AddPackage = () => {
       vendorType: "venue",
       title: "",
       description: "",
-      price: 0,
+      price: "",
       capacity: "",
       menu: "",
-      quantity: 0,
-      hours: 0,
+      quantity: "",
+      hours: "",
       items: "",
-      image: null,
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
-      console.log(values);
+    onSubmit: async (values, { setSubmitting }) => {
+      if (formData.image) {
+        const imageRef = ref(storage, `images/${formData.image.name + v4()}`);
+        const uploadTask = uploadBytesResumable(imageRef, formData.image);
+  
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
+            switch (snapshot.state) {
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
+              default:
+            }
+          },
+          (error) => {
+            // Handle unsuccessful uploads
+            console.log(error);
+          },
+          () => {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              const data = {
+          vendorType: values.vendorType,
+          title: values.title,
+          description: values.description,
+          price: values.price,
+          capacity: values.capacity,
+          menu: values.menu,
+          quantity: values.quantity,
+          hours: values.hours,
+          items: values.items,
+          image: downloadURL,
+              };
+         createPackage(data, dispatch);
+              navigate(`/vendors/${userId && userId}`);
+            });
+        }
+          );
+        }else{
+
       await createPackage(
         {
           vendorType: values.vendorType,
@@ -161,12 +208,14 @@ const AddPackage = () => {
           menu: values.menu,
           quantity: values.quantity,
           hours: values.hours,
-          items: values.items,
-          image: values.image,
+          items: values.items
         },
         dispatch
       );
-    },
+        }
+    
+  
+    }
   });
 
   return (
@@ -183,8 +232,6 @@ const AddPackage = () => {
                 name="vendorType"
                 value={formik.values.vendorType}
                 label="Vendor Type"
-                // onChange={handleChange}
-                // onChange={(nextValue) => formik.setFieldValue('vendorType', nextValue)}
                 onChange={formik.handleChange}
               >
                 <MenuItem value="venue">Venue</MenuItem>
@@ -296,16 +343,6 @@ const AddPackage = () => {
                   helperText={formik.touched.items && formik.errors.items}
                 />
               )}
-
-              <TextField
-                id="image"
-                name="image"
-                type="file"
-                value={formik.values.image}
-                onChange={formik.handleChange}
-                error={formik.touched.image && Boolean(formik.errors.image)}
-                helperText={formik.touched.image && formik.errors.image}
-              />
             </FormText>
 
             <Map />
@@ -323,29 +360,31 @@ const AddPackage = () => {
 </IconButton> */}
               {/* --------------------------------For mobile button for pic --------------------------------------*/}
 
-              <Button
+              <input
+                  // hidden
+                  type="file"
+                  name="image"
+                  onChange={handleChangePic}
+                />
+            </FormImage>
+          </Card>
+          <Button type="submit">Save Package</Button>
+        </FlexContainer>
+      </form>
+        {/* <button
                 variant="contained"
                 component="label"
+                type="button"
                 style={{
                   justifySelf: "center",
                   width: "100px",
                   height: "50px",
                   marginTop: "100px",
                 }}
-              >
+              > 
                 Upload
-                <input
-                  hidden
-                  type="file"
-                  name="image"
-                  onChange={handleChangePic}
-                />
-              </Button>
-            </FormImage>
-          </Card>
-          <Button type="submit">Save Package</Button>
-        </FlexContainer>
-      </form>
+                
+              </button> */}
     </>
   );
 };
