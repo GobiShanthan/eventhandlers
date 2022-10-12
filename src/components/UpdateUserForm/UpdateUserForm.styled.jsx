@@ -1,23 +1,33 @@
 import styled from 'styled-components'
 import {motion }from 'framer-motion'
+import {lightBlack, grey} from '../../components/Colors/colors'
 
 export const FlexContainer = styled(motion.div)`
-    margin-top:20vh;
+    padding-top: 10vh;
     display:flex;
     justify-content:center;
-    flex-direction:row;
+    // align-items: center;
+    flex-direction:column;
+    height: 70vh;
+    width: 50vw;
+    background-color: ${lightBlack};
+    color: ${grey};
     
 `
 
 
 export const Card = styled(motion.div)`
-box-shadow: 
-rgba(0, 0, 0, 0.09) 0px 2px 1px, 
-rgba(0, 0, 0, 0.09) 0px 4px 2px,
-rgba(0, 0, 0, 0.09) 0px 8px 4px, 
-rgba(0, 0, 0, 0.09) 0px 16px 8px, 
-rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 15vw;
+    
+`
 
-background-color: lightgrey;
-
+export const Heading = styled(motion.div)`
+margin: 20px;
+font-size: 40px;
 `

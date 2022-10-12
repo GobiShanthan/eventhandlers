@@ -4,7 +4,7 @@ module.exports = {
   create,
   login,
   getVendors,
-  updateUser
+  updateUser,
 };
 
 //CREATE USER
@@ -39,9 +39,7 @@ async function getVendors(req, res) {
   }
 }
 
-
-
-// LOGIN USER
+// UPDATE USER
 async function updateUser(req, res) {
   try {
     let data = await User.updateUser(req);
