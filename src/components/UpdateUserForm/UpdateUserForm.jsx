@@ -1,26 +1,19 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { MyTextInput } from "../FormFields/FormFields"
+import { MyTextInput } from "../FormFields/FormFields";
 import { FlexContainer, Card } from "./UpdateUserForm.styled";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 //REDUX IMPORTS
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/apiCalls/user";
 
-
 //FOR FIREBASE
 import { storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
-
-
-
-
-
-
 
 const UpdateUserForm = () => {
   //REACT-ROUTER- DOM
@@ -29,32 +22,24 @@ const UpdateUserForm = () => {
   //REACT REDUX
   const dispatch = useDispatch();
 
-
   const { userInfo } = useSelector((state) => state.login);
   let userId = userInfo && userInfo._id ? userInfo._id : null;
 
   const [formData, setFormData] = useState({
-    // title: "",
-    // description: "",
-    // price: 0,
-    // capacity: "",
     image: null,
   });
-
-
 
   //CHANGE FORMDATA PHOTO INPUT WITH CUSTOM FILE ONCHANGE
   const handleChangePic = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.files[0] });
   };
 
-
   return (
     <>
       <Formik
         initialValues={{
-          name: '',
-          email: '',
+          name: "",
+          email: "",
         }}
         validationSchema={Yup.object({
           name: Yup.string()
@@ -64,12 +49,14 @@ const UpdateUserForm = () => {
             .email("Invalid email address")
             .required("Required"),
         })}
-        onSubmit={ async (values, { setSubmitting }) => {
-       
+        onSubmit={async (values, { setSubmitting }) => {
           if (formData.image) {
-            const imageRef = ref(storage, `images/${formData.image.name + v4()}`);
+            const imageRef = ref(
+              storage,
+              `images/${formData.image.name + v4()}`
+            );
             const uploadTask = uploadBytesResumable(imageRef, formData.image);
-      
+
             // Register three observers:
             // 1. 'state_changed' observer, called any time the state changes
             // 2. Error observer, called on failure
@@ -105,63 +92,63 @@ const UpdateUserForm = () => {
                     email: values.email,
                     image: downloadURL,
                   };
-            updateUser(data, dispatch);
+                  updateUser(data, dispatch);
                   navigate(`/vendors/${userId && userId}`);
                 });
-            }
-              );
-            }else{
-
-          await updateUser(
-            {
-              name: values.name,
-              email: values.email,
-            },
-            dispatch
-          );
-            }
+              }
+            );
+          } else {
+            await updateUser(
+              {
+                name: values.name,
+                email: values.email,
+              },
+              dispatch
+            );
+          }
         }}
-
       >
         <Form>
           <FlexContainer>
-            <Card style={{display:'flex', flexDirection:'column'}}>
+            <Card style={{ display: "flex", flexDirection: "column" }}>
               <MyTextInput
                 label="Name"
                 name="name"
                 type="text"
                 placeholder={userInfo.name}
-                style={{backgroundColor:'white'}}
+                style={{ backgroundColor: "white" }}
               />
 
               <MyTextInput
                 label="Email Address"
                 name="email"
                 type="email"
-                style={{backgroundColor:'white'}}
+                style={{ backgroundColor: "white" }}
                 placeholder={userInfo.email}
               />
-                                <Button
-                    variant="contained"
-                    component="label"
-                    style={{
-                      justifySelf: "center",
-                      width: "100px",
-                      height: "50px",
-                      marginTop: "100px",
-                    }}
-                  >
-                    Upload
-                    <input
-                      hidden
-                      type="file"
-                      name="image"
-                      onChange={handleChangePic}
-                    />
-                  </Button>
+              <Button
+                variant="contained"
+                component="label"
+                style={{
+                  justifySelf: "center",
+                  width: "100px",
+                  height: "50px",
+                  marginTop: "100px",
+                }}
+              >
+                Upload
+                <input
+                  hidden
+                  type="file"
+                  name="image"
+                  onChange={handleChangePic}
+                />
+              </Button>
             </Card>
           </FlexContainer>
-          <button type='submit' style={{marginTop:'20px'}}>UPDATE USER</button>
+          <button type="submit" style={{ marginTop: "20px" }}>
+            UPDATE USER
+          </button>
         </Form>
       </Formik>
     </>
