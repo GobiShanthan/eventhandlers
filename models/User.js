@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
       minLength: 3,
-      required: true,
     },
     image: { type: String },
     googleId: { type: String },

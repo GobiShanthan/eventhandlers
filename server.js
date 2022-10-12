@@ -4,6 +4,9 @@ const favicon = require("serve-favicon");
 const logger = require("morgan");
 const app = express();
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
 
 //socket.io imports
 const server = require('http').createServer(app);
@@ -12,6 +15,9 @@ io.attach(server)
 
 require("dotenv").config();
 require("./config/database");
+require('dotenv').config();
+require('./config/database');
+require('./config/passport');
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -19,6 +25,18 @@ app.use(cors());
 
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")));
 app.use(express.static(path.join(__dirname, "build")));
+app.use(cookieParser());
+app.use(session({
+  secret: 'EventHandlers',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use("/api/users", require("./routes/users"));
 
