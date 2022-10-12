@@ -11,6 +11,7 @@ import {
   Image,
   SButton,
 } from "./AddPackage.styled";
+
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
@@ -63,17 +64,12 @@ const AddPackage = () => {
 
   //FORM USESTATE
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    price: 0,
-    capacity: "",
+    // title: "",
+    // description: "",
+    // price: 0,
+    // capacity: "",
     image: null,
   });
-
-  //CHANGE FORMDATA STATE WITH ONCHANGE MULTI INPUTS
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   //CHANGE FORMDATA PHOTO INPUT WITH CUSTOM FILE ONCHANGE
   const handleChangePic = (e) => {
@@ -175,175 +171,181 @@ const AddPackage = () => {
 
   return (
     <>
-        <form onSubmit={formik.handleSubmit} autoComplete="off">
-          <FlexContainer>
-            <Card>
-              <FormText>
-                <h1>Create Package</h1>
+      <form onSubmit={formik.handleSubmit} autoComplete="off">
+        <FlexContainer>
+          <Card>
+            <FormText>
+              <h1>Create Package</h1>
+              <InputLabel id="vendorType-label">Vendor Type</InputLabel>
+              <Select
+                labelId="vendorType-label"
+                id="vendorType"
+                name="vendorType"
+                value={formik.values.vendorType}
+                label="Vendor Type"
+                // onChange={handleChange}
+                // onChange={(nextValue) => formik.setFieldValue('vendorType', nextValue)}
+                onChange={formik.handleChange}
+              >
+                <MenuItem value="venue">Venue</MenuItem>
+                <MenuItem value="caterer">Caterer</MenuItem>
+                <MenuItem value="photographer">Photographer</MenuItem>
+                <MenuItem value="decor">Decor</MenuItem>
+              </Select>
 
-                {/* <InputLabel id="vendorType-label">Vendor Type</InputLabel> */}
-                <Select
-                  labelId="vendorType-label"
-                  id="vendorType"
-                  name="vendorType"
-                  value={formik.values.vendorType}
-                  label="Vendor Type"
-                  // onChange={handleChange}
-                  // onChange={(nextValue) => formik.setFieldValue('vendorType', nextValue)}
-                  onChange={formik.handleChange}
-                >
-                  <MenuItem value="venue">Venue</MenuItem>
-                  <MenuItem value="caterer">Caterer</MenuItem>
-                  <MenuItem value="photographer">Photographer</MenuItem>
-                  <MenuItem value="decor">Decor</MenuItem>
-                </Select>
+              <TextField
+                id="title"
+                name="title"
+                label="Title"
+                value={formik.values.title}
+                onChange={formik.handleChange}
+                error={formik.touched.title && Boolean(formik.errors.title)}
+                helperText={formik.touched.title && formik.errors.title}
+              />
 
+              <TextField
+                id="description"
+                name="description"
+                label="Description"
+                value={formik.values.description}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.description &&
+                  Boolean(formik.errors.description)
+                }
+                helperText={
+                  formik.touched.description && formik.errors.description
+                }
+              />
+
+              <TextField
+                id="price"
+                name="price"
+                label="Price"
+                type="number"
+                value={formik.values.price}
+                onChange={formik.handleChange}
+                error={formik.touched.price && Boolean(formik.errors.price)}
+                helperText={formik.touched.price && formik.errors.price}
+              />
+
+              {formik.values.vendorType === "venue" && (
                 <TextField
-                  id="title"
-                  name="title"
-                  label="Title"
-                  value={formik.values.title}
-                  onChange={formik.handleChange}
-                  error={formik.touched.title && Boolean(formik.errors.title)}
-                  helperText={formik.touched.title && formik.errors.title}
-                />
-
-                <TextField
-                  id="description"
-                  name="description"
-                  label="Description"
-                  value={formik.values.description}
+                  id="capacity"
+                  name="capacity"
+                  label="Capacity"
+                  type="number"
+                  value={formik.values.capacity}
                   onChange={formik.handleChange}
                   error={
-                    formik.touched.description &&
-                    Boolean(formik.errors.description)
+                    formik.touched.capacity && Boolean(formik.errors.capacity)
                   }
-                  helperText={
-                    formik.touched.description && formik.errors.description
-                  }
+                  helperText={formik.touched.capacity && formik.errors.capacity}
                 />
+              )}
 
-                <TextField
-                  id="price"
-                  name="price"
-                  label="Price"
-                  type="number"
-                  value={formik.values.price}
-                  onChange={formik.handleChange}
-                  error={formik.touched.price && Boolean(formik.errors.price)}
-                  helperText={formik.touched.price && formik.errors.price}
-                />
-
-                {formik.values.vendorType === "venue" && (
+              {formik.values.vendorType === "caterer" && (
+                <>
                   <TextField
-                    id="capacity"
-                    name="capacity"
-                    label="Capacity"
+                    id="menu"
+                    name="menu"
+                    label="Menu"
+                    value={formik.values.menu}
+                    onChange={formik.handleChange}
+                    error={formik.touched.menu && Boolean(formik.errors.menu)}
+                    helperText={formik.touched.menu && formik.errors.menu}
+                  />
+
+                  <TextField
+                    id="quantity"
+                    name="quantity"
+                    label="Quantity"
                     type="number"
-                    value={formik.values.capacity}
+                    value={formik.values.quantity}
                     onChange={formik.handleChange}
                     error={
-                      formik.touched.capacity && Boolean(formik.errors.capacity)
+                      formik.touched.quantity && Boolean(formik.errors.quantity)
                     }
                     helperText={
-                      formik.touched.capacity && formik.errors.capacity
+                      formik.touched.quantity && formik.errors.quantity
                     }
                   />
-                )}
-
-                {formik.values.vendorType === "caterer" && (
-                  <>
-                    <TextField
-                      id="menu"
-                      name="menu"
-                      label="Menu"
-                      value={formik.values.menu}
-                      onChange={formik.handleChange}
-                      error={formik.touched.menu && Boolean(formik.errors.menu)}
-                      helperText={formik.touched.menu && formik.errors.menu}
-                    />
-
-                    <TextField
-                      id="quantity"
-                      name="quantity"
-                      label="Quantity"
-                      type="number"
-                      value={formik.values.quantity}
-                      onChange={formik.handleChange}
-                      error={
-                        formik.touched.quantity &&
-                        Boolean(formik.errors.quantity)
-                      }
-                      helperText={
-                        formik.touched.quantity && formik.errors.quantity
-                      }
-                    />
-                  </>
-                )}
-                {formik.values.vendorType === "photographer" && (
-                  <TextField
-                    id="hours"
-                    name="hours"
-                    label="Hours"
-                    type="number"
-                    value={formik.values.hours}
-                    onChange={formik.handleChange}
-                    error={formik.touched.hours && Boolean(formik.errors.hours)}
-                    helperText={formik.touched.hours && formik.errors.hours}
-                  />
-                )}
-
-                {formik.values.vendorType === "decor" && (
-                  <TextField
-                    id="items"
-                    name="items"
-                    label="Items"
-                    value={formik.values.items}
-                    onChange={formik.handleChange}
-                    error={formik.touched.items && Boolean(formik.errors.items)}
-                    helperText={formik.touched.items && formik.errors.items}
-                  />
-                )}
-              </FormText>
-
-              <Map />
-
-              <FormImage>
-                <Image
-                  src={
-                    "https://i.weddinghero.ca/gallery/1895/preview_1895_zpKtyJ1J.jpg"
-                  }
+                </>
+              )}
+              {formik.values.vendorType === "photographer" && (
+                <TextField
+                  id="hours"
+                  name="hours"
+                  label="Hours"
+                  type="number"
+                  value={formik.values.hours}
+                  onChange={formik.handleChange}
+                  error={formik.touched.hours && Boolean(formik.errors.hours)}
+                  helperText={formik.touched.hours && formik.errors.hours}
                 />
-                {/* --------------------------------For mobile button for pic --------------------------------------*/}
-                {/* <IconButton color="primary" aria-label="upload picture" component="label">
+              )}
+
+              {formik.values.vendorType === "decor" && (
+                <TextField
+                  id="items"
+                  name="items"
+                  label="Items"
+                  value={formik.values.items}
+                  onChange={formik.handleChange}
+                  error={formik.touched.items && Boolean(formik.errors.items)}
+                  helperText={formik.touched.items && formik.errors.items}
+                />
+              )}
+
+              <TextField
+                id="image"
+                name="image"
+                type="file"
+                value={formik.values.image}
+                onChange={formik.handleChange}
+                error={formik.touched.image && Boolean(formik.errors.image)}
+                helperText={formik.touched.image && formik.errors.image}
+              />
+            </FormText>
+
+            <Map />
+
+            <FormImage>
+              <Image
+                src={
+                  "https://i.weddinghero.ca/gallery/1895/preview_1895_zpKtyJ1J.jpg"
+                }
+              />
+              {/* --------------------------------For mobile button for pic --------------------------------------*/}
+              {/* <IconButton color="primary" aria-label="upload picture" component="label">
   <input hidden accept="image/*" type="file" />
   <PhotoCamera />
 </IconButton> */}
-                {/* --------------------------------For mobile button for pic --------------------------------------*/}
+              {/* --------------------------------For mobile button for pic --------------------------------------*/}
 
-                <Button
-                  variant="contained"
-                  component="label"
-                  style={{
-                    justifySelf: "center",
-                    width: "100px",
-                    height: "50px",
-                    marginTop: "100px",
-                  }}
-                >
-                  Upload
-                  <input
-                    hidden
-                    type="file"
-                    name="image"
-                    onChange={handleChangePic}
-                  />
-                </Button>
-              </FormImage>
-            </Card>
-            <Button type="submit">Save Package</Button>
-          </FlexContainer>
-        </form>
+              <Button
+                variant="contained"
+                component="label"
+                style={{
+                  justifySelf: "center",
+                  width: "100px",
+                  height: "50px",
+                  marginTop: "100px",
+                }}
+              >
+                Upload
+                <input
+                  hidden
+                  type="file"
+                  name="image"
+                  onChange={handleChangePic}
+                />
+              </Button>
+            </FormImage>
+          </Card>
+          <Button type="submit">Save Package</Button>
+        </FlexContainer>
+      </form>
     </>
   );
 };

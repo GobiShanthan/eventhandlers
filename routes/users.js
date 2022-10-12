@@ -12,7 +12,7 @@ router.get('/vendors',usersCtrl.getVendors);
 
 
 // GET /api/users GET ALL VENDORS ONLY
-router.put('/update',usersCtrl.updateUser);
+router.post('/update',usersCtrl.updateUser);
 
 
 

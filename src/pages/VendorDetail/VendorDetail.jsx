@@ -103,7 +103,8 @@ const VendorDetail = () => {
             
             </TopUserInfo>
          <BottomUserImages>
-         <ImageView src={d.photos ?d.photos:'https://a.cdn-hotels.com/gdcs/production61/d931/c994bd00-cb15-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=1600&h=1066&q=medium'} alt={d.title}/>
+          {console.log(d)}
+         <ImageView src={d.image ? d.image:'https://a.cdn-hotels.com/gdcs/production61/d931/c994bd00-cb15-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=1600&h=1066&q=medium'} alt={d.title}/>
          </BottomUserImages>
           </VDetailUser>
         )) :<h1>No Packages for this user</h1>}

@@ -19,6 +19,7 @@ const packageSchema = new Schema(
     price: { type: Number, required: true },
     capacity: { type: String },
     image: { type: String },
+
     vendorType: { type: String, required: true },
     menu: { type: String },
     quantity: { type: String },
