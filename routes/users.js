@@ -7,8 +7,13 @@ router.post('/signup', usersCtrl.create);
 // POST /api/users/login
 router.post('/login', usersCtrl.login);
 
+// GET /api/users GET ALL VENDORS ONLY
+router.get('/vendors',usersCtrl.getVendors);
 
 
-router.get('/vendors',usersCtrl.getVendors)
+// GET /api/users GET ALL VENDORS ONLY
+router.post('/update',usersCtrl.updateUser);
+
+
 
 module.exports = router;

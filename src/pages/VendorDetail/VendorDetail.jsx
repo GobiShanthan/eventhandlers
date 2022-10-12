@@ -1,11 +1,34 @@
 import {useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {addToCart} from '../../redux/reducers/cartSlice'
+
+
+import {
+  VDetailContainer,
+  VDetailUser,
+  TopUserInfo,
+  BottomUserImages,
+  ImageView,
+  UserInfoLeft,
+  UserInfoMid,
+  UserInfoRight
+} from './VendorDetail.styled'
+
+
 
 const VendorDetail = () => {
+
+  const dispatch = useDispatch()
   const [data, setData] = useState(null)
   const params = useParams()
   const vendorId = params['id']
 
+
+  
+  const {userInfo} = useSelector((state)=>state.login)
+
+  let userId = userInfo && userInfo._id ? userInfo._id:null
 
 
   //FETCH LISTS ASSOCIATED WITH THE USER 
@@ -57,20 +80,38 @@ const VendorDetail = () => {
   })
 
 
-
-
-
   return (
-    <div>
-      <ul>
+    <VDetailContainer>
         {data ? data.map(d=>(
-          <li key={d._id}>
-            <h1>{d.title}</h1>
-            <button style={{background: 'black',color:'white'}} onClick={()=>deletePackage(d._id)}>DELETE</button>
-          </li>
+          <VDetailUser key={d._id}>
+            <TopUserInfo> 
+              <UserInfoLeft>
+                <h1>{d.title}</h1>
+                <h3>{d.description}</h3>
+                <h3>CAD ${d.price}</h3>
+
+              </UserInfoLeft>
+              <UserInfoMid>
+                <h3>Date: {d.createdAt.split('T')[0]}</h3>
+                <h3>Capacity: {d.capacity}</h3>
+              </UserInfoMid>
+              <UserInfoRight>
+                {userId && d.user === userId?<button style={{background: 'black',color:'white'}} onClick={()=>deletePackage(d._id)}>DELETE</button>:<button onClick={()=>dispatch(addToCart(d))}> ADD TO CART</button>}
+              </UserInfoRight>  
+             
+            
+            
+            </TopUserInfo>
+         <BottomUserImages>
+          {console.log(d)}
+         <ImageView src={d.image ? d.image:'https://a.cdn-hotels.com/gdcs/production61/d931/c994bd00-cb15-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=1600&h=1066&q=medium'} alt={d.title}/>
+         </BottomUserImages>
+          </VDetailUser>
         )) :<h1>No Packages for this user</h1>}
-      </ul>
-    </div>
+
+
+
+    </VDetailContainer>
   )
 }
 

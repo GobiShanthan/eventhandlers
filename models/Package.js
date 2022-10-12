@@ -17,7 +17,12 @@ const packageSchema = new Schema(
     description: { type: String },
     price: { type: Number, required: true },
     capacity: { type: String },
-    photos: { type: String }
+    image: { type: String },
+    vendorType:{type:String,required:true},
+    menu:{type:String,},
+    quantity:{type:String,},
+    hours:{type:String,},
+    items:{type:String,},
   },
   {
     timestamps: true,
@@ -46,7 +51,7 @@ packageSchema.statics.getByUserId = async function (userId) {
 
 //CREATE PACKAGE
 packageSchema.statics.createPackage = async function (req) {
-  let {title, description, price, capacity, photo } = req.body;
+  let {title, description, price, capacity, image,vendorType,menu,quantity,hours,items } = req.body;
 
   this.create({
     user:req.user._id,
@@ -54,17 +59,21 @@ packageSchema.statics.createPackage = async function (req) {
     price,
     description: description && description,
     capacity: capacity && capacity,
-    photos: photo && photo,
+    image: image && image,
+    vendorType: vendorType && vendorType,
+    menu: menu  && menu,
+    quantity: quantity  && quantity,
+    hours: hours && hours,
+    items: items && items,
   });
   console.log('created')
   return 'Package created'
-
 };
 
 
 //UPDATE PACKEAGE 
 packageSchema.statics.updatePackage = async function (req) {
-  let { user, title, description, price, capacity, photo } = req.body;
+  let { user, title, description, price, capacity, photo, vendorType } = req.body;
   let foundPackage = await this.findById(req.params._id)
 
   let updatatedPackage ={
@@ -72,6 +81,7 @@ packageSchema.statics.updatePackage = async function (req) {
     title:title?title:foundPackage.title,
     description:description?description:foundPackage.description,
     price:price?price:foundPackage.price,
+    vendorType:vendorType?vendorType:foundPackage.vendorType,
     capacity:capacity?capacity:foundPackage.capacity,
     photo:photo?photo:foundPackage.photo
   }

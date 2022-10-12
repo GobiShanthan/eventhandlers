@@ -17,35 +17,13 @@ import AddPackage from '../AddPackage/AddPackage'
 import ViewPackage from '../ViewPackage/ViewPackage'
 import Checkout from '../Checkout/Checkout'
 import Packages from '../Packages/Packages'
-
+import UserPage from '../UsersPage/UsersPage'
 
 
 const App = () => {
 
 
-//GET LOCALDATA AND SET USER 
-const updateUserState =()=>{
-  let token = localStorage.getItem('token')
-  if(token){
-    const payload = JSON.parse(window.atob(token.split('.')[1]))
-    if(payload.exp < Date.now() /1000){
-      localStorage.removeItem('token')
-      token = null
-    }else{
-      let userData = payload.user
-      
-  }
-}else{
-  return
-}
-}
 
-
-
-// USE EFFECT TO FETCH FROM LOCAL STATE
-useEffect(()=>{
-updateUserState()
-},[])
 
 
 
@@ -61,11 +39,12 @@ updateUserState()
       <Route path='/package/add' element={<AddPackage />} />
       <Route path='/package/:id' element={<Packages />} />
       <Route path='/checkout' element={<Checkout />} />
-
+      <Route path='/userpage' element={<UserPage />} />
 
 
 
       <Route path='/auth' element={<AuthPage /> }/>
+
       <Route path="*" element={<Navigate to="/" replace />} />
       
       </Routes>

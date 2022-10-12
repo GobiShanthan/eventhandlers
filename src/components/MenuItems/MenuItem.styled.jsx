@@ -14,7 +14,10 @@ import {
 export const MenuItemContainer = styled(motion.button)`
 height:50px;
 width:100px;
-background-color:${lightGold} ;
-margin:4px;
+margin:20px;
+padding: 20px;
+font-size: 20px;
+text-decoration: none;
+color: black;
 
 `

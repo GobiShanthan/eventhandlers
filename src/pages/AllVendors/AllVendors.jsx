@@ -7,6 +7,7 @@ import io from 'socket.io-client'
 
 // Material UI imports
 import { DataGrid } from '@mui/x-data-grid';
+import Search from '../../components/Search/Search'
 
 
 const AllVendors = () => {
@@ -141,10 +142,9 @@ const AllVendors = () => {
   },[vendors])
 
 
-
-
   return (
     <div style={{ height: 400, width: '100%', marginTop: '10vh'}}>
+      
     <DataGrid
       getRowId={(row) => row._id}
       rows={vendors && vendors}
@@ -152,6 +152,7 @@ const AllVendors = () => {
       pageSize={5}
       rowsPerPageOptions={[5]}
     />
+    <Search />
     <ul>
       {vendors && vendors.map(v => (
         <div key={v._id} > 
