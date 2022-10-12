@@ -25,6 +25,20 @@ app.use(cors());
 
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")));
 app.use(express.static(path.join(__dirname, "build")));
+app.use(cookieParser());
+app.use(session({
+  secret: 'EventHandlers',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'build')));
+
+
 
 app.use(require('./routes/stripe'));
 app.use("/api/users", require("./routes/users"));
