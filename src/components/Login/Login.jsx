@@ -12,12 +12,10 @@ import {
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
 import { Formik, Form, useFormik } from "formik";
 import * as Yup from "yup";
 import { MyTextInput } from "../FormFields/FormFields";
 
-import lightGold from "../../components/Colors/colors";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Required"),
@@ -76,4 +74,3 @@ const Login = () => {
 };
 
 export default Login;
-
