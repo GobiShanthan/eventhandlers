@@ -1,11 +1,56 @@
 let io = require('socket.io')()
+let onlineUsers = []
 
-io.on('connection', function(socket){
-  console.log('connected')
-  io.emit('message from server', 'message from server - it works!')
+const addNewUser = (userId, socketId) => {
+  onlineUsers = onlineUsers.filter(user => user.userId !== userId)
+  !onlineUsers.some(user=>user.userId === userId) && onlineUsers.push({userId,socketId});
+}
 
-  socket.on('disconnect', () => {
-  console.log('A user disconnected')  
+const removeUser = (socketId)=>{
+  onlineUsers = onlineUsers.filter(user=>user.socketId !== socketId)
+}
+
+const getUser = (userId)=>{
+  const verifiedUser = onlineUsers.find((user) =>user.userId === userId)
+  if(verifiedUser){
+      return verifiedUser
+  }
+}
+
+io.on('connection', (socket) => {
+  console.log(`${socket.id} connected`)
+  io.emit('connAcknowledge', socket.id)
+
+  socket.on('newUser',(userId)=>{
+    console.log(userId.name, 'is connected')
+    console.log(userId.Id, 'is connected')
+    addNewUser(userId.Id,socket.id)
+    console.log('All online users: ')
+    console.log(onlineUsers)
+})
+  // io.emit('connAcknowledge', `Detect connection from socketID: ${socket.id}`)
+
+  socket.on('message', (data) => {
+    console.log(data)
+    const receiver = getUser(data.vendorId)
+    
+    const sender = getUser(data.userId)
+    const senderSocket = onlineUsers.find(user => user.userId === data.userId).socketId
+    console.log(senderSocket)
+    if(!receiver) {
+      io.to(senderSocket).emit('feedbackOffline', 'User is offline')
+    } else {
+      const receiverSocket = onlineUsers.find(user => user.userId === receiver.userId).socketId
+      io.to(receiverSocket).emit('feedbackOnline', `${data.name}: ${data.text}`)
+    }
+  })
+
+  socket.on('disconnect', (socket) => {
+    console.log(socket, "line 49")
+  console.log(`SocketID ${socket.id} disconnected`) 
+  // onlineUsers = onlineUsers.filter(user=>user.socketId !== socket.id)
+  removeUser(socket.id)
+  console.log(onlineUsers)
   })
 })
 
