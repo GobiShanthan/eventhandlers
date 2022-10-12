@@ -12,6 +12,7 @@ import Search from '../../components/Search/Search'
 
 const AllVendors = () => {
   const [vendors,setVendors] = useState([])
+  const [messageHistory, setMessageHistory] = useState([])
   const navigate = useNavigate()
   const {userInfo} = useSelector(state => state.login)
   let socket = io();
@@ -24,7 +25,12 @@ const AllVendors = () => {
     });
 
   socket.on('feedbackOffline', msg => console.log(msg))
-  socket.on('feedbackOnline', msg => console.log(msg))
+  
+  socket.on('feedbackOnline', msg => {
+    
+    console.log(msg);
+    setMessageHistory( prev => [...prev, msg]);
+  })
 
   // useEffect(()=>{
   //   console.log(socket)
@@ -157,7 +163,7 @@ const AllVendors = () => {
       {vendors && vendors.map(v => (
         <div key={v._id} > 
           <h1>Name : {v.name}</h1>
-          <ChatModal vendorId={v._id}/>
+          <ChatModal vendorId={v._id} messageHistory={messageHistory} />
         </div>
       )
       )}

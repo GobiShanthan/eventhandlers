@@ -24,7 +24,7 @@ const style = {
   p: 4,
 };
 
-export default function ChatModal({vendorId}) {
+export default function ChatModal({vendorId, messageHistory}) {
   const {userInfo} = useSelector(state => state.login)
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('')
@@ -34,6 +34,11 @@ export default function ChatModal({vendorId}) {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
+
+    // let username = userInfo.name
+    // setMessageHistory([...messageHistory, {username, message}])
+    // console.log(messageHistory)
+
     socket.emit('message', {
       text: message,
       name: userInfo.name,
@@ -41,8 +46,10 @@ export default function ChatModal({vendorId}) {
       userSocketId: socket.id,
       vendorId 
     })
+   
     setMessage('');
   }
+
 
   return (
     <div>
@@ -54,6 +61,29 @@ export default function ChatModal({vendorId}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+        <div>
+          <ul>
+            {messageHistory && messageHistory.map(message =>
+              (<p>{message}</p>)
+              )}
+          </ul>
+          {/* <div>{messageHistory.map(message =>
+            <p>{message}</p>)}
+          </div> */}
+          {/* {messageHistory.map(message => 
+            message.username === userInfo.name ? (
+              <div>
+                <p>You</p>
+                <p>{message.message}</p>
+              </div>
+            ) :
+            <div>
+              <p>{message.username}</p>
+              <p>{message.message}</p>
+            </div>
+            )} */}
+        </div>
+
         <form onSubmit={handleSendMessage}>
         <input
           type="text"
