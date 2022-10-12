@@ -9,7 +9,7 @@ import {
 const MenuItem = ({name,link}) => {
   return (
     <MenuItemContainer>
-        <Link to={link}>
+        <Link style={{ color:'black', textDecoration:'none'}} to={link}>
             {name}
         </Link>
     </MenuItemContainer>

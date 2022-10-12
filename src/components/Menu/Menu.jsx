@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/reducers/LoginSlice';
+import thumbnail from '../../images/thumbnail.svg'
 import MenuItem from '../MenuItems/MenuItem'
 import {
     MenuContainer,
@@ -25,30 +26,22 @@ const Menu = () => {
   }
 
 
-
-
-
-
-
-
   return (
     <MenuContainer>
       {console.log(cartData)}
-        <MenuLeft><Link to='/'>EVENT HANDLERS</Link></MenuLeft>
+        <MenuLeft><Link to='/'><img src={thumbnail} /></Link></MenuLeft>
         <MenuMid>{userInfo && userInfo.name ? userInfo.name : ''}</MenuMid>
         <MenuRight>
           { userInfo && userInfo.name&&
         <>
-        <MenuItem name='packages' link='packages'/>
+        <MenuItem name='About' link=''/>
+        <MenuItem name='Packages' link='packages'/>
         <MenuItem name='Vendors' link='/vendors'/>
         <MenuItem name='UserPage' link='/userpage'/>
         <MenuItem name='Cart' link='/cart'/>
         <Badge badgeContent={cartNum?cartNum:0} color="primary" style={{marginTop:'2vh'}}>
-        <ShoppingCartIcon color="action"  />
+        <ShoppingCartIcon color="action" />
         </Badge>
-
-        <MenuItem name='About' link=''/>
-
         </> }
         {userInfo && userInfo.name ? <LogStatusTitle onClick={()=>logout()}>Logout</LogStatusTitle>:<Link to='/auth'><LogStatusTitle>Login</LogStatusTitle></Link>}
         </MenuRight>
