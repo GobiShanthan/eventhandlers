@@ -1,6 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import ChatModal from '../../components/ChatModal/ChatModal'
 
+import io from 'socket.io-client'
+
+// Material UI imports
 import { DataGrid } from '@mui/x-data-grid';
 import Search from '../../components/Search/Search'
 
@@ -8,6 +13,49 @@ import Search from '../../components/Search/Search'
 const AllVendors = () => {
   const [vendors,setVendors] = useState([])
   const navigate = useNavigate()
+  const {userInfo} = useSelector(state => state.login)
+  let socket = io();
+
+  // this code block will update User's socketID in the backend
+  socket.on('connAcknowledge', (msg) => {
+      socket.emit('newUser',{
+        Id: userInfo._id,
+        name: userInfo.name})
+    });
+
+  socket.on('feedbackOffline', msg => console.log(msg))
+  socket.on('feedbackOnline', msg => console.log(msg))
+
+  // useEffect(()=>{
+  //   console.log(socket)
+  //   if(userInfo){
+  //     socket.emit('newUser',{
+  //       Id: userInfo._id,
+  //       name: userInfo.name})
+  //   }
+  // }, [])
+
+  const handleAllPackages = (params) => {
+    return (
+      <button onClick={() => {
+        const currentRow = params.row;
+              // return alert(JSON.stringify(currentRow, null, 4));
+              let id = JSON.stringify(currentRow._id).split('"')
+       
+              navigate(`/vendors/${id[1]}`)
+      } }>Packages</button>
+    )
+  }
+
+  // const handleOpenChat = (params) => {
+  //   return (
+  //     <button onClick={() => {
+  //       const currentRow = params.row;
+  //       console.log(currentRow);
+  //       <ChatModal />
+  //     }}>Open Chat</button>
+  //   )
+  // }
 
   const columns = [
     { field: '_id', id: '_id', width:200 },
@@ -15,30 +63,55 @@ const AllVendors = () => {
     { field: 'email', headerName: 'Email', width: 200},
     {field: 'name',headerName: 'Name', width: 200},
     {
-      field: 'action',
-      headerName: 'Action',
+      field: 'column1',
+      headerName: 'View Packages',
       width: 180,
       sortable: false,
       disableClickEventBubbling: true,
-      
-      renderCell: (params) => {
-          const onHandleCLick = (e) => {
-            const currentRow = params.row;
-            // return alert(JSON.stringify(currentRow, null, 4));
-            let id = JSON.stringify(currentRow._id).split('"')
+      renderCell: handleAllPackages
+      // getActions: (params) => [
+      //   <button onClick={handleAllPackages} label="Delete" >All Packages</button>,
+      // ]
      
-            navigate(`/vendors/${id[1]}`)
-          };
-          
-          return (
-            <>
-            <button onClick={onHandleCLick} >Packages</button>
-            </>
-            
-          );
-      },
-    }
 
+      // renderCell: (params) => {
+      //     const onHandleCLick = (e) => {
+      //       const currentRow = params.row;
+      //       // return alert(JSON.stringify(currentRow, null, 4));
+      //       let id = JSON.stringify(currentRow._id).split('"')
+     
+      //       navigate(`/vendors/${id[1]}`)
+      //     };
+          
+      //     return (
+      //       <>
+      //       <button onClick={onHandleCLick} >Packages</button>
+      //       </>
+            
+      //     );
+      // },
+    },
+    {
+      field: 'action',
+      headerName: 'Action',
+      width: 180,
+      disableClickEventBubbling: true,
+      renderCell:(params) => {
+        const handleChatClick = (e) => {
+          const currentRow = params.row;
+          // console.log(currentRow._id);
+          let targetId = currentRow._id
+
+        }
+      return (
+        <div >
+        {/* <button onClick={handleChatClick}>Open Chat</button> */}
+        {console.log(params.row._id, '-------------------------------')}
+        <ChatModal />
+        </div>
+      )
+      }
+    }
   ];
   
 
@@ -80,6 +153,16 @@ const AllVendors = () => {
       rowsPerPageOptions={[5]}
     />
     <Search />
+    <ul>
+      {vendors && vendors.map(v => (
+        <div key={v._id} > 
+          <h1>Name : {v.name}</h1>
+          <ChatModal vendorId={v._id}/>
+        </div>
+      )
+      )}
+    </ul>
+  
   </div>
   )
 }
