@@ -1,7 +1,7 @@
 import React from 'react'
 import OrderForm from '../../components/OrderForm/OrderForm'
 import Cart from '../../components/Cart/Cart'
-
+import StripeCheckout from '../../components/StripeCheckout/StripeCheckout'
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -58,6 +58,7 @@ export default function Checkout() {
           </Typography>
            {activeStep === 0 && <OrderForm />}
            {activeStep === 1 && <Cart />}
+           {activeStep === 2 && <StripeCheckout />}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"

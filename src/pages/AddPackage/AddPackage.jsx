@@ -232,12 +232,7 @@ const AddPackage = () => {
                       placeholder="Items Included"
                     />
                   )}
-{/* 
-<MyTextInput
-                    name="image"
-                    type="file"
-                    placeholder="Image"
-                  /> */}
+
                 </FormText>
 
                 <Map />
