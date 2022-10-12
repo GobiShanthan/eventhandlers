@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema(
       minLength: 3,
       required: true,
     },
+    image:{type:String},
     googleId: { type: String },
     isAdmin: { type: Boolean ,default:false},
     isVendor: { type: Boolean, default:false },

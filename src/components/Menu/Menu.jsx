@@ -41,6 +41,7 @@ const Menu = () => {
         <>
         <MenuItem name='packages' link='packages'/>
         <MenuItem name='Vendors' link='/vendors'/>
+        <MenuItem name='UserPage' link='/userpage'/>
         <MenuItem name='Cart' link='/cart'/>
         <Badge badgeContent={cartNum?cartNum:0} color="primary" style={{marginTop:'2vh'}}>
         <ShoppingCartIcon color="action"  />

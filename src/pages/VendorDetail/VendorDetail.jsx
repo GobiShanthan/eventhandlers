@@ -17,9 +17,6 @@ import {
 
 
 
-
-
-
 const VendorDetail = () => {
 
   const dispatch = useDispatch()
@@ -76,22 +73,11 @@ const VendorDetail = () => {
 
 
 
-
-
-
-
-
-
-
-
   useEffect(()=>{
     if(!data){
       fetchLists()
     }
   })
-
-
-
 
 
   return (
