@@ -265,37 +265,72 @@ const AddPackage = () => {
                 }
               />
 
-                  <MyTextInput
-                    label="Price"
-                    name="price"
-                    type="number"
-                    placeholder="Price"
-                  />
-                  {props.values.vendorType === "venue" && (
-                    <MyTextInput
-                      name="capacity"
-                      type="number"
-                      placeholder="Capacity"
-                    />
-                  )}
+              <TextField
+                id="price"
+                name="price"
+                label="Price"
+                type="number"
+                value={formik.values.price}
+                onChange={formik.handleChange}
+                error={formik.touched.price && Boolean(formik.errors.price)}
+                helperText={formik.touched.price && formik.errors.price}
+              />
 
-                  {props.values.vendorType === "caterer" && (
-                    <>
-                      <MyTextInput name="menu" type="text" placeholder="Menu" />
-                      <MyTextInput
-                        name="quantity"
-                        type="number"
-                        placeholder="Number of people"
-                      />
-                    </>
-                  )}
-                  {props.values.vendorType === "photographer" && (
-                    <MyTextInput
-                      name="hours"
-                      type="number"
-                      placeholder="Hours"
-                    />
-                  )}
+              {formik.values.vendorType === "venue" && (
+                <TextField
+                  id="capacity"
+                  name="capacity"
+                  label="Capacity"
+                  type="number"
+                  value={formik.values.capacity}
+                  onChange={formik.handleChange}
+                  error={
+                    formik.touched.capacity && Boolean(formik.errors.capacity)
+                  }
+                  helperText={formik.touched.capacity && formik.errors.capacity}
+                />
+              )}
+
+              {formik.values.vendorType === "caterer" && (
+                <>
+                  <TextField
+                    id="menu"
+                    name="menu"
+                    label="Menu"
+                    value={formik.values.menu}
+                    onChange={formik.handleChange}
+                    error={formik.touched.menu && Boolean(formik.errors.menu)}
+                    helperText={formik.touched.menu && formik.errors.menu}
+                  />
+
+                  <TextField
+                    id="quantity"
+                    name="quantity"
+                    label="Quantity"
+                    type="number"
+                    value={formik.values.quantity}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.quantity && Boolean(formik.errors.quantity)
+                    }
+                    helperText={
+                      formik.touched.quantity && formik.errors.quantity
+                    }
+                  />
+                </>
+              )}
+              {formik.values.vendorType === "photographer" && (
+                <TextField
+                  id="hours"
+                  name="hours"
+                  label="Hours"
+                  type="number"
+                  value={formik.values.hours}
+                  onChange={formik.handleChange}
+                  error={formik.touched.hours && Boolean(formik.errors.hours)}
+                  helperText={formik.touched.hours && formik.errors.hours}
+                />
+              )}
 
               {formik.values.vendorType === "decor" && (
                 <TextField
