@@ -28,7 +28,7 @@ const Menu = () => {
 
   return (
     <MenuContainer>
-      {console.log(cartData)}
+
         <MenuLeft><Link to='/'><img src={thumbnail} /></Link></MenuLeft>
         <MenuMid>{userInfo && userInfo.name ? userInfo.name : ''}</MenuMid>
         <MenuRight>

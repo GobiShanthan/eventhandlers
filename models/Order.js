@@ -7,7 +7,6 @@ const orderSchema = new Schema({
     packageItems:[{type: Schema.Types.ObjectId, ref: "User"}],
     shippingAddress:{type:String},
     paymentMethod:{type:Boolean,default:false},
-    ShippingPrice:{type:Boolean,default:false},
     totalPrice:{type:String},
     isPaid:{type:String},
     paidAt:{type:String},

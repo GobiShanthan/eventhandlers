@@ -1,11 +1,19 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import {useDispatch, useSelector} from 'react-redux'
 import * as Yup from "yup";
 import { MyTextInput } from "../FormFields/FormFields";
-
 import { FlexContainer, Card } from "./OrderForm.styled";
+import {addAddress} from '../../redux/reducers/orderSlice'
+
+
+
+
 
 const OrderForm = () => {
+  const dispatch = useDispatch();
+
+
   return (
     <>
       <Formik
@@ -21,7 +29,9 @@ const OrderForm = () => {
           postalCode: Yup.string().required("Required"),
           country: Yup.string().required("Required"),
         })}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {
+          dispatch(addAddress(values))
+        }}
       >
         <Form>
           <FlexContainer>
