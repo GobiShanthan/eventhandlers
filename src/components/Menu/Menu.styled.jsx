@@ -3,7 +3,7 @@ import {motion} from 'framer-motion'
 
 export const MenuContainer = styled(motion.div)`
 position:relative;
-background-color: #EAEAEA;
+background-color: #eaeaea;
 display:flex;
 justify-content: space-around ;
 align-items: start;

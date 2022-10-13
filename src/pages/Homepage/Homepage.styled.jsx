@@ -12,7 +12,7 @@ background-repeat: no-repeat;
 background-position: center;
 text-align: center;
 color: white;
-background-color: black;
+background-color: #231f20 ;
 
 
 

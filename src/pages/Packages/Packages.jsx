@@ -1,23 +1,19 @@
-
 import {Link} from 'react-router-dom'
-
-
-
-
+import { PackageContainer } from '../Packages/Packages.styled'
 
 const Packages = () => {
 
 
   return (
     
-    <div style={{marginTop:'10vh'}}>
+    <PackageContainer style={{ backgroundColor: '#231f20' }}>
       <ul>
-        <li>list goes here........</li>
+        <li>list goes here...</li>
       </ul>
       <button>
-        <Link to='/package/add'>Add Package</Link>
+        <Link style={{ color: '#eaeaea', textDecoration: 'none'}} to='/package/add'>Add Package</Link>
       </button>
-    </div>
+    </PackageContainer>
   )
 }
 
