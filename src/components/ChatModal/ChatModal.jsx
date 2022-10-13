@@ -3,6 +3,8 @@ import {useState, useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import io from 'socket.io-client'
 import chatIcon from '../../images/chatIcon.webp'
+import {IconImage} from '../../pages/AllVendors/AllVendors.styled'
+
 //Material UI imports
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -55,7 +57,8 @@ export default function ChatModal({
     let userData = {
       'user': currentUser && currentUser,
       message
-
+    }
+    setMessageHistory([...messageHistory, userData])
     socket.emit("message", {
       text: message,
       name: userInfo.name,
