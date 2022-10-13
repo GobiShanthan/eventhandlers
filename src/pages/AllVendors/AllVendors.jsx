@@ -12,6 +12,7 @@ import Search from '../../components/Search/Search'
 
 const AllVendors = () => {
   const [vendors,setVendors] = useState([])
+  const [messageHistory, setMessageHistory] = useState([])
   const navigate = useNavigate()
   const {userInfo} = useSelector(state => state.login)
   let socket = io();
@@ -23,17 +24,20 @@ const AllVendors = () => {
   //       name: userInfo.name})
   //   });
 
-  // socket.on('feedbackOffline', msg => console.log(msg))
-  // socket.on('feedbackOnline', msg => console.log(msg))
-
-  // useEffect(()=>{
-  //   console.log(socket)
-  //   if(userInfo){
-  //     socket.emit('newUser',{
-  //       Id: userInfo._id,
-  //       name: userInfo.name})
-  //   }
-  // }, [])
+  socket.on('feedbackOffline', )
+  
+  socket.on('feedbackOnline', msg => {
+    let messageDetails = {
+      'user': msg.user,
+      // 'userId': msg.userId, 
+      'message': msg.message, 
+      // 'recipientId': msg.recipientId
+    }
+   
+    
+    setMessageHistory([...messageHistory, messageDetails]);
+  })
+ 
 
   const handleAllPackages = (params) => {
     return (
@@ -91,27 +95,6 @@ const AllVendors = () => {
       //     );
       // },
     },
-    {
-      field: 'action',
-      headerName: 'Action',
-      width: 180,
-      disableClickEventBubbling: true,
-      renderCell:(params) => {
-        const handleChatClick = (e) => {
-          const currentRow = params.row;
-          // console.log(currentRow._id);
-          let targetId = currentRow._id
-
-        }
-      return (
-        <div >
-        {/* <button onClick={handleChatClick}>Open Chat</button> */}
-        {console.log(params.row._id, '-------------------------------')}
-        <ChatModal />
-        </div>
-      )
-      }
-    }
   ];
   
 
@@ -157,7 +140,8 @@ const AllVendors = () => {
       {vendors && vendors.map(v => (
         <div key={v._id} > 
           <h1>Name : {v.name}</h1>
-          <ChatModal vendorId={v._id}/>
+          {console.log('hello world -------------------------------')}
+          <ChatModal vendorId={v._id} messageHistory={messageHistory} setMessageHistory={setMessageHistory}/>
         </div>
       )
       )}

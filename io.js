@@ -43,13 +43,13 @@ io.on("connection", (socket) => {
     if (!receiver) {
       io.to(senderSocket).emit("feedbackOffline", "User is offline");
     } else {
-      const receiverSocket = onlineUsers.find(
-        (user) => user.userId === receiver.userId
-      ).socketId;
-      io.to(receiverSocket).emit(
-        "feedbackOnline",
-        `${data.name}: ${data.text}`
-      );
+      const receiverSocket = onlineUsers.find(user => user.userId === receiver.userId).socketId
+      returnMessage = {
+        'user': data.name, 
+        'userId': data.userId,
+        'message': data.text, 
+        'recipientId': data.vendorId}
+      io.to(receiverSocket).emit('feedbackOnline', returnMessage)
     }
   });
 
