@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import {motion }from 'framer-motion'
+import {lightBlack, grey} from '../../components/Colors/colors'
 
 export const LoginContainer = styled(motion.div)`
 background-color:white;
@@ -17,8 +18,9 @@ justify-content:center;
 `
 
 export const LoginTitle = styled(motion.div)`
-font-size:20px;
-margin-bottom:30px;
+margin: 20px;
+font-size: 40px;
+
 `
 
 export const LoginForm= styled(motion.form)`
@@ -26,6 +28,7 @@ font-size:20px;
 display:flex;
 flex-direction:column;
 text-align:center;
+
 `
 
 export const Input = styled(motion.input)`
@@ -44,4 +47,15 @@ background:black;
 color:white;
 padding:10px;
 
+`
+
+export const Card = styled(motion.div)`
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 15vw;
+    
 `
