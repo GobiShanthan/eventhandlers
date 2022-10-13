@@ -44,7 +44,7 @@ io.on("connection", (socket) => {
       io.to(senderSocket).emit("feedbackOffline", "User is offline");
     } else {
       const receiverSocket = onlineUsers.find(user => user.userId === receiver.userId).socketId
-      returnMessage = {
+      let returnMessage = {
         'user': data.name, 
         'userId': data.userId,
         'message': data.text, 
