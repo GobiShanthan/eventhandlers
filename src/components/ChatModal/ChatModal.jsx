@@ -2,13 +2,15 @@ import * as React from "react";
 import {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import io from 'socket.io-client'
-
+import chatIcon from '../../images/chatIcon.webp'
 //Material UI imports
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
+import {
+  IconImage
+} from '../../pages/AllVendors/AllVendors.styled'
 let socket = io();
 
 //Modal styling
@@ -74,7 +76,9 @@ export default function ChatModal({vendorId, messageHistory, setMessageHistory})
 
   return (
     <div>
-      <Button onClick={handleOpen}>Start Chat</Button>
+
+
+      <IconImage onClick={handleOpen} whileHover={{scale:1.1}} whileTap={{scale:.9}} src={chatIcon} alt='icon-image'/>
       <Modal
         open={open}
         onClose={handleClose}
