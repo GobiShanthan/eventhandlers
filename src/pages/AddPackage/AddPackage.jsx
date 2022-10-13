@@ -10,6 +10,7 @@ import {
   FormImage,
   Image,
   SButton,
+  AddPackageTitle
 } from "./AddPackage.styled";
 
 import Button from "@mui/material/Button";
@@ -21,9 +22,17 @@ import { MyTextInput, MySelect } from "../../components/FormFields/FormFields";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
+
+import {
+  lightGold,
+  darkGold,
+  lightBlack,
+  grey,
+} from "../../components/Colors/colors";
 
 import { Map } from "../../components/Map/Map";
 
@@ -133,7 +142,7 @@ const AddPackage = () => {
 
   const formik = useFormik({
     initialValues: {
-      vendorType: "venue",
+      vendorType: "",
       title: "",
       description: "",
       price: "",
@@ -218,19 +227,55 @@ const AddPackage = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit} autoComplete="off">
-        <FlexContainer>
-          <Card>
+  <FlexContainer>
+        <Box
+            sx={{
+              "& .MuiFormLabel-root": {
+                color: `${lightGold}`,
+              },
+              "& .MuiFormLabel-root.Mui-focused": {
+                color: `${grey}`,
+              },
+              
+              "& label.Mui-focused": {
+                color: `${darkGold}`,
+              },
+              "& .MuiOutlinedInput-root": {
+                "fieldset": {
+                  borderColor: `${darkGold}`,
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: `${grey}`,
+                },
+                },
+            }}
+            >
+           <Card
+              style={{
+                justifyContent: "center",
+                border: "solid 5px",
+                borderColor: `${darkGold}`,
+                color: `${grey}`
+              }}
+              >
             <FormText>
-              <h1>Create Package</h1>
-              <InputLabel id="vendorType-label">Vendor Type</InputLabel>
+              <AddPackageTitle>Create Package</AddPackageTitle>
+              
               <Select
                 labelId="vendorType-label"
                 id="vendorType"
                 name="vendorType"
                 value={formik.values.vendorType}
-                label="Vendor Type"
+                displayEmpty
+                // label="Vendor Type"
+                placeholder="Vendor Type"
                 onChange={formik.handleChange}
+                margin="dense"
+                sx={{'color': `${grey}`}}
               >
+                <MenuItem disabled value="">
+            <em>Vendor Type</em>
+            </MenuItem>
                 <MenuItem value="venue">Venue</MenuItem>
                 <MenuItem value="caterer">Caterer</MenuItem>
                 <MenuItem value="photographer">Photographer</MenuItem>
@@ -245,6 +290,8 @@ const AddPackage = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.title && Boolean(formik.errors.title)}
                 helperText={formik.touched.title && formik.errors.title}
+                margin="dense"
+                inputProps={{ style: { color: `${grey}`} }}
               />
 
               <TextField
@@ -260,6 +307,8 @@ const AddPackage = () => {
                 helperText={
                   formik.touched.description && formik.errors.description
                 }
+                margin="dense"
+                inputProps={{ style: { color: `${grey}`} }}
               />
 
               <TextField
@@ -271,6 +320,8 @@ const AddPackage = () => {
                 onChange={formik.handleChange}
                 error={formik.touched.price && Boolean(formik.errors.price)}
                 helperText={formik.touched.price && formik.errors.price}
+                margin="dense"
+                inputProps={{ style: { color: `${grey}`} }}
               />
 
               {formik.values.vendorType === "venue" && (
@@ -285,6 +336,8 @@ const AddPackage = () => {
                     formik.touched.capacity && Boolean(formik.errors.capacity)
                   }
                   helperText={formik.touched.capacity && formik.errors.capacity}
+                  margin="dense"
+                  inputProps={{ style: { color: `${grey}`} }}
                 />
               )}
 
@@ -298,6 +351,8 @@ const AddPackage = () => {
                     onChange={formik.handleChange}
                     error={formik.touched.menu && Boolean(formik.errors.menu)}
                     helperText={formik.touched.menu && formik.errors.menu}
+                    margin="dense"
+                    inputProps={{ style: { color: `${grey}`} }}
                   />
 
                   <TextField
@@ -313,6 +368,8 @@ const AddPackage = () => {
                     helperText={
                       formik.touched.quantity && formik.errors.quantity
                     }
+                    margin="dense"
+                    inputProps={{ style: { color: `${grey}`} }}
                   />
                 </>
               )}
@@ -326,6 +383,8 @@ const AddPackage = () => {
                   onChange={formik.handleChange}
                   error={formik.touched.hours && Boolean(formik.errors.hours)}
                   helperText={formik.touched.hours && formik.errors.hours}
+                  margin="dense"
+                  inputProps={{ style: { color: `${grey}`} }}
                 />
               )}
 
@@ -338,6 +397,8 @@ const AddPackage = () => {
                   onChange={formik.handleChange}
                   error={formik.touched.items && Boolean(formik.errors.items)}
                   helperText={formik.touched.items && formik.errors.items}
+                  margin="dense"
+                  inputProps={{ style: { color: `${grey}`} }}
                 />
               )}
             </FormText>
@@ -364,9 +425,18 @@ const AddPackage = () => {
                 onChange={handleChangePic}
               />
             </FormImage>
+            <Button type="submit" style={{
+                  justifySelf: "center",
+                  margin: "20px",
+                  backgroundColor: `${lightGold}`,
+                  alignItems: 'center',
+                }} variant="contained">
+          Save Package
+        </Button>
           </Card>
-          <Button type="submit">Save Package</Button>
-        </FlexContainer>
+          </Box>
+          </FlexContainer>
+   
       </form>
       {/* <button
                 variant="contained"

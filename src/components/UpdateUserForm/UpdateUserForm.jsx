@@ -122,17 +122,19 @@ const UpdateUserForm = () => {
           <Box
             sx={{
               "& .MuiFormLabel-root": {
-                color: `${grey}`,
-                borderColor: `${grey}`
+                color: `${lightGold}`,
               },
               "& .MuiFormLabel-root.Mui-focused": {
                 color: `${grey}`,
               },
-              
+  
               "& label.Mui-focused": {
-                color: `${grey}`,
+                color: `${darkGold}`,
               },
               "& .MuiOutlinedInput-root": {
+                fieldset: {
+                  borderColor: `${darkGold}`,
+                },
                 "&.Mui-focused fieldset": {
                   borderColor: `${grey}`,
                 },

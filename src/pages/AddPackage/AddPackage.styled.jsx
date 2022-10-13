@@ -1,33 +1,49 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+import {lightBlack} from '../../components/Colors/colors'
+
 export const FlexContainer = styled(motion.div)`
-  margin-top: 20vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  background-color: #231f20;
-`;
+height:100%;
+width:100vw;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+background-color: ${lightBlack};
+`
+
 
 export const Card = styled(motion.div)`
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
-    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
-    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10vh;
+    
+`
 
-  background-color: lightgrey;
-`;
+export const AddPackageTitle = styled(motion.div)`
+margin: 20px;
+font-size: 40px;
 
-export const Form = styled(motion.form)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 20px;
-`;
+`
+
+export const Form= styled(motion.form)`
+display:grid;
+grid-template-columns:1fr 1fr;
+padding:20px;
+
+
+`
 export const FormText = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  flex: 1;
-`;
+display:flex;
+flex-direction:column;
+// padding:20px;
+flex: 1;
+`
 export const FormImage = styled(motion.div)`
   display: grid;
   grid-template-rows: 1fr 1fr;
