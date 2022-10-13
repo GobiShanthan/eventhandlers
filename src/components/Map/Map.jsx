@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-// --- (1), (2) & (3): install and import ---
 import {
   MapContainer,
   TileLayer,
@@ -9,7 +8,7 @@ import {
   useMap,
 } from "react-leaflet";
 import {GeoSearchControl, OpenStreetMapProvider} from "leaflet-geosearch"
-import L, { marker } from "leaflet";
+import L from "leaflet";
 import { Icon } from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import "leaflet/dist/leaflet.css";
@@ -52,8 +51,6 @@ export function Map() {
     //   console.log(result.location)
       setLatLng([result.location.y, result.location.x])
     })
-      // map.on('geosearch/marker/dragend', () => {})
-
       map.addControl(searchControl);
       return () => map.removeControl(searchControl)
     }, [])
@@ -97,14 +94,8 @@ export function Map() {
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        // --- (7) Alternative map style (attribution and url copied from the leaflet extras website) ---
-        // attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-        // url='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
-        // --- -------------------------------------------------------------------------------------- ---
       />
-      <SearchField 
-        
-      />
+      <SearchField />
       return LatLng ? (
       <Marker
         position={LatLng}
