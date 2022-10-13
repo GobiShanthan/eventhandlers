@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/reducers/LoginSlice';
-import thumbnail from '../../images/thumbnail.svg'
+import thumbnail from '../../images/thumbnail.webp'
 import MenuItem from '../MenuItems/MenuItem'
 import {
     MenuContainer,
@@ -28,8 +28,8 @@ const Menu = () => {
 
   return (
     <MenuContainer>
-
-        <MenuLeft><Link to='/'><img src={thumbnail} /></Link></MenuLeft>
+      {console.log(cartData)}
+        <MenuLeft><Link to='/'></Link></MenuLeft>
         <MenuMid>{userInfo && userInfo.name ? userInfo.name : ''}</MenuMid>
         <MenuRight>
           { userInfo && userInfo.name&&

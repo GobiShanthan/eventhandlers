@@ -157,7 +157,7 @@ const AddPackage = () => {
       if (formData.image) {
         const imageRef = ref(storage, `images/${formData.image.name + v4()}`);
         const uploadTask = uploadBytesResumable(imageRef, formData.image);
-  
+
         // Register three observers:
         // 1. 'state_changed' observer, called any time the state changes
         // 2. Error observer, called on failure
@@ -189,42 +189,39 @@ const AddPackage = () => {
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               const data = {
-          vendorType: values.vendorType,
-          title: values.title,
-          description: values.description,
-          price: values.price,
-          capacity: values.capacity,
-          menu: values.menu,
-          quantity: values.quantity,
-          hours: values.hours,
-          items: values.items,
-          image: downloadURL,
+                vendorType: values.vendorType,
+                title: values.title,
+                description: values.description,
+                price: values.price,
+                capacity: values.capacity,
+                menu: values.menu,
+                quantity: values.quantity,
+                hours: values.hours,
+                items: values.items,
+                image: downloadURL,
               };
-         createPackage(data, dispatch);
+              createPackage(data, dispatch);
               navigate(`/vendors/${userId && userId}`);
             });
-        }
-          );
-        }else{
-
-      await createPackage(
-        {
-          vendorType: values.vendorType,
-          title: values.title,
-          description: values.description,
-          price: values.price,
-          capacity: values.capacity,
-          menu: values.menu,
-          quantity: values.quantity,
-          hours: values.hours,
-          items: values.items
-        },
-        dispatch
-      );
-        }
-    
-  
-    }
+          }
+        );
+      } else {
+        await createPackage(
+          {
+            vendorType: values.vendorType,
+            title: values.title,
+            description: values.description,
+            price: values.price,
+            capacity: values.capacity,
+            menu: values.menu,
+            quantity: values.quantity,
+            hours: values.hours,
+            items: values.items,
+          },
+          dispatch
+        );
+      }
+    },
   });
 
   return (
@@ -422,11 +419,11 @@ const AddPackage = () => {
               {/* --------------------------------For mobile button for pic --------------------------------------*/}
 
               <input
-                  // hidden
-                  type="file"
-                  name="image"
-                  onChange={handleChangePic}
-                />
+                // hidden
+                type="file"
+                name="image"
+                onChange={handleChangePic}
+              />
             </FormImage>
             <Button type="submit" style={{
                   justifySelf: "center",
@@ -441,7 +438,7 @@ const AddPackage = () => {
           </FlexContainer>
    
       </form>
-        {/* <button
+      {/* <button
                 variant="contained"
                 component="label"
                 type="button"

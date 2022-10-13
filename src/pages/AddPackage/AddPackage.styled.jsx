@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import {motion }from 'framer-motion'
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import {lightBlack} from '../../components/Colors/colors'
 
@@ -45,37 +45,34 @@ flex-direction:column;
 flex: 1;
 `
 export const FormImage = styled(motion.div)`
-display:grid;
-grid-template-rows:1fr 1fr;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 
-padding:20px;
-flex: 1;
-`
+  padding: 20px;
+  flex: 1;
+`;
 
 export const Input = styled(motion.input)`
-    margin:10px;
-    padding:10px;
-    background-color:white;
-
-`
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+`;
 
 export const TextArea = styled(motion.textarea)`
-    margin:10px;
-    background-color:white;
-
-`
+  margin: 10px;
+  background-color: white;
+`;
 
 export const SButton = styled(motion.button)`
-    margin:10px;
-    background-color:white;
-    padding:20px;
-    background-color:grey;
-    justify-self:center;
-
-`
+  margin: 10px;
+  background-color: white;
+  padding: 20px;
+  background-color: grey;
+  justify-self: center;
+`;
 
 export const Image = styled(motion.img)`
-width:100px;
-height:100px;
-justify-self:center;
-`
+  width: 100px;
+  height: 100px;
+  justify-self: center;
+`;

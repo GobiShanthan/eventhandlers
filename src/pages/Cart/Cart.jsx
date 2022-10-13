@@ -66,4 +66,4 @@ console.log(subTotal,'this is the')
   
 }
 
-export default CartPage
+export default CartPage;
