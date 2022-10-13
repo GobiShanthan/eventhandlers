@@ -11,9 +11,8 @@ const router = express.Router()
 const stripe = require("stripe")('sk_test_51Ls9WNLg4Ot6e5anY7PlWYVWCFcg9qZM8yjZTnx9DcxyRC8RCSrr1LMYuccwTMZQqH5SceQGZFuPSmlYl1eWVNQk00x487WBAs');
 
 const calculateOrderAmount = (items) => {
-let totalPrice = items && items[0].total
-console.log(typeof totalPrice)
-  return Number(totalPrice);
+let totalPrice = items && items[0].total * 100
+  return Math.round(Number(totalPrice));
 };
 
 router.post("/create-payment-intent", async (req, res) => {
@@ -22,7 +21,7 @@ router.post("/create-payment-intent", async (req, res) => {
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
-    currency: "eur",
+    currency: "CAD",
     automatic_payment_methods: {
       enabled: true,
     },

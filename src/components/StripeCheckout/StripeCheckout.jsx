@@ -16,7 +16,7 @@ import CheckoutForm from "../CheckoutForms/CheckOutForm";
 // This is a public sample test API key.
 // Don’t submit any personally identifiable information in requests made with this key.
 // Sign in to see your own test API key embedded in code samples.
-const stripePromise = loadStripe("pk_test_51KDLe3JzF878uh4snZreBkdle7HDJ0EWtmNLaQUt9jdavSrUz6UL6nzFeIBAPwTP9UHG9OzvOV8IvSqGkOwOlYH600fo7ZtHRD");
+const stripePromise = loadStripe("pk_test_51Ls9WNLg4Ot6e5annE228kFkZ5p0MvGbsNi274rdvsdwjE5NyyMfRL6CAo0d6ykB4mWuMCcddqgXeyQzXzEXOrjW00gGfgZfRh");
 
 export default function App() {
 
