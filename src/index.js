@@ -6,13 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-// socket-io imports
-// import io from 'socket.io-client'
-// let socket = io();
-// // console.log(socket)
-// socket.on('connAcknowledge', (msg) => {
-//   console.log(msg)
-// });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

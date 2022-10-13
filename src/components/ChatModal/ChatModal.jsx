@@ -1,16 +1,25 @@
 import * as React from "react";
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import io from 'socket.io-client'
 import chatIcon from '../../images/chatIcon.webp'
+import {IconImage} from '../../pages/AllVendors/AllVendors.styled'
+
 //Material UI imports
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+
 import {
-  IconImage
-} from '../../pages/AllVendors/AllVendors.styled'
+  MessagesCnt,
+  MessageContainer,
+  Message,
+  ChatFooter,
+  MessageBar,
+  SendButton,
+} from "./ChatModal.styled";
+import {grey, lightGold} from "../Colors/colors"
+
 let socket = io();
 
 //Modal styling
@@ -19,60 +28,50 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  width: 500,
+  height: 500,
+  bgcolor: `${grey}`,
+  border: `10px solid ${lightGold}`,
+  borderRadius: "30px",
   boxShadow: 24,
   p: 4,
 };
 
-export default function ChatModal({vendorId, messageHistory, setMessageHistory}) {
-  const {userInfo} = useSelector(state => state.login)
+export default function ChatModal({
+  vendorId,
+  messageHistory,
+  setMessageHistory,
+}) {
+  const { userInfo } = useSelector((state) => state.login);
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState("");
+  const lastMessageRef = useRef(null);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  let currentUser = userInfo && userInfo._id ? userInfo.name : null
+
+  let currentUser = userInfo && userInfo._id ? userInfo.name : null;
 
   const handleSendMessage = (e) => {
     e.preventDefault();
     let userData = {
       'user': currentUser && currentUser,
       message
-
     }
     setMessageHistory([...messageHistory, userData])
-    // let username = userInfo.name
-    // setMessageHistory([...messageHistory, {username, message}])
-    // console.log(messageHistory)
-    
-    socket.emit('message', {
+    socket.emit("message", {
       text: message,
       name: userInfo.name,
       userId: userInfo._id,
       userSocketId: socket.id,
-      vendorId 
-    })
-   
-    setMessage('');
-  }
+      vendorId,
+    });
+    setMessage("");
+  };
 
-  // const filterMessages = (messageHistory) => {
-  //   let existMessages = []
-  //   let myMessages = []
-  //   messageHistory && messageHistory.length > 0 ? existMessages = messageHistory : existMessages = []
-  //   if (currentUser && existMessages) {
-  //     for (let i = 0; i < existMessages.length; i++) {
-  //       if ((currentUser === existMessages[i].userId && existMessages[i].recipientId === vendorId) ||
-  //       (existMessages[i].userId === vendorId && existMessages[i].recipientId === currentUser)) {
-  //         myMessages.push(existMessages[i])
-  //       }
-  //     }
-  //   }
-  //   return myMessages
-  // }
-  // console.log(filterMessages(messageHistory))
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
 
   return (
     <div>
@@ -86,31 +85,41 @@ export default function ChatModal({vendorId, messageHistory, setMessageHistory})
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <div>
-          <ul>
-            {console.log(messageHistory && messageHistory.length ? messageHistory : 'no history')}
-            {messageHistory && messageHistory.length ? messageHistory.map((m, i) => (
-              <div key={i}>
-                <p>{m.user}: {m.message}</p>
-              </div>
-            )) 
-            : <h1>no history</h1>}
-            
-           
-          </ul>
-        
-        </div>
+          <MessagesCnt>
+            {messageHistory && messageHistory.length ? (
+              messageHistory.map((m, i) => (
+                <MessageContainer>
+                  <Message
+                    key={i}
+                    person={m.user === userInfo.name ? "user" : "notUser"}
+                    align={m.user === userInfo.name ? "user" : "notUser"}
+                  >
+                    <p>
+                      <h1>{m.user} says:</h1> {m.message}
+                    </p>
+                  </Message>
+                </MessageContainer>
+              ))
+            ) : (
+              <h1></h1>
+            )}
+            <div ref={lastMessageRef} />
+          </MessagesCnt>
 
-        <form onSubmit={handleSendMessage}>
-        <input
-          type="text"
-          placeholder="Write message"
-          className="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button className="sendBtn">SEND</button>
-      </form>
+          <form onSubmit={handleSendMessage}>
+            <ChatFooter>
+              <MessageBar>
+                <textarea
+                  type="text"
+                  placeholder="Write a message"
+                  className="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+              </MessageBar>
+              <SendButton whileHover={{ scale: 1.1 }}>SEND</SendButton>
+            </ChatFooter>
+          </form>
         </Box>
       </Modal>
     </div>

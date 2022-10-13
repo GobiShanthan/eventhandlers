@@ -5,7 +5,9 @@ import ChatModal from '../../components/ChatModal/ChatModal'
 import chatIcon from '../../images/chatIcon.webp'
 import io from 'socket.io-client'
 
-
+import {
+  IconImage
+} from '../../pages/AllVendors/AllVendors.styled'
 
 
 // Material UI imports
@@ -58,7 +60,7 @@ const AllVendors = () => {
   const {userInfo} = useSelector(state => state.login)
   let socket = io();
 
-  // this code block will update User's socketID in the backend
+  // this code block will update User's socketID in the backend, comment out lines 21 to 25 to disable socket.io
   socket.on('connAcknowledge', (msg) => {
       socket.emit('newUser',{
         Id: userInfo._id,
@@ -70,12 +72,8 @@ const AllVendors = () => {
   socket.on('feedbackOnline', msg => {
     let messageDetails = {
       'user': msg.user,
-      // 'userId': msg.userId, 
       'message': msg.message, 
-      // 'recipientId': msg.recipientId
     }
-   
-    
     setMessageHistory([...messageHistory, messageDetails]);
   })
  
@@ -92,15 +90,6 @@ const AllVendors = () => {
   //   )
   // }
 
-  // const handleOpenChat = (params) => {
-  //   return (
-  //     <button onClick={() => {
-  //       const currentRow = params.row;
-  //       console.log(currentRow);
-  //       <ChatModal />
-  //     }}>Open Chat</button>
-  //   )
-  // }
 
   // const columns = [
   //   { field: '_id', id: '_id', width:200 },
@@ -207,7 +196,6 @@ const AllVendors = () => {
       {vendors && vendors.map(v => (
         <div key={v._id} > 
           <h1>Name : {v.name}</h1>
-          {console.log('hello world -------------------------------')}
           <ChatModal vendorId={v._id} messageHistory={messageHistory} setMessageHistory={setMessageHistory}/>
         </div>
       )
