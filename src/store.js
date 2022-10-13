@@ -3,7 +3,7 @@ import loginReducer from './redux/reducers/LoginSlice'
 import signUpReducer from './redux/reducers/SignupSlice'
 import packageReducer from './redux/reducers/PackageSlice'
 import cartReducer from './redux/reducers/cartSlice'
-
+import orderReducer from './redux/reducers/orderSlice'
 
 
 export const store = configureStore({
@@ -11,7 +11,8 @@ export const store = configureStore({
       login: loginReducer,
       signup:signUpReducer,
       package:packageReducer,
-      cartData:cartReducer
+      cartData:cartReducer,
+      orderData:orderReducer
     },
     
   });

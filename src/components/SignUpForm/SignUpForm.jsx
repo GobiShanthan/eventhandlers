@@ -1,105 +1,157 @@
-import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
+import React from "react";
+import { Formik, Form, useFormik } from "formik";
+import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { signupUser } from "../../redux/apiCalls/signup";
-import { MyTextInput } from "../FormFields/FormFields"
+import { MyTextInput } from "../FormFields/FormFields";
 
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
+import { SignupTitle, Card } from "./SignUpForm.styled";
 
-const lowercaseRegEx = /(?=.*[a-z])/
-const uppercaseRegEx = /(?=.*[A-Z])/
-const numericRegEx = /(?=.*[0-9])/
-const lengthRegEx = /(?=.{6,})/
+import {
+  lightGold,
+  darkGold,
+  lightBlack,
+  grey,
+} from "../../components/Colors/colors";
 
+const lowercaseRegEx = /(?=.*[a-z])/;
+const uppercaseRegEx = /(?=.*[A-Z])/;
+const numericRegEx = /(?=.*[0-9])/;
+const lengthRegEx = /(?=.{6,})/;
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .max(15, "Must be 15 characters or less")
+    .required("Required"),
+  email: Yup.string().email("Invalid email address").required("Required"),
+  password: Yup.string()
+    .matches(
+      lowercaseRegEx,
+      "Must contain one lowercase alphabetical character!"
+    )
+    .matches(
+      uppercaseRegEx,
+      "Must contain one uppercase alphabetical character!"
+    )
+    .matches(numericRegEx, "Must contain one numeric character!")
+    .matches(lengthRegEx, "Must contain 6 characters!")
+    .required("Required!"),
+});
 
 const SignupForm = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      console.log(values);
+      await signupUser(
+        {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        },
+        dispatch
+      );
+    },
+  });
+
   return (
     <>
-<h1>Sign up!</h1>
-      <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          password: '',
-        //   isVendor: false, 
-        //   vendorType: '', 
-        }}
-        validationSchema={Yup.object({
-          name: Yup.string()
-            .max(15, 'Must be 15 characters or less')
-            .required('Required'),
-          email: Yup.string()
-            .email('Invalid email address')
-            .required('Required'),
-          password: Yup.string()
-            .matches(lowercaseRegEx, "Must contain one lowercase alphabetical character!")
-            .matches(uppercaseRegEx, "Must contain one uppercase alphabetical character!")
-            .matches(numericRegEx, "Must contain one numeric character!")
-            .matches(lengthRegEx, "Must contain 6 characters!")
-            .required("Required!"),
-        //   isVendor: Yup.boolean(),
-        //   vendorType: Yup.string()
-        //     .oneOf(
-        //       ['venue', 'caterer', 'photographer', 'decor'],
-        //       'Invalid Vendor Type'
-        //     ),
-        })}
-        onSubmit={ async (values, { setSubmitting }) => {
-        //   setTimeout(() => {
-        //     alert(JSON.stringify(values, null, 2));
-        //     setSubmitting(false);
-        //   }, 400);
-            console.log(values);
-            await signupUser(
-              {
-                name: values.name,
-                email: values.email,
-                password: values.password,
+      <form onSubmit={formik.handleSubmit} autoComplete="off">
+        <Box
+          sx={{
+            "& .MuiFormLabel-root": {
+              color: `${lightGold}`,
+            },
+            "& .MuiFormLabel-root.Mui-focused": {
+              color: `${grey}`,
+            },
+
+            "& label.Mui-focused": {
+              color: `${darkGold}`,
+            },
+            "& .MuiOutlinedInput-root": {
+              fieldset: {
+                borderColor: `${darkGold}`,
               },
-              dispatch
-            );
-        }}
-      >
-        <Form>  
-          <MyTextInput
-            label="Name"
-            name="name"
-            type="text"
-            placeholder="Jane"
-          />
+              "&.Mui-focused fieldset": {
+                borderColor: `${grey}`,
+              },
+            },
+          }}
+        >
+          <Card
+            style={{
+              justifyContent: "center",
+              border: "solid 5px",
+              borderColor: `${darkGold}`,
+              color: `${grey}`,
+            }}
+          >
+            <SignupTitle>Sign up!</SignupTitle>
 
-          <MyTextInput
-            label="Email Address"
-            name="email"
-            type="email"
-            placeholder="jane@formik.com"
-          />
+            <TextField
+              id="name"
+              name="name"
+              label="Name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              helperText={formik.touched.name && formik.errors.name}
+              margin="dense"
+              inputProps={{ style: { color: `${grey}`} }}
+            />
 
-          <MyTextInput
-            label="Password"
-            name="password"
-            type="text"
-            placeholder="Password"
-          />
+            <TextField
+              id="email"
+              name="email"
+              label="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+              margin="dense"
+              inputProps={{ style: { color: `${grey}`} }}
+            />
 
-          {/* <MyCheckbox name="isVendor">Are you a vendor?</MyCheckbox> */}
+            <TextField
+              id="password"
+              name="password"
+              label="Password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+              margin="dense"
+              inputProps={{ style: { color: `${grey}`} }}
+            />
 
-          {/* <MySelect label="Vendor Type" name="vendorType">
-            <option value="">Select a vendor type</option>
-            <option value="venue">Venue</option>
-            <option value="caterer">Caterer</option>
-            <option value="photographer">Photographer</option>
-            <option value="decor">Decor</option>
-          </MySelect> */}
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
-
+            <Button
+              type="submit"
+              style={{
+                justifySelf: "center",
+                margin: "20px",
+                backgroundColor: `${lightGold}`,
+                alignItems: "center",
+              }}
+              variant="contained"
+            >
+              Submit
+            </Button>
+          </Card>
+        </Box>
+      </form>
     </>
   );
 };
 
-export default SignupForm
+export default SignupForm;
