@@ -24,21 +24,27 @@ const style = {
   p: 4,
 };
 
-export default function ChatModal({vendorId, messageHistory}) {
+export default function ChatModal({vendorId, messageHistory, setMessageHistory}) {
   const {userInfo} = useSelector(state => state.login)
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('')
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  let currentUser = userInfo && userInfo._id ? userInfo.name : null
 
   const handleSendMessage = (e) => {
     e.preventDefault();
+    let userData = {
+      'user': currentUser && currentUser,
+      message
 
+    }
+    setMessageHistory([...messageHistory, userData])
     // let username = userInfo.name
     // setMessageHistory([...messageHistory, {username, message}])
     // console.log(messageHistory)
-
+    
     socket.emit('message', {
       text: message,
       name: userInfo.name,
@@ -50,6 +56,21 @@ export default function ChatModal({vendorId, messageHistory}) {
     setMessage('');
   }
 
+  // const filterMessages = (messageHistory) => {
+  //   let existMessages = []
+  //   let myMessages = []
+  //   messageHistory && messageHistory.length > 0 ? existMessages = messageHistory : existMessages = []
+  //   if (currentUser && existMessages) {
+  //     for (let i = 0; i < existMessages.length; i++) {
+  //       if ((currentUser === existMessages[i].userId && existMessages[i].recipientId === vendorId) ||
+  //       (existMessages[i].userId === vendorId && existMessages[i].recipientId === currentUser)) {
+  //         myMessages.push(existMessages[i])
+  //       }
+  //     }
+  //   }
+  //   return myMessages
+  // }
+  // console.log(filterMessages(messageHistory))
 
   return (
     <div>
@@ -63,25 +84,17 @@ export default function ChatModal({vendorId, messageHistory}) {
         <Box sx={style}>
         <div>
           <ul>
-            {messageHistory && messageHistory.map(message =>
-              (<p>{message}</p>)
-              )}
-          </ul>
-          {/* <div>{messageHistory.map(message =>
-            <p>{message}</p>)}
-          </div> */}
-          {/* {messageHistory.map(message => 
-            message.username === userInfo.name ? (
-              <div>
-                <p>You</p>
-                <p>{message.message}</p>
+            {console.log(messageHistory && messageHistory.length ? messageHistory : 'no history')}
+            {messageHistory && messageHistory.length ? messageHistory.map((m, i) => (
+              <div key={i}>
+                <p>{m.user}: {m.message}</p>
               </div>
-            ) :
-            <div>
-              <p>{message.username}</p>
-              <p>{message.message}</p>
-            </div>
-            )} */}
+            )) 
+            : <h1>no history</h1>}
+            
+           
+          </ul>
+        
         </div>
 
         <form onSubmit={handleSendMessage}>

@@ -24,22 +24,20 @@ const AllVendors = () => {
         name: userInfo.name})
     });
 
-  socket.on('feedbackOffline', msg => console.log(msg))
+  socket.on('feedbackOffline', )
   
   socket.on('feedbackOnline', msg => {
+    let messageDetails = {
+      'user': msg.user,
+      // 'userId': msg.userId, 
+      'message': msg.message, 
+      // 'recipientId': msg.recipientId
+    }
+   
     
-    console.log(msg);
-    setMessageHistory( prev => [...prev, msg]);
+    setMessageHistory([...messageHistory, messageDetails]);
   })
-
-  // useEffect(()=>{
-  //   console.log(socket)
-  //   if(userInfo){
-  //     socket.emit('newUser',{
-  //       Id: userInfo._id,
-  //       name: userInfo.name})
-  //   }
-  // }, [])
+ 
 
   const handleAllPackages = (params) => {
     return (
@@ -97,27 +95,6 @@ const AllVendors = () => {
       //     );
       // },
     },
-    {
-      field: 'action',
-      headerName: 'Action',
-      width: 180,
-      disableClickEventBubbling: true,
-      renderCell:(params) => {
-        const handleChatClick = (e) => {
-          const currentRow = params.row;
-          // console.log(currentRow._id);
-          let targetId = currentRow._id
-
-        }
-      return (
-        <div >
-        {/* <button onClick={handleChatClick}>Open Chat</button> */}
-        {console.log(params.row._id, '-------------------------------')}
-        <ChatModal />
-        </div>
-      )
-      }
-    }
   ];
   
 
@@ -163,7 +140,8 @@ const AllVendors = () => {
       {vendors && vendors.map(v => (
         <div key={v._id} > 
           <h1>Name : {v.name}</h1>
-          <ChatModal vendorId={v._id} messageHistory={messageHistory} />
+          {console.log('hello world -------------------------------')}
+          <ChatModal vendorId={v._id} messageHistory={messageHistory} setMessageHistory={setMessageHistory}/>
         </div>
       )
       )}
