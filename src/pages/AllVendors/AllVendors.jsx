@@ -17,14 +17,14 @@ const AllVendors = () => {
   let socket = io();
 
   // this code block will update User's socketID in the backend
-  socket.on('connAcknowledge', (msg) => {
-      socket.emit('newUser',{
-        Id: userInfo._id,
-        name: userInfo.name})
-    });
+  // socket.on('connAcknowledge', (msg) => {
+  //     socket.emit('newUser',{
+  //       Id: userInfo._id,
+  //       name: userInfo.name})
+  //   });
 
-  socket.on('feedbackOffline', msg => console.log(msg))
-  socket.on('feedbackOnline', msg => console.log(msg))
+  // socket.on('feedbackOffline', msg => console.log(msg))
+  // socket.on('feedbackOnline', msg => console.log(msg))
 
   // useEffect(()=>{
   //   console.log(socket)
