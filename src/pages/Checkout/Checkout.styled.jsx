@@ -1,9 +1,16 @@
 import styled from 'styled-components'
 import { motion }from 'framer-motion'
+import {
+    lightBlack
+} from '../../components/Colors/colors'
+
+
 
 export const CheckoutContainer = styled(motion.div)`
  padding: 10vh;
  color: #eaeaea;
+ background-color: ${lightBlack};
+height:100%;
 
 `
 

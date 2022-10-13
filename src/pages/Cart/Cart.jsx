@@ -1,69 +1,82 @@
-import React,{useState} from 'react'
-import {useSelector,useDispatch} from 'react-redux'
-import MenuItem from '../../components/MenuItems/MenuItem'
-import Checkout from '../Checkout/Checkout'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import MenuItem from "../../components/MenuItems/MenuItem";
+import Checkout from "../Checkout/Checkout";
+import {Button} from '@mui/material'
 import {
   CartContainer,
-  BorderContainer,
-  CartBoxDiv
-} from './Cart.styled'
-import Cart from "../../components/Cart/Cart"
-
+  CartBoxDiv,
+  CartBoxItemDiv,
+  CartBoxItemTitle,
+  TextSize
+} from "./Cart.styled";
+import Cart from "../../components/Cart/Cart";
+import {lightGold,grey} from '../../components/Colors/colors'
 
 const CartPage = () => {
+  const cartData = useSelector((state) => state.cartData);
 
-
-
-
-
-  const cartData = useSelector((state)=>state.cartData)
-
-
-
-
-
-  if(cartData && cartData.cart && cartData.cart.length > 0 ) {
-
-
-const subTotal = Number(cartData.cart.reduce((acc,item)=>acc+item.price,0)).toFixed(2)
-const taxPrice = Number(subTotal*.13).toFixed(2)
-const totalPrice =  (subTotal*1.13).toFixed(2)
-
-console.log(subTotal,'this is the')
-
-
+  if (cartData && cartData.cart && cartData.cart.length > 0) {
+    const subTotal = Number(
+      cartData.cart.reduce((acc, item) => acc + item.price, 0)
+    ).toFixed(2);
+    const taxPrice = Number(subTotal * 0.13).toFixed(2);
+    const totalPrice = (subTotal * 1.13).toFixed(2);
 
 
     return (
-      <CartContainer >
+      <CartContainer>
         <Cart />
+
         <CartBoxDiv>
-          <h1>SubTotal: $ {subTotal ? subTotal: '0.00'}</h1>
-          <hr/>
-          <h2>Taxes: $ {taxPrice ? taxPrice: '0.00'}</h2>
-          <hr/>
-          <h2>Price: $ {totalPrice ? totalPrice: '0.00'}</h2>
-          <MenuItem name='checkout' link='/checkout' />
+          <CartBoxItemDiv>
+            <TextSize>SUBTOTAL: $</TextSize> {subTotal ? subTotal : "0.00"}
+          </CartBoxItemDiv>
+
+          <CartBoxItemDiv>
+            <TextSize>TAXES: $</TextSize> {taxPrice ? taxPrice : "0.00"}
+          </CartBoxItemDiv>
+
+          <CartBoxItemDiv>
+          <TextSize>PRICE: $</TextSize> {totalPrice ? totalPrice : "0.00"}
+          </CartBoxItemDiv>
         </CartBoxDiv>
-      </CartContainer>
-    )
-  }else{
-    return (
-      <CartContainer >
-        <Cart />
+
+        <Button style={{
+                  justifySelf: "center",
+                  margin: "20px",
+                  backgroundColor: `${lightGold}`,
+                  alignItems: 'center',
        
+                }} name="checkout"><Link style={{color:`${grey}`,textDecoration:'none'}} to="/checkout">CHECKOUT</Link></Button>
+      </CartContainer>
+    );
+  } else {
+    return (
+      <CartContainer>
+        <h1 style={{ color: "white" }}>Your Cart is Empty</h1>
+
         <CartBoxDiv>
-        <h1>SubTotal: $ {'0.00'}</h1>
-          <hr/>
-          <h2>Taxes: $ {'0.00'}</h2>
-          <hr/>
-          <h2>Price: $ {'0.00'}</h2>
-          <MenuItem name='checkout' link='/checkout' />
+          <CartBoxItemTitle>
+            <h1>CART</h1>
+          </CartBoxItemTitle>
+
+          <CartBoxItemDiv>
+            <h1>SubTotal: $</h1> {"0.00"}
+          </CartBoxItemDiv>
+
+          <CartBoxItemDiv>
+            <h1>Taxes: $</h1> {"0.00"}
+          </CartBoxItemDiv>
+
+          <CartBoxItemDiv>
+            <h1>Price: $</h1> {"0.00"}
+          </CartBoxItemDiv>
         </CartBoxDiv>
       </CartContainer>
-    )
+    );
   }
-  
-}
+};
 
 export default CartPage;

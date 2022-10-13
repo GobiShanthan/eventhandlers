@@ -121,6 +121,9 @@ const UpdateUserForm = () => {
         <FlexContainer>
           <Box
             sx={{
+              display:'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               "& .MuiFormLabel-root": {
                 color: `${lightGold}`,
               },
@@ -140,15 +143,16 @@ const UpdateUserForm = () => {
                 },
               },
             }}
+            
             >
             <Card
               style={{
-                justifyContent: "center",
                 border: "solid 5px",
                 borderColor: `${darkGold}`,
+                maxWidth:'500px'
               }}
               >
-              <Heading>User Profile</Heading>
+              <Heading>Update Profile</Heading>
               
 <div id="fields">
   <TextField

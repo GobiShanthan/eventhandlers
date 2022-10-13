@@ -47,7 +47,7 @@ const Login = () => {
   });
 
   return (
-    <>
+    <LoginContainer>
       <form onSubmit={formik.handleSubmit} autoComplete="off">
       <Box
             sx={{
@@ -71,14 +71,7 @@ const Login = () => {
                 },
             }}
             >
-      <Card
-              style={{
-                justifyContent: "center",
-                border: "solid 5px",
-                borderColor: `${darkGold}`,
-                color: `${grey}`
-              }}
-              >
+      <Card>
         <LoginTitle>Login</LoginTitle>
         <TextField
           id="email"
@@ -115,7 +108,7 @@ const Login = () => {
         </Card>
         </Box>
       </form>
-    </>
+    </LoginContainer>
   );
 };
 

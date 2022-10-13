@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CheckoutContainer } from './Checkout.styled';
 
-const steps = ['Shipping Details', 'Review Order', 'Payment'];
+const steps = ['Review Order', 'Payment'];
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -56,9 +56,9 @@ export default function Checkout() {
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}
           </Typography>
-           {activeStep === 0 && <OrderForm />}
-           {activeStep === 1 && <Cart />}
-           {activeStep === 2 && <StripeCheckout />}
+           {/* {activeStep === 0 && <OrderForm />} */}
+           {activeStep === 0 && <Cart />}
+           {activeStep === 1 && <StripeCheckout />}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"

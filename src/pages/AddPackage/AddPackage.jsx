@@ -3,13 +3,9 @@ import { useNavigate } from "react-router-dom";
 import {
   FlexContainer,
   Card,
-  Form,
-  Input,
-  TextArea,
+AddPackageContainer,
   FormText,
   FormImage,
-  Image,
-  SButton,
   AddPackageTitle
 } from "./AddPackage.styled";
 
@@ -81,64 +77,7 @@ const AddPackage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.files[0] });
   };
 
-  // ONCHANGE TO RUN
-
-  //----------------DONT CHANGE -------------------------
-  // const onSubmit = (e) => {
-  //   //HANDLES IMAGE UPDATE WITH SUBMIT
-  //   e.preventDefault();
-  //   if (formData.image) {
-  //     const imageRef = ref(storage, `images/${formData.image.name + v4()}`);
-  //     const uploadTask = uploadBytesResumable(imageRef, formData.image);
-
-  //     // Register three observers:
-  //     // 1. 'state_changed' observer, called any time the state changes
-  //     // 2. Error observer, called on failure
-  //     // 3. Completion observer, called on successful completion
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         // Observe state change events such as progress, pause, and resume
-  //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         console.log("Upload is " + progress + "% done");
-  //         switch (snapshot.state) {
-  //           case "paused":
-  //             console.log("Upload is paused");
-  //             break;
-  //           case "running":
-  //             console.log("Upload is running");
-  //             break;
-  //           default:
-  //         }
-  //       },
-  //       (error) => {
-  //         // Handle unsuccessful uploads
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         // Handle successful uploads on complete
-  //         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           const data = {
-  //             title: formData.title,
-  //             description: formData.description,
-  //             price: formData.price,
-  //             capacity: formData.capacity,
-  //             photo: downloadURL,
-  //           };
-  //           createPackage(data, dispatch);
-  //           navigate(`/vendors/${userId && userId}`);
-  //         });
-  //       }
-  //     );
-  //   } else {
-  //     createPackage(formData, dispatch);
-  //   }
-  // };
-
-  //-----------------DONT CHANGE------------------------
+  
 
   const formik = useFormik({
     initialValues: {
@@ -225,7 +164,7 @@ const AddPackage = () => {
   });
 
   return (
-    <>
+    <AddPackageContainer>
       <form onSubmit={formik.handleSubmit} autoComplete="off">
   <FlexContainer>
         <Box
@@ -255,7 +194,9 @@ const AddPackage = () => {
                 justifyContent: "center",
                 border: "solid 5px",
                 borderColor: `${darkGold}`,
-                color: `${grey}`
+                color: `${grey}`,
+                maxWidth:'500px',
+                marginTop:'15vh'
               }}
               >
             <FormText>
@@ -406,17 +347,6 @@ const AddPackage = () => {
             <Map />
 
             <FormImage>
-              <Image
-                src={
-                  "https://i.weddinghero.ca/gallery/1895/preview_1895_zpKtyJ1J.jpg"
-                }
-              />
-              {/* --------------------------------For mobile button for pic --------------------------------------*/}
-              {/* <IconButton color="primary" aria-label="upload picture" component="label">
-  <input hidden accept="image/*" type="file" />
-  <PhotoCamera />
-</IconButton> */}
-              {/* --------------------------------For mobile button for pic --------------------------------------*/}
 
               <input
                 // hidden
@@ -438,21 +368,8 @@ const AddPackage = () => {
           </FlexContainer>
    
       </form>
-      {/* <button
-                variant="contained"
-                component="label"
-                type="button"
-                style={{
-                  justifySelf: "center",
-                  width: "100px",
-                  height: "50px",
-                  marginTop: "100px",
-                }}
-              > 
-                Upload
-                
-              </button> */}
-    </>
+
+    </AddPackageContainer>
   );
 };
 

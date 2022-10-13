@@ -12,8 +12,6 @@ import {
 
 
 
-
-
 const AuthPage = () => {
   const {userInfo} = useSelector(state => state.login)
   const navigate = useNavigate()
@@ -28,7 +26,7 @@ const AuthPage = () => {
   return (
     <AuthContainer>
         <AuthFormWrapper>
-        {login? <Login /> :<SignUpForm />}
+          {login? <Login /> :<SignUpForm />}
         <AuthButton onClick={()=>setLogin(!login)}>{login?'SignUp':'Login'}</AuthButton>
         </AuthFormWrapper>
     </AuthContainer>
