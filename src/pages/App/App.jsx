@@ -40,13 +40,8 @@ const App = () => {
       <Route path='/package/:id' element={<Packages />} />
       <Route path='/checkout' element={<Checkout />} />
       <Route path='/userpage' element={<UserPage />} />
-
-
-
       <Route path='/auth' element={<AuthPage /> }/>
-
       <Route path="*" element={<Navigate to="/" replace />} />
-      
       </Routes>
     </AppContainer>
   )

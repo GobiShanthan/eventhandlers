@@ -91,10 +91,10 @@ const SignupForm = () => {
         >
           <Card
             style={{
-              justifyContent: "center",
-              border: "solid 5px",
-              borderColor: `${darkGold}`,
-              color: `${grey}`,
+              // justifyContent: "center",
+              // border: "solid 5px",
+              // borderColor: `${darkGold}`,
+              // color: `${grey}`,
             }}
           >
             <SignupTitle>Sign up!</SignupTitle>

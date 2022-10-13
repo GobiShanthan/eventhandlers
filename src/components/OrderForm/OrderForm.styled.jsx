@@ -11,6 +11,8 @@ export const FlexContainer = styled(motion.div)`
 
 
 export const Card = styled(motion.div)`
+display:flex;
+flex-direction:column;
 box-shadow: 
 rgba(0, 0, 0, 0.09) 0px 2px 1px, 
 rgba(0, 0, 0, 0.09) 0px 4px 2px,

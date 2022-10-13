@@ -2,8 +2,8 @@ import {useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {addToCart} from '../../redux/reducers/cartSlice'
-
-
+import {Button} from '@mui/material'
+import {lightGold} from '../../components/Colors/colors'
 import {
   VDetailContainer,
   VDetailUser,
@@ -12,7 +12,8 @@ import {
   ImageView,
   UserInfoLeft,
   UserInfoMid,
-  UserInfoRight
+  UserInfoRight,
+  TextDiv
 } from './VendorDetail.styled'
 
 
@@ -82,30 +83,39 @@ const VendorDetail = () => {
 
   return (
     <VDetailContainer>
-        {data ? data.map(d=>(
+        {data ? data.map((d,i)=>(
           <VDetailUser key={d._id}>
             <TopUserInfo>
 
               <UserInfoLeft>
+                
                 <h1>{d.title}</h1>
                 <h3>{d.description}</h3>
-                <h3>CAD ${d.price}</h3>
+                <h3>CAD ${d.price.toFixed(2)}</h3>
               </UserInfoLeft>
 
               <UserInfoMid>
-                <h3>Date: {d.createdAt.split('T')[0]}</h3>
+                <h2>Date: {d.createdAt.split('T')[0]}</h2>
                 <h3>Capacity: {d.capacity}</h3>
               </UserInfoMid>
 
-              <UserInfoRight>
-                {userId && d.user === userId?<button style={{ color: '#EAEAEA' }}onClick={()=>deletePackage(d._id)}>DELETE</button>:<button onClick={()=>dispatch(addToCart(d))}> ADD TO CART</button>}
-              </UserInfoRight>
 
             </TopUserInfo>
             
          <BottomUserImages>
-          {console.log(d)}
          <ImageView src={d.image ? d.image:'https://a.cdn-hotels.com/gdcs/production61/d931/c994bd00-cb15-11e8-9739-0242ac110006.jpg?impolicy=fcrop&w=1600&h=1066&q=medium'} alt={d.title}/>
+         {userId && d.user === userId?<Button style={{
+                  justifySelf: "center",
+                  margin: "20px",
+                  backgroundColor: `${lightGold}`,
+                  alignItems: 'center',
+
+                }} variant="contained" onClick={()=>deletePackage(d._id)}>DELETE</Button>:<Button style={{
+                  justifySelf: "center",
+                  margin: "20px",
+                  backgroundColor: `${lightGold}`,
+                  alignItems: 'center',
+                }} variant="contained" onClick={()=>dispatch(addToCart(d))}> ADD TO CART</Button>}
          </BottomUserImages>
           </VDetailUser>
         )) :<h1>No Packages for this user</h1>}

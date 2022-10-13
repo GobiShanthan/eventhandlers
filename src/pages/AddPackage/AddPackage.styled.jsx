@@ -12,7 +12,15 @@ justify-content:center;
 align-items:center;
 background-color: ${lightBlack};
 `
-
+export const AddPackageContainer = styled(motion.div)`
+height:100vh;
+width:100vw;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+background-color: ${lightBlack};
+`
 
 export const Card = styled(motion.div)`
     width: 70vw;

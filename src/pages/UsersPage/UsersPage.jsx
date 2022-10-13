@@ -10,7 +10,7 @@ const UsersPage = () => {
         return (
 
 
-            <div style={{textAlign:'center', justifySelf:'center'}}>
+            <div style={{display:'flex',justifyContent: 'center',backgroundColor:'#231f20'}}>
                 <UpdateUserForm userInfo ={userInfo} />
             </div>
           )

@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import io from "socket.io-client";
-
+import {useState, useEffect, useRef} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import io from 'socket.io-client'
+import chatIcon from '../../images/chatIcon.webp'
 //Material UI imports
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -53,10 +53,8 @@ export default function ChatModal({
   const handleSendMessage = (e) => {
     e.preventDefault();
     let userData = {
-      user: currentUser && currentUser,
-      message,
-    };
-    setMessageHistory([...messageHistory, userData]);
+      'user': currentUser && currentUser,
+      message
 
     socket.emit("message", {
       text: message,
@@ -74,7 +72,9 @@ export default function ChatModal({
 
   return (
     <div>
-      <Button onClick={handleOpen}>Start Chat</Button>
+
+
+      <IconImage onClick={handleOpen} whileHover={{scale:1.1}} whileTap={{scale:.9}} src={chatIcon} alt='icon-image'/>
       <Modal
         open={open}
         onClose={handleClose}
