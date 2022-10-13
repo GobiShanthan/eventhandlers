@@ -1,15 +1,16 @@
-import React from "react";
-import OrderForm from "../../components/OrderForm/OrderForm";
-import Cart from "../../components/Cart/Cart";
-import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { CheckoutContainer, BoxContainer } from "./Checkout.styled";
+import React from 'react'
+import OrderForm from '../../components/OrderForm/OrderForm'
+import Cart from '../../components/Cart/Cart'
+import StripeCheckout from '../../components/StripeCheckout/StripeCheckout'
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { CheckoutContainer } from './Checkout.styled';
 
-const steps = ["Shipping Details", "Review Order", "Payment"];
+const steps = ['Shipping Details', 'Review Order', 'Payment'];
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -27,56 +28,54 @@ export default function Checkout() {
   };
 
   return (
-    <CheckoutContainer style={{ backgroundColor: "#231f20", height: "100vh" }}>
-      <BoxContainer>
-        <Box sx={{ width: "100%" }}>
-          <Stepper activeStep={activeStep}>
-            {steps.map((label, index) => {
-              const stepProps = {};
-              const labelProps = {};
-              return (
-                <Step  sx={{ mr: 1, color: '#eaeaea' }} key={label} {...stepProps}>
-                  <StepLabel {...labelProps}>{label}</StepLabel>
-                </Step>
-              );
-            })}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                <Box sx={{ flex: "1 1 auto" }} />
-                <Button onClick={handleReset}>Reset</Button>
-              </Box>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                Step {activeStep + 1}
-              </Typography>
-              {activeStep === 0 && <OrderForm />}
-              {activeStep === 1 && <Cart />}
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2  }}>
-                <Button
-                  color="inherit"
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={{ mr: 1, backgroundColor: '#Ad974F', color: '#eaeaea', position: 'relative'}}
-              
-                  >
-                  Back
-                </Button>
-                <Box sx={{ flex: "1 1 auto"}} />
-                <Button sx={{ mr: 1, backgroundColor: '#Ad974F', color: '#eaeaea', postion:'relative' }} onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                </Button>
-              </Box>
-            </React.Fragment>
-          )}
-        </Box>
-      </BoxContainer>
+    <CheckoutContainer>
+
+    <Box sx={{ width: '100%' }}>
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button onClick={handleReset}>Reset</Button>
+          </Box>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}
+          </Typography>
+           {activeStep === 0 && <OrderForm />}
+           {activeStep === 1 && <Cart />}
+           {activeStep === 2 && <StripeCheckout />}
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button onClick={handleNext}>
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            </Button>
+          </Box>
+        </React.Fragment>
+      )}
+    </Box>
     </CheckoutContainer>
   );
 }

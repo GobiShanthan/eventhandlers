@@ -16,3 +16,10 @@ export const BorderContainer = styled(motion.div)`
   color: #eaeaea;
 `;
 
+export const CartBoxDiv = styled(motion.div)`
+    border:solid 2px gold;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    max-width:50vw;
+`
