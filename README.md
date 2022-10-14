@@ -1,72 +1,73 @@
+# Event Handlers
 
-# Getting Started with Create React App
+Event Handlers is your one stop shop for all your event planning needs. Book your venue, caterer, photographer and decor all in one click.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+											
+<p align="center" width="100%">
+   <a href="https://i.imgur.com/4EmAnOe.png"><img src="https://i.imgur.com/4EmAnOe.png" title="source: imgur.com" /></a>
+</p>
 
-## Available Scripts
 
-In the project directory, you can run:
+<p align="center" width="100%">
+<a href="https://i.imgur.com/nJ3p1Zo.png"><img src="https://i.imgur.com/nJ3p1Zo.png" title="source: imgur.com" /></a>
+</p>
 
-### `npm start`
+<p align="center" width="100%">
+<a href="https://i.imgur.com/5Oxz0C0.png"><img src="https://i.imgur.com/5Oxz0C0.png" title="source: imgur.com" /></a>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<p align="center" width="100%">
+<a href="https://i.imgur.com/k8lN0pq.png"><img src="https://i.imgur.com/k8lN0pq.png" title="source: imgur.com" /></a>
+</p>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Link:- [HEROKU DEPLOYMENT](https://eventhandlers7.herokuapp.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As a user you can sign up to create an account and keep track of your event planning. You can search through packages offered by various vendors to find the perfect one that matches your event needs. Chat with the vendor to get additional details about packages you're interested in. Add your selected packages to your cart as you go. Once you've added everything needed for your event, you can checkout using Stripe.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you are a vendor, you can create multiple packages offering different options for varying venue capacities and catering menus. Event Handlers takes care of all of your bookings while you focus on your business.
 
-### `npm run eject`
+ADD SCREENSHOTS
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Project Planning
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Trello](https://trello.com/b/dEpoDYlZ/project-4-party-app)
+- [ERD](https://lucid.app/lucidchart/09b43e34-e726-4943-ac1b-ff96e594ba1c/edit?invitationId=inv_75a95828-cc10-4be5-86a5-1bbfbb9b2e40&referringApp=slack&page=0_0#)
+- [Wireframes](https://www.figma.com/file/oZZbXwXHre1S6jrU04Pgi1/Project-4--Event-Handlers?node-id=0%3A1)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technologies Used
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- MongoDB/Mongoose
+- Express
+- React
+- Node
+- Redux
+- Formik
+- Yup
+- Socket.IO
+- Firebase
+- Material UI
+- Styled Components
+- Framer Motion
+- JSON Web Token
+- APIs: Leaflet, Stripe
+- Heroku
 
-## Learn More
+## Next Steps
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Searching for packages using keywords
+- Adding reviews to packages
+- Allow vendors to add multiple images to a package
+- PWA Support
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Team name: FLAWLESS FUNCTIONS 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
+- Avi Patel - [gitHub](https://github.com/patel-avi)
+- Venessa Gomes  - [gitHub](https://github.com/Venessagomes)
+- Louis Cheung - [gitHub](https://github.com/louischeung1990)
+- Gobi Shanthan - [gitHub](https://github.com/GobiShanthan)
