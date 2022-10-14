@@ -105,7 +105,7 @@ export default function ChatModal({
                 </MessageContainer>
               ))
             ) : (
-              <h1></h1>
+              <h1>loading</h1>
             )}
             <div ref={lastMessageRef} />
           </MessagesCnt>

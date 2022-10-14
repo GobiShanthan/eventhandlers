@@ -18,12 +18,13 @@ import UserPage from "../UsersPage/UsersPage";
 
 const App = () => {
 
-  const {userInfo} = useSelector((state) => state.login);
+const {userInfo} = useSelector((state) => state.login)
 
-if(userInfo && userInfo._id){
   return (
+    
     <AppContainer>
       <Menu user="louis" />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/vendors" element={<AllVendors />} />
@@ -34,18 +35,13 @@ if(userInfo && userInfo._id){
         <Route path="/package/:id" element={<Packages />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/userpage" element={<UserPage />} />
+        <Route path="/auth" element={<AuthPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+      
       </Routes>
+      
     </AppContainer>
   );
-}else{
-  <Routes>
-            <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<AuthPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-  </Routes>
-}
-  
 };
 
 export default App;
