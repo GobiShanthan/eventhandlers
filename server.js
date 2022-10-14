@@ -7,14 +7,13 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
-
+const {notFound,errorHandler} = require('./config/error')
 //socket.io imports
 const server = require('http').createServer(app);
 let io = require('./io')
 io.attach(server)
 
-require("dotenv").config();
-require("./config/database");
+
 require('dotenv').config();
 require('./config/database');
 require('./config/passport');
@@ -39,17 +38,27 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 
-
+//STRIPE ROUTE
 app.use(require('./routes/stripe'));
+
+//USERS ROUTE
 app.use("/api/users", require("./routes/users"));
 
 /*--------------------------AUTHORIZATION BELOW THIS LINE -------------------------------*/
-
+//AUTHORIZATION ROUTE
 app.use(require("./config/auth"));
 
+//PACKAGEROUTE
 app.use("/api/packages", require("./routes/packages"));
 
 /*--------------------------AUTHORIZATION ABOVE THIS LINE -------------------------------*/
+
+//HANDLE CUSTOM ERRORS
+app.use(notFound)
+app.use(errorHandler)
+
+
+
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });

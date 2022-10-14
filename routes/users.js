@@ -10,7 +10,7 @@ router.post("/login", usersCtrl.login);
 // GET /api/users GET ALL VENDORS ONLY
 router.get("/vendors", usersCtrl.getVendors);
 
-// GET /api/users GET ALL VENDORS ONLY
-router.post("/update", usersCtrl.updateUser);
+// PUT /api/users/update  UPDATE USER
+router.put("/update", usersCtrl.updateUser);
 
 module.exports = router;

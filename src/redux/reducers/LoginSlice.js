@@ -24,10 +24,14 @@ export const userSlice = createSlice({
   reducers: {
     loginPending: (state) => {
       state.status = "loading";
+      state.error='';
+      state.status=''
     },
     loginFulfilled: (state, action) => {
       state.userInfo = action.payload;
       state.status = "success";
+      state.error='';
+
     },
     loginRejected: (state, action) => {
       state.status = "failed";
@@ -36,6 +40,8 @@ export const userSlice = createSlice({
     logoutUser: (state, action) => {
       localStorage.removeItem("token");
       state.userInfo = null;
+      state.error='';
+      state.status=''
     },
   },
 });

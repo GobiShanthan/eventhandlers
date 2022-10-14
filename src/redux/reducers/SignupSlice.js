@@ -27,14 +27,19 @@ export const signupSlice = createSlice({
   reducers: {
     signupPending: (state) => {
       state.status = 'loading';
+      state.error='';
+
     },
     signupFulfilled: (state, action) => {
       state.userInfo = action.payload;
       state.status = 'success';
+      state.error='';
+
     },
     signupRejected: (state, action) => {
       state.status = 'failed';
       state.error = action.payload;
+
     },
   },
 });

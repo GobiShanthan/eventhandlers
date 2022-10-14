@@ -20,16 +20,12 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import PersonIcon from '@mui/icons-material/Person';
-import LoginIcon from '@mui/icons-material/Login';
 
 const Menu = () => {
   const dispatch = useDispatch()
   const {userInfo} = useSelector(state => state.login)
   const cartData = useSelector(state => state.cartData)
   const cartNum = cartData.cart.length
-
-
-
 
 
 
@@ -87,20 +83,21 @@ if(windowSize && windowSize.innerWidth < 1100){
 return (
   <MenuContainer>
   <MenuLeft><Link to='/'><ImageLogo variants={logoVariants} initial='hidden' animate='visible' exit='exit' src={thumbnail}/></Link></MenuLeft>
-  <MenuMid></MenuMid>
+
   <MenuRight>
-    { userInfo && userInfo.name&&
-  <>
-  <Link style={{color:'black'}} to='/package/add'><CreateNewFolderIcon sx={{fontSize:'60px',marginTop:'50px'}}/> </Link>
-  <Link style={{color:'black'}} to='/vendors'><StorefrontIcon sx={{fontSize:'60px',marginTop:'50px'}}/> </Link>
-  <Link style={{color:'black'}} to='/userpage'><PersonIcon sx={{fontSize:'60px',marginTop:'50px'}}/> </Link>
-  <Link style={{color:'black'}} to='/cart'> <Badge style={{color:'black'}} badgeContent={cartNum?cartNum:0} color="primary" >
-<ShoppingCartIcon color="action" />
-  </Badge>   </Link>
+  {userInfo && userInfo.name ?
+    <div style={{display:'flex'}}>
+    <Link style={{color:'black',margin:'5px'}} to='/package/add'><CreateNewFolderIcon sx={{fontSize:'40px' ,margin:'5px'}}/> </Link>
+    <Link style={{color:'black',margin:'5px'}} to='/vendors'><StorefrontIcon sx={{fontSize:'40px',margin:'5px'}}/> </Link>
+    <Link style={{color:'black',margin:'5px'}} to='/userpage'><PersonIcon sx={{fontSize:'40px',margin:'5px'}}/> </Link>
+    
+    <Link style={{color:'black',margin:'5px'}} to='/cart'> 
+    <ShoppingCartIcon  sx={{fontSize:'40px',margin:'5px'}}/>
+   </Link>
+   <div style={{margin:'20px',fontWeight:'700',cursor:'pointer'}} onClick={()=>logout()}>Logout</div>
+    </div>
 
-
-  </> }
-  {userInfo && userInfo.name ? <LogStatusTitle onClick={()=>logout()}><LogoutRoundedIcon/></LogStatusTitle>:<Link to='/auth'><LogStatusTitle whileHover={{backgroundColor:"#Ad974F",color:'white'}}>Login</LogStatusTitle></Link>}
+   :<Link to='/auth'><LogStatusTitle whileHover={{backgroundColor:"#Ad974F",color:'white'}}>Login</LogStatusTitle></Link>}
   </MenuRight>
 </MenuContainer>
 )

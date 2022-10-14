@@ -12,8 +12,7 @@ import {
   ImageView,
   UserInfoLeft,
   UserInfoMid,
-  UserInfoRight,
-  TextDiv
+
 } from './VendorDetail.styled'
 
 

@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken"); // import the jwt library
 const bcrypt = require("bcrypt"); // import the bcrypt library
 
 
+
 //USER SCHEMA MODEL 
 
 const userSchema = new mongoose.Schema(
@@ -40,18 +41,25 @@ const userSchema = new mongoose.Schema(
 //CREATE USER STATIC
 userSchema.statics.createUser = async function (req) {
   let { name, email, password } = req.body;
-  let emailExists = await this.findOne({ email });
-  if (emailExists) throw new Error("Email is already registered");
-  const hashedPassword = await bcrypt.hash(
-    password,
-    parseInt(process.env.SALT_ROUNDS)
-  );
-  const user = this.create({
-    name,
-    email,
-    password: hashedPassword,
-  });
-  return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
+
+
+    const hashedPassword = await bcrypt.hash(
+      password,
+      parseInt(process.env.SALT_ROUNDS)
+    );
+  
+  
+    const user = await this.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+  
+    return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
+
+
+
+
 };
 
 //LOGIN USER STATIC
@@ -68,16 +76,6 @@ userSchema.statics.getVendors = async function () {
   return await this.find({ isVendor: true });
 };
 
-// UPDATE USER BY REQ USER ID
-userSchema.statics.updateUser = async function (req) {
-  const { name, email,image } = req.body;
 
-  let user = this.find({ _id: req.user._id });
-  user.name = name ? name : user.name;
-  user.email = email ? email : user.email;
-  user.image = image ? image : user.image;
-  user.save();
-  return "successfully updated user";
-};
 
 module.exports = mongoose.model("User", userSchema);

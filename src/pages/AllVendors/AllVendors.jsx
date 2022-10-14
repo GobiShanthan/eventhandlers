@@ -78,54 +78,6 @@ const AllVendors = () => {
   })
  
 
-  // const handleAllPackages = (params) => {
-  //   return (
-  //     <button onClick={() => {
-  //       const currentRow = params.row;
-  //             // return alert(JSON.stringify(currentRow, null, 4));
-  //             let id = JSON.stringify(currentRow._id).split('"')
-       
-  //             navigate(`/vendors/${id[1]}`)
-  //     } }>Packages</button>
-  //   )
-  // }
-
-
-  // const columns = [
-  //   { field: '_id', id: '_id', width:200 },
-  //   { field: 'createdAt', headerName: 'Created At', width: 200},
-  //   { field: 'email', headerName: 'Email', width: 200},
-  //   {field: 'name',headerName: 'Name', width: 200},
-  //   {
-  //     field: 'column1',
-  //     headerName: 'View Packages',
-  //     width: 180,
-  //     sortable: false,
-  //     disableClickEventBubbling: true,
-  //     renderCell: handleAllPackages
-  //     // getActions: (params) => [
-      //   <button onClick={handleAllPackages} label="Delete" >All Packages</button>,
-      // ]
-     
-
-      // renderCell: (params) => {
-      //     const onHandleCLick = (e) => {
-      //       const currentRow = params.row;
-      //       // return alert(JSON.stringify(currentRow, null, 4));
-      //       let id = JSON.stringify(currentRow._id).split('"')
-     
-      //       navigate(`/vendors/${id[1]}`)
-      //     };
-          
-      //     return (
-      //       <>
-      //       <button onClick={onHandleCLick} >Packages</button>
-      //       </>
-            
-      //     );
-  //     // },
-  //   },
-  // ];
   
 
   const getVendors = async()=>{
@@ -169,7 +121,7 @@ const AllVendors = () => {
         </TableHead>
         <TableBody>
           {vendors && vendors.map((row) => (
-            <StyledTableRow key={row.name}>
+            <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
@@ -189,18 +141,6 @@ const AllVendors = () => {
         </TableBody>
       </Table>
     </TableContainer>
-
-{/* 
-    <Search /> */}
-    {/* <ul>
-      {vendors && vendors.map(v => (
-        <div key={v._id} > 
-          <h1>Name : {v.name}</h1>
-          <ChatModal vendorId={v._id} messageHistory={messageHistory} setMessageHistory={setMessageHistory}/>
-        </div>
-      )
-      )}
-    </ul> */}
   
   </AllVendContainer>
   )

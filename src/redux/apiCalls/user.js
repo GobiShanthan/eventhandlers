@@ -9,7 +9,7 @@ export const updateUser = async (formData, dispatch) => {
 
   let jwt = localStorage.getItem("token");
   let options = {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + jwt,

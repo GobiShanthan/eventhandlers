@@ -13,7 +13,8 @@ async function create(req, res) {
     let token = await User.createUser(req);
     res.status(200).json(token);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400)
+    res.json({'Error':err});
   }
 }
 
@@ -23,8 +24,8 @@ async function login(req, res) {
     let token = await User.loginUser(req);
     res.status(200).json(token);
   } catch (err) {
-    res.status(500);
-    res.json("Invalid Credentials");
+    res.status(500)
+    res.json("Invalid Credentials")
   }
 }
 
@@ -42,9 +43,18 @@ async function getVendors(req, res) {
 // UPDATE USER
 async function updateUser(req, res) {
   try {
-    let data = await User.updateUser(req);
-    res.status(200).json(data);
+
+    let user = await User.findById(req.body.userId);
+    if(user){
+      user.name = req.body.name ? req.body.name : user.name;
+      user.email = req.body.email ? req.body.email : user.email;
+      user.image = req.body.image ? req.body.image : user.image;
+      await user.save();
+      res.status(200).json('Successfully updated user');
+    }
+
   } catch (err) {
+    console.log(err)
     res.status(500);
     res.json(err);
   }

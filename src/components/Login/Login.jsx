@@ -14,6 +14,11 @@ import Box from "@mui/material/Box";
 import { Formik, Form, useFormik } from "formik";
 import * as Yup from "yup";
 import { MyTextInput } from "../FormFields/FormFields";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
+
+
 
 import {
   lightGold,
@@ -29,6 +34,12 @@ const validationSchema = Yup.object({
 
 const Login = () => {
   const dispatch = useDispatch();
+  const login = useSelector((state)=>state.login)
+
+
+
+
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -105,6 +116,9 @@ const Login = () => {
                 }} variant="contained">
           Submit
         </Button>
+        <Stack sx={{ maxWidth:'300px' }} spacing={2}>
+     {login && login.error ? <Alert  severity="error">{login.error}</Alert>:null}
+    </Stack>
         </Card>
         </Box>
       </form>

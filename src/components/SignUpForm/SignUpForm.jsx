@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { signupUser } from "../../redux/apiCalls/signup";
 import { MyTextInput } from "../FormFields/FormFields";
 
@@ -10,7 +10,8 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 import { SignupTitle, Card } from "./SignUpForm.styled";
-
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import {
   lightGold,
   darkGold,
@@ -43,7 +44,15 @@ const validationSchema = Yup.object({
 });
 
 const SignupForm = () => {
+
+
+  
   const dispatch = useDispatch();
+
+  const signup = useSelector((state)=>state.signup)
+
+
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -90,12 +99,7 @@ const SignupForm = () => {
           }}
         >
           <Card
-            style={{
-              // justifyContent: "center",
-              // border: "solid 5px",
-              // borderColor: `${darkGold}`,
-              // color: `${grey}`,
-            }}
+
           >
             <SignupTitle>Sign up!</SignupTitle>
 
@@ -147,6 +151,9 @@ const SignupForm = () => {
             >
               Submit
             </Button>
+            <Stack sx={{ maxWidth:'300px' }} spacing={2}>
+     {signup && signup.error ? <Alert  severity="error">{signup.error}</Alert>:null}
+    </Stack>
           </Card>
         </Box>
       </form>

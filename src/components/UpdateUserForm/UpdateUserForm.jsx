@@ -96,8 +96,9 @@ const UpdateUserForm = () => {
                 name: values.name,
                 email: values.email,
                 image: downloadURL,
+                userId
               };
-              updateUser(data, dispatch);
+              updateUser({data}, dispatch);
               navigate(`/users/${userId && userId}`);
             });
           }
@@ -107,6 +108,7 @@ const UpdateUserForm = () => {
           {
             name: values.name,
             email: values.email,
+            userId
           },
           dispatch
         );
@@ -149,6 +151,7 @@ const UpdateUserForm = () => {
               style={{
                 border: "solid 5px",
                 borderColor: `${darkGold}`,
+                width:'80%',
                 maxWidth:'500px'
               }}
               >
@@ -179,25 +182,6 @@ const UpdateUserForm = () => {
               />
 </div>
               
-
-              <Button
-                variant="contained"
-                component="label"
-                style={{
-                  justifySelf: "center",
-                  margin: "20px",
-                  backgroundColor: `${lightGold}`,
-                  alignItems: 'center'
-                }}
-              >
-                Upload Photo
-                <input
-                  hidden
-                  type="file"
-                  name="image"
-                  onChange={handleChangePic}
-                />
-              </Button>
             <div>
             <Button
               type="submit"

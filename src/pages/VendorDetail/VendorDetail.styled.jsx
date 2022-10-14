@@ -9,6 +9,7 @@ export const VDetailContainer = styled(motion.div)`
   padding-top: 10vh;
   background-color: black;
   color: #eaeaea;
+  min-height:100vh;
 
 `;
 
