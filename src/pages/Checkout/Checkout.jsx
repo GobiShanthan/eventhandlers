@@ -1,5 +1,8 @@
-import React from "react";
 
+import React,{useState,useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+
+import {useSelector} from 'react-redux'
 import Cart from "../../components/Cart/Cart";
 import StripeCheckout from "../../components/StripeCheckout/StripeCheckout";
 import Box from "@mui/material/Box";
@@ -10,10 +13,34 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CheckoutContainer } from "./Checkout.styled";
 
+
+
+
+
+
+
+
+
 const steps = ["Review Order", "Payment"];
 
 export default function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
+
+
+  const {userInfo} = useSelector(state => state.login)
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    if (!userInfo ) {
+      navigate("/")
+    } 
+  }, [userInfo])
+
+
+
+
+
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

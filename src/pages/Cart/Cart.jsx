@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link,useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector} from "react-redux";
 
 import { Button } from "@mui/material";
 import {
@@ -14,6 +15,15 @@ import { lightGold, grey } from "../../components/Colors/colors";
 
 const CartPage = () => {
   const cartData = useSelector((state) => state.cartData);
+
+  const { userInfo } = useSelector((state) => state.login);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userInfo ) {
+      navigate("/");
+    }
+  }, [userInfo]);
 
   if (cartData && cartData.cart && cartData.cart.length > 0) {
     const subTotal = Number(

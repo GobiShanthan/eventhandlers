@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ChatModal from "../../components/ChatModal/ChatModal";
 
@@ -44,7 +44,15 @@ const AllVendors = () => {
   const [vendors, setVendors] = useState([]);
   const [messageHistory, setMessageHistory] = useState([]);
 
-  const { userInfo } = useSelector((state) => state.login);
+  const {userInfo} = useSelector(state => state.login)
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    if (!userInfo ) {
+      navigate("/")
+    } 
+  }, [userInfo])
   let socket = io();
 
   // this code block will update User's socketID in the backend, comment out lines 21 to 25 to disable socket.io

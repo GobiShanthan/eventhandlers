@@ -1,9 +1,21 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector } from "react-redux";
+import {useNavigate } from "react-router-dom";
 import UpdateUserForm from "../../components/UpdateUserForm/UpdateUserForm";
 
 const UsersPage = () => {
-  const { userInfo } = useSelector((state) => state.login);
+
+  const {userInfo} = useSelector(state => state.login)
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/")
+    } 
+  }, [userInfo])
+
+
 
   if (userInfo) {
     return (

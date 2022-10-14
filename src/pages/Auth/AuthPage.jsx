@@ -18,7 +18,7 @@ const AuthPage = () => {
   const [login,setLogin] = useState(false)
 
   useEffect(() => {
-    if (userInfo && userInfo.name) {
+    if (userInfo ) {
       navigate("/")
     } 
   }, [userInfo])
