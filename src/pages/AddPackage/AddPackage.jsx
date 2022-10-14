@@ -1,34 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FlexContainer,
   Card,
-AddPackageContainer,
+  AddPackageContainer,
   FormText,
   FormImage,
-  AddPackageTitle
+  AddPackageTitle,
 } from "./AddPackage.styled";
 
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { MyTextInput, MySelect } from "../../components/FormFields/FormFields";
 
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
-import FormControl from "@mui/material/FormControl";
+
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 
-import {
-  lightGold,
-  darkGold,
-  lightBlack,
-  grey,
-} from "../../components/Colors/colors";
+import { lightGold, darkGold, grey } from "../../components/Colors/colors";
 
 import { Map } from "../../components/Map/Map";
 
@@ -76,8 +68,6 @@ const AddPackage = () => {
   const handleChangePic = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.files[0] });
   };
-
-  
 
   const formik = useFormik({
     initialValues: {
@@ -166,8 +156,8 @@ const AddPackage = () => {
   return (
     <AddPackageContainer>
       <form onSubmit={formik.handleSubmit} autoComplete="off">
-  <FlexContainer>
-        <Box
+        <FlexContainer>
+          <Box
             sx={{
               "& .MuiFormLabel-root": {
                 color: `${lightGold}`,
@@ -175,200 +165,199 @@ const AddPackage = () => {
               "& .MuiFormLabel-root.Mui-focused": {
                 color: `${grey}`,
               },
-              
+
               "& label.Mui-focused": {
                 color: `${darkGold}`,
               },
               "& .MuiOutlinedInput-root": {
-                "fieldset": {
+                fieldset: {
                   borderColor: `${darkGold}`,
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: `${grey}`,
                 },
-                },
+              },
             }}
-            >
-           <Card
+          >
+            <Card
               style={{
                 justifyContent: "center",
                 border: "solid 5px",
                 borderColor: `${darkGold}`,
                 color: `${grey}`,
-                maxWidth:'500px',
-                marginTop:'15vh'
+                maxWidth: "500px",
+                marginTop: "15vh",
               }}
-              >
-            <FormText>
-              <AddPackageTitle>Create Package</AddPackageTitle>
-              
-              <Select
-                labelId="vendorType-label"
-                id="vendorType"
-                name="vendorType"
-                value={formik.values.vendorType}
-                displayEmpty
-                // label="Vendor Type"
-                placeholder="Vendor Type"
-                onChange={formik.handleChange}
-                margin="dense"
-                sx={{'color': `${grey}`}}
-              >
-                <MenuItem disabled value="">
-            <em>Vendor Type</em>
-            </MenuItem>
-                <MenuItem value="venue">Venue</MenuItem>
-                <MenuItem value="caterer">Caterer</MenuItem>
-                <MenuItem value="photographer">Photographer</MenuItem>
-                <MenuItem value="decor">Decor</MenuItem>
-              </Select>
+            >
+              <FormText>
+                <AddPackageTitle>Create Package</AddPackageTitle>
 
-              <TextField
-                id="title"
-                name="title"
-                label="Title"
-                value={formik.values.title}
-                onChange={formik.handleChange}
-                error={formik.touched.title && Boolean(formik.errors.title)}
-                helperText={formik.touched.title && formik.errors.title}
-                margin="dense"
-                inputProps={{ style: { color: `${grey}`} }}
-              />
+                <Select
+                  labelId="vendorType-label"
+                  id="vendorType"
+                  name="vendorType"
+                  value={formik.values.vendorType}
+                  displayEmpty
+                  // label="Vendor Type"
+                  placeholder="Vendor Type"
+                  onChange={formik.handleChange}
+                  margin="dense"
+                  sx={{ color: `${grey}` }}
+                >
+                  <MenuItem disabled value="">
+                    <em>Vendor Type</em>
+                  </MenuItem>
+                  <MenuItem value="venue">Venue</MenuItem>
+                  <MenuItem value="caterer">Caterer</MenuItem>
+                  <MenuItem value="photographer">Photographer</MenuItem>
+                  <MenuItem value="decor">Decor</MenuItem>
+                </Select>
 
-              <TextField
-                id="description"
-                name="description"
-                label="Description"
-                value={formik.values.description}
-                onChange={formik.handleChange}
-                error={
-                  formik.touched.description &&
-                  Boolean(formik.errors.description)
-                }
-                helperText={
-                  formik.touched.description && formik.errors.description
-                }
-                margin="dense"
-                inputProps={{ style: { color: `${grey}`} }}
-              />
-
-              <TextField
-                id="price"
-                name="price"
-                label="Price"
-                type="number"
-                value={formik.values.price}
-                onChange={formik.handleChange}
-                error={formik.touched.price && Boolean(formik.errors.price)}
-                helperText={formik.touched.price && formik.errors.price}
-                margin="dense"
-                inputProps={{ style: { color: `${grey}`} }}
-              />
-
-              {formik.values.vendorType === "venue" && (
                 <TextField
-                  id="capacity"
-                  name="capacity"
-                  label="Capacity"
-                  type="number"
-                  value={formik.values.capacity}
+                  id="title"
+                  name="title"
+                  label="Title"
+                  value={formik.values.title}
+                  onChange={formik.handleChange}
+                  error={formik.touched.title && Boolean(formik.errors.title)}
+                  helperText={formik.touched.title && formik.errors.title}
+                  margin="dense"
+                  inputProps={{ style: { color: `${grey}` } }}
+                />
+
+                <TextField
+                  id="description"
+                  name="description"
+                  label="Description"
+                  value={formik.values.description}
                   onChange={formik.handleChange}
                   error={
-                    formik.touched.capacity && Boolean(formik.errors.capacity)
+                    formik.touched.description &&
+                    Boolean(formik.errors.description)
                   }
-                  helperText={formik.touched.capacity && formik.errors.capacity}
+                  helperText={
+                    formik.touched.description && formik.errors.description
+                  }
                   margin="dense"
-                  inputProps={{ style: { color: `${grey}`} }}
+                  inputProps={{ style: { color: `${grey}` } }}
                 />
-              )}
 
-              {formik.values.vendorType === "caterer" && (
-                <>
-                  <TextField
-                    id="menu"
-                    name="menu"
-                    label="Menu"
-                    value={formik.values.menu}
-                    onChange={formik.handleChange}
-                    error={formik.touched.menu && Boolean(formik.errors.menu)}
-                    helperText={formik.touched.menu && formik.errors.menu}
-                    margin="dense"
-                    inputProps={{ style: { color: `${grey}`} }}
-                  />
+                <TextField
+                  id="price"
+                  name="price"
+                  label="Price"
+                  type="number"
+                  value={formik.values.price}
+                  onChange={formik.handleChange}
+                  error={formik.touched.price && Boolean(formik.errors.price)}
+                  helperText={formik.touched.price && formik.errors.price}
+                  margin="dense"
+                  inputProps={{ style: { color: `${grey}` } }}
+                />
 
+                {formik.values.vendorType === "venue" && (
                   <TextField
-                    id="quantity"
-                    name="quantity"
-                    label="Quantity"
+                    id="capacity"
+                    name="capacity"
+                    label="Capacity"
                     type="number"
-                    value={formik.values.quantity}
+                    value={formik.values.capacity}
                     onChange={formik.handleChange}
                     error={
-                      formik.touched.quantity && Boolean(formik.errors.quantity)
+                      formik.touched.capacity && Boolean(formik.errors.capacity)
                     }
                     helperText={
-                      formik.touched.quantity && formik.errors.quantity
+                      formik.touched.capacity && formik.errors.capacity
                     }
                     margin="dense"
-                    inputProps={{ style: { color: `${grey}`} }}
+                    inputProps={{ style: { color: `${grey}` } }}
                   />
-                </>
-              )}
-              {formik.values.vendorType === "photographer" && (
-                <TextField
-                  id="hours"
-                  name="hours"
-                  label="Hours"
-                  type="number"
-                  value={formik.values.hours}
-                  onChange={formik.handleChange}
-                  error={formik.touched.hours && Boolean(formik.errors.hours)}
-                  helperText={formik.touched.hours && formik.errors.hours}
-                  margin="dense"
-                  inputProps={{ style: { color: `${grey}`} }}
-                />
-              )}
+                )}
 
-              {formik.values.vendorType === "decor" && (
-                <TextField
-                  id="items"
-                  name="items"
-                  label="Items"
-                  value={formik.values.items}
-                  onChange={formik.handleChange}
-                  error={formik.touched.items && Boolean(formik.errors.items)}
-                  helperText={formik.touched.items && formik.errors.items}
-                  margin="dense"
-                  inputProps={{ style: { color: `${grey}`} }}
-                />
-              )}
-            </FormText>
+                {formik.values.vendorType === "caterer" && (
+                  <>
+                    <TextField
+                      id="menu"
+                      name="menu"
+                      label="Menu"
+                      value={formik.values.menu}
+                      onChange={formik.handleChange}
+                      error={formik.touched.menu && Boolean(formik.errors.menu)}
+                      helperText={formik.touched.menu && formik.errors.menu}
+                      margin="dense"
+                      inputProps={{ style: { color: `${grey}` } }}
+                    />
 
-            <Map />
+                    <TextField
+                      id="quantity"
+                      name="quantity"
+                      label="Quantity"
+                      type="number"
+                      value={formik.values.quantity}
+                      onChange={formik.handleChange}
+                      error={
+                        formik.touched.quantity &&
+                        Boolean(formik.errors.quantity)
+                      }
+                      helperText={
+                        formik.touched.quantity && formik.errors.quantity
+                      }
+                      margin="dense"
+                      inputProps={{ style: { color: `${grey}` } }}
+                    />
+                  </>
+                )}
+                {formik.values.vendorType === "photographer" && (
+                  <TextField
+                    id="hours"
+                    name="hours"
+                    label="Hours"
+                    type="number"
+                    value={formik.values.hours}
+                    onChange={formik.handleChange}
+                    error={formik.touched.hours && Boolean(formik.errors.hours)}
+                    helperText={formik.touched.hours && formik.errors.hours}
+                    margin="dense"
+                    inputProps={{ style: { color: `${grey}` } }}
+                  />
+                )}
 
-            <FormImage>
+                {formik.values.vendorType === "decor" && (
+                  <TextField
+                    id="items"
+                    name="items"
+                    label="Items"
+                    value={formik.values.items}
+                    onChange={formik.handleChange}
+                    error={formik.touched.items && Boolean(formik.errors.items)}
+                    helperText={formik.touched.items && formik.errors.items}
+                    margin="dense"
+                    inputProps={{ style: { color: `${grey}` } }}
+                  />
+                )}
+              </FormText>
 
-              <input
-                // hidden
-                type="file"
-                name="image"
-                onChange={handleChangePic}
-              />
-            </FormImage>
-            <Button type="submit" style={{
+              <Map />
+
+              <FormImage>
+                <input type="file" name="image" onChange={handleChangePic} />
+              </FormImage>
+              <Button
+                type="submit"
+                style={{
                   justifySelf: "center",
                   margin: "20px",
                   backgroundColor: `${lightGold}`,
-                  alignItems: 'center',
-                }} variant="contained">
-          Save Package
-        </Button>
-          </Card>
+                  alignItems: "center",
+                }}
+                variant="contained"
+              >
+                Save Package
+              </Button>
+            </Card>
           </Box>
-          </FlexContainer>
-   
+        </FlexContainer>
       </form>
-
     </AddPackageContainer>
   );
 };

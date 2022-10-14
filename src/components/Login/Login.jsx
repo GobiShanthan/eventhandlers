@@ -1,31 +1,18 @@
-import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../../redux/apiCalls/login";
 
-import {
-  LoginContainer,
-  LoginTitle,
-  Card,
-} from "./Login.styled";
+import { LoginContainer, LoginTitle, Card } from "./Login.styled";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { Formik, Form, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import { MyTextInput } from "../FormFields/FormFields";
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
 
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
-
-
-import {
-  lightGold,
-  darkGold,
-  lightBlack,
-  grey,
-} from "../../components/Colors/colors";
+import { lightGold, darkGold, grey } from "../../components/Colors/colors";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Required"),
@@ -34,11 +21,7 @@ const validationSchema = Yup.object({
 
 const Login = () => {
   const dispatch = useDispatch();
-  const login = useSelector((state)=>state.login)
-
-
-
-
+  const login = useSelector((state) => state.login);
 
   const formik = useFormik({
     initialValues: {
@@ -60,66 +43,72 @@ const Login = () => {
   return (
     <LoginContainer>
       <form onSubmit={formik.handleSubmit} autoComplete="off">
-      <Box
-            sx={{
-              "& .MuiFormLabel-root": {
-                color: `${lightGold}`,
+        <Box
+          sx={{
+            "& .MuiFormLabel-root": {
+              color: `${lightGold}`,
+            },
+            "& .MuiFormLabel-root.Mui-focused": {
+              color: `${grey}`,
+            },
+
+            "& label.Mui-focused": {
+              color: `${darkGold}`,
+            },
+            "& .MuiOutlinedInput-root": {
+              fieldset: {
+                borderColor: `${darkGold}`,
               },
-              "& .MuiFormLabel-root.Mui-focused": {
-                color: `${grey}`,
+              "&.Mui-focused fieldset": {
+                borderColor: `${grey}`,
               },
-              
-              "& label.Mui-focused": {
-                color: `${darkGold}`,
-              },
-              "& .MuiOutlinedInput-root": {
-                "fieldset": {
-                  borderColor: `${darkGold}`,
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: `${grey}`,
-                },
-                },
-            }}
+            },
+          }}
+        >
+          <Card>
+            <LoginTitle>Login</LoginTitle>
+            <TextField
+              id="email"
+              name="email"
+              label="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+              margin="dense"
+              inputProps={{ style: { color: `${grey}` } }}
+            />
+
+            <TextField
+              id="password"
+              name="password"
+              label="Password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+              margin="dense"
+              inputProps={{ style: { color: `${grey}` } }}
+            />
+
+            <Button
+              type="submit"
+              style={{
+                justifySelf: "center",
+                margin: "20px",
+                backgroundColor: `${lightGold}`,
+                alignItems: "center",
+              }}
+              variant="contained"
             >
-      <Card>
-        <LoginTitle>Login</LoginTitle>
-        <TextField
-          id="email"
-          name="email"
-          label="Email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-          margin="dense"
-          inputProps={{ style: { color: `${grey}`} }}
-        />
-
-        <TextField
-          id="password"
-          name="password"
-          label="Password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-          margin="dense"
-          inputProps={{ style: { color: `${grey}`} }}
-        />
-
-        <Button type="submit" style={{
-                  justifySelf: "center",
-                  margin: "20px",
-                  backgroundColor: `${lightGold}`,
-                  alignItems: 'center',
-                }} variant="contained">
-          Submit
-        </Button>
-        <Stack sx={{ maxWidth:'300px' }} spacing={2}>
-     {login && login.error ? <Alert  severity="error">{login.error}</Alert>:null}
-    </Stack>
-        </Card>
+              Submit
+            </Button>
+            <Stack sx={{ maxWidth: "300px" }} spacing={2}>
+              {login && login.error ? (
+                <Alert severity="error">{login.error}</Alert>
+              ) : null}
+            </Stack>
+          </Card>
         </Box>
       </form>
     </LoginContainer>

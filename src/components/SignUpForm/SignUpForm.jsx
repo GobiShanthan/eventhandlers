@@ -1,23 +1,17 @@
 import React from "react";
-import { Formik, Form, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../redux/apiCalls/signup";
-import { MyTextInput } from "../FormFields/FormFields";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 import { SignupTitle, Card } from "./SignUpForm.styled";
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
-import {
-  lightGold,
-  darkGold,
-  lightBlack,
-  grey,
-} from "../../components/Colors/colors";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import { lightGold, darkGold, grey } from "../../components/Colors/colors";
 
 const lowercaseRegEx = /(?=.*[a-z])/;
 const uppercaseRegEx = /(?=.*[A-Z])/;
@@ -44,14 +38,9 @@ const validationSchema = Yup.object({
 });
 
 const SignupForm = () => {
-
-
-  
   const dispatch = useDispatch();
 
-  const signup = useSelector((state)=>state.signup)
-
-
+  const signup = useSelector((state) => state.signup);
 
   const formik = useFormik({
     initialValues: {
@@ -98,9 +87,7 @@ const SignupForm = () => {
             },
           }}
         >
-          <Card
-
-          >
+          <Card>
             <SignupTitle>Sign up!</SignupTitle>
 
             <TextField
@@ -112,7 +99,7 @@ const SignupForm = () => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
               margin="dense"
-              inputProps={{ style: { color: `${grey}`} }}
+              inputProps={{ style: { color: `${grey}` } }}
             />
 
             <TextField
@@ -124,7 +111,7 @@ const SignupForm = () => {
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
               margin="dense"
-              inputProps={{ style: { color: `${grey}`} }}
+              inputProps={{ style: { color: `${grey}` } }}
             />
 
             <TextField
@@ -136,7 +123,7 @@ const SignupForm = () => {
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
               margin="dense"
-              inputProps={{ style: { color: `${grey}`} }}
+              inputProps={{ style: { color: `${grey}` } }}
             />
 
             <Button
@@ -151,9 +138,11 @@ const SignupForm = () => {
             >
               Submit
             </Button>
-            <Stack sx={{ maxWidth:'300px' }} spacing={2}>
-     {signup && signup.error ? <Alert  severity="error">{signup.error}</Alert>:null}
-    </Stack>
+            <Stack sx={{ maxWidth: "300px" }} spacing={2}>
+              {signup && signup.error ? (
+                <Alert severity="error">{signup.error}</Alert>
+              ) : null}
+            </Stack>
           </Card>
         </Box>
       </form>

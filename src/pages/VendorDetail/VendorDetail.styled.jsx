@@ -9,8 +9,7 @@ export const VDetailContainer = styled(motion.div)`
   padding-top: 10vh;
   background-color: black;
   color: #eaeaea;
-  min-height:100vh;
-
+  min-height: 100vh;
 `;
 
 export const VDetailUser = styled(motion.div)`
@@ -37,30 +36,28 @@ export const BottomUserImages = styled(motion.div)`
   justify-content: space-around;
   align-items: center;
   margin-top: 1vh;
-
 `;
 
 export const ImageView = styled(motion.img)`
   width: 30vw;
-
 `;
 
 export const UserInfoLeft = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding: 1rem 1rem;
-  flex:1;
+  flex: 1;
 `;
 
 export const UserInfoMid = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding: 1rem 1rem;
-  flex:1;
-  text-align: left
+  flex: 1;
+  text-align: left;
 `;
 
 export const UserInfoRight = styled(motion.div)`
-  display:block;
+  display: block;
   cursor: pointer;
 `;

@@ -1,13 +1,13 @@
 import * as React from "react";
-import {useState, useEffect, useRef} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import io from 'socket.io-client'
-import chatIcon from '../../images/chatIcon.webp'
-import {IconImage} from '../../pages/AllVendors/AllVendors.styled'
+import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import io from "socket.io-client";
+import chatIcon from "../../images/chatIcon.webp";
+import { IconImage } from "../../pages/AllVendors/AllVendors.styled";
 
 //Material UI imports
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+
 import Modal from "@mui/material/Modal";
 
 import {
@@ -18,7 +18,7 @@ import {
   MessageBar,
   SendButton,
 } from "./ChatModal.styled";
-import {grey, lightGold} from "../Colors/colors"
+import { grey, lightGold } from "../Colors/colors";
 
 let socket = io();
 
@@ -55,10 +55,10 @@ export default function ChatModal({
   const handleSendMessage = (e) => {
     e.preventDefault();
     let userData = {
-      'user': currentUser && currentUser,
-      message
-    }
-    setMessageHistory([...messageHistory, userData])
+      user: currentUser && currentUser,
+      message,
+    };
+    setMessageHistory([...messageHistory, userData]);
     socket.emit("message", {
       text: message,
       name: userInfo.name,
@@ -75,9 +75,13 @@ export default function ChatModal({
 
   return (
     <div>
-
-
-      <IconImage onClick={handleOpen} whileHover={{scale:1.1}} whileTap={{scale:.9}} src={chatIcon} alt='icon-image'/>
+      <IconImage
+        onClick={handleOpen}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        src={chatIcon}
+        alt="icon-image"
+      />
       <Modal
         open={open}
         onClose={handleClose}

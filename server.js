@@ -6,7 +6,7 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const passport = require('passport');
+
 const {notFound,errorHandler} = require('./config/error')
 //socket.io imports
 const server = require('http').createServer(app);
@@ -16,7 +16,7 @@ io.attach(server)
 
 require('dotenv').config();
 require('./config/database');
-require('./config/passport');
+
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -30,8 +30,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));

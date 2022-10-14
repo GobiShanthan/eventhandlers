@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken"); // import the jwt library
 const bcrypt = require("bcrypt"); // import the bcrypt library
 
-
-
-//USER SCHEMA MODEL 
+//USER SCHEMA MODEL
 
 const userSchema = new mongoose.Schema(
   {
@@ -42,24 +40,18 @@ const userSchema = new mongoose.Schema(
 userSchema.statics.createUser = async function (req) {
   let { name, email, password } = req.body;
 
+  const hashedPassword = await bcrypt.hash(
+    password,
+    parseInt(process.env.SALT_ROUNDS)
+  );
 
-    const hashedPassword = await bcrypt.hash(
-      password,
-      parseInt(process.env.SALT_ROUNDS)
-    );
-  
-  
-    const user = await this.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
-  
-    return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
+  const user = await this.create({
+    name,
+    email,
+    password: hashedPassword,
+  });
 
-
-
-
+  return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
 };
 
 //LOGIN USER STATIC
@@ -75,7 +67,5 @@ userSchema.statics.loginUser = async function (req) {
 userSchema.statics.getVendors = async function () {
   return await this.find({ isVendor: true });
 };
-
-
 
 module.exports = mongoose.model("User", userSchema);

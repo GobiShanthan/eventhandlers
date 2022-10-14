@@ -1,18 +1,16 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import MenuItem from "../../components/MenuItems/MenuItem";
-import Checkout from "../Checkout/Checkout";
-import {Button} from '@mui/material'
+import { useSelector } from "react-redux";
+
+import { Button } from "@mui/material";
 import {
   CartContainer,
   CartBoxDiv,
   CartBoxItemDiv,
   CartBoxItemTitle,
-  TextSize
+  TextSize,
 } from "./Cart.styled";
 import Cart from "../../components/Cart/Cart";
-import {lightGold,grey} from '../../components/Colors/colors'
+import { lightGold, grey } from "../../components/Colors/colors";
 
 const CartPage = () => {
   const cartData = useSelector((state) => state.cartData);
@@ -23,7 +21,6 @@ const CartPage = () => {
     ).toFixed(2);
     const taxPrice = Number(subTotal * 0.13).toFixed(2);
     const totalPrice = (subTotal * 1.13).toFixed(2);
-
 
     return (
       <CartContainer>
@@ -39,17 +36,26 @@ const CartPage = () => {
           </CartBoxItemDiv>
 
           <CartBoxItemDiv>
-          <TextSize>PRICE: $</TextSize> {totalPrice ? totalPrice : "0.00"}
+            <TextSize>PRICE: $</TextSize> {totalPrice ? totalPrice : "0.00"}
           </CartBoxItemDiv>
         </CartBoxDiv>
 
-        <Button style={{
-                  justifySelf: "center",
-                  margin: "20px",
-                  backgroundColor: `${lightGold}`,
-                  alignItems: 'center',
-       
-                }} name="checkout"><Link style={{color:`${grey}`,textDecoration:'none'}} to="/checkout">CHECKOUT</Link></Button>
+        <Button
+          style={{
+            justifySelf: "center",
+            margin: "20px",
+            backgroundColor: `${lightGold}`,
+            alignItems: "center",
+          }}
+          name="checkout"
+        >
+          <Link
+            style={{ color: `${grey}`, textDecoration: "none" }}
+            to="/checkout"
+          >
+            CHECKOUT
+          </Link>
+        </Button>
       </CartContainer>
     );
   } else {

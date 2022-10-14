@@ -1,16 +1,9 @@
-import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BorderContainer, CartWrapper, TextDiv } from "./Cart.styled";
 import { deleteFromCart } from "../../redux/reducers/cartSlice";
-import {
-  lightGold,
-  darkGold,
-  lightBlack,
-  grey,
-} from "../../components/Colors/colors";
+import { lightGold } from "../../components/Colors/colors";
 
-import {Button } from '@mui/material'
-
+import { Button } from "@mui/material";
 
 const Cart = () => {
   //REDUX

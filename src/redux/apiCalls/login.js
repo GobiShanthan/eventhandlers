@@ -17,7 +17,7 @@ export const loginUser = async ({ email, password }, dispatch) => {
     };
 
     const fetchResponse = await fetch("/api/users/login", options);
-    if (!fetchResponse.ok) return dispatch(loginRejected('invalid password'));
+    if (!fetchResponse.ok) return dispatch(loginRejected("invalid password"));
     let token = await fetchResponse.json();
     localStorage.setItem("token", token);
     let user = JSON.parse(window.atob(token.split(".")[1])).user;

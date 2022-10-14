@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {  createSlice } from "@reduxjs/toolkit";
 
 let token = localStorage.getItem("token");
 let userData = null;
@@ -24,14 +24,13 @@ export const userSlice = createSlice({
   reducers: {
     loginPending: (state) => {
       state.status = "loading";
-      state.error='';
-      state.status=''
+      state.error = "";
+      state.status = "";
     },
     loginFulfilled: (state, action) => {
       state.userInfo = action.payload;
       state.status = "success";
-      state.error='';
-
+      state.error = "";
     },
     loginRejected: (state, action) => {
       state.status = "failed";
@@ -40,8 +39,8 @@ export const userSlice = createSlice({
     logoutUser: (state, action) => {
       localStorage.removeItem("token");
       state.userInfo = null;
-      state.error='';
-      state.status=''
+      state.error = "";
+      state.status = "";
     },
   },
 });

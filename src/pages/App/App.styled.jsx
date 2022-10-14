@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import {motion }from 'framer-motion'
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const AppContainer = styled(motion.div)`
 height:100vh;
@@ -9,4 +9,4 @@ padding:0px
 max-width:100vw;
 max-height:100vh;
 
-`
+`;

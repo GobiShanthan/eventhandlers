@@ -12,14 +12,14 @@ export const MessagesCnt = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;
 
 export const MessageContainer = styled(motion.div)`
   width: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
   border-radius: 15px;
-`
+`;
 
 export const Message = styled(motion.div)`
   display: flex;
@@ -33,13 +33,14 @@ export const Message = styled(motion.div)`
     width: 200px;
     text-align: left;
     color: ${lightBlack};
-    background-color: ${(props) => props.person === "user" ? "#8e793e" : "#Ad974F"};
+    background-color: ${(props) =>
+      props.person === "user" ? "#8e793e" : "#Ad974F"};
     border-radius: 15px;
     padding: 10px;
     inline-size: 200px;
     overflow-wrap: break-word;
   }
-`
+`;
 
 export const ChatFooter = styled.div`
   position: absolute;
@@ -51,7 +52,7 @@ export const ChatFooter = styled.div`
   width: 90%;
   background-color: ${lightBlack};
   border-radius: 5px;
-`
+`;
 
 export const MessageBar = styled.div`
   width: 100%;
@@ -69,11 +70,11 @@ export const MessageBar = styled.div`
       display: none;
     }
   }
-`
+`;
 
 export const SendButton = styled(motion.button)`
   background-color: ${darkGold};
   color: ${grey};
   padding: 5px;
   border-radius: 5px;
-`
+`;

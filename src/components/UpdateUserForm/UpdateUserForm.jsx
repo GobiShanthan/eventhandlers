@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Formik, Form, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import { MyTextInput } from "../FormFields/FormFields";
+
 import { FlexContainer, Card, Heading } from "./UpdateUserForm.styled";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -13,7 +13,6 @@ import {
   lightBlack,
   grey,
 } from "../../components/Colors/colors";
-
 
 //REDUX IMPORTS
 import { useDispatch, useSelector } from "react-redux";
@@ -96,9 +95,9 @@ const UpdateUserForm = () => {
                 name: values.name,
                 email: values.email,
                 image: downloadURL,
-                userId
+                userId,
               };
-              updateUser({data}, dispatch);
+              updateUser({ data }, dispatch);
               navigate(`/users/${userId && userId}`);
             });
           }
@@ -108,7 +107,7 @@ const UpdateUserForm = () => {
           {
             name: values.name,
             email: values.email,
-            userId
+            userId,
           },
           dispatch
         );
@@ -116,23 +115,22 @@ const UpdateUserForm = () => {
     },
   });
 
-
   return (
     <div style={{ backgroundColor: `${lightBlack}`, height: "100vh" }}>
       <form onSubmit={formik.handleSubmit} autoComplete="off">
         <FlexContainer>
           <Box
             sx={{
-              display:'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               "& .MuiFormLabel-root": {
                 color: `${lightGold}`,
               },
               "& .MuiFormLabel-root.Mui-focused": {
                 color: `${grey}`,
               },
-  
+
               "& label.Mui-focused": {
                 color: `${darkGold}`,
               },
@@ -145,54 +143,54 @@ const UpdateUserForm = () => {
                 },
               },
             }}
-            
-            >
+          >
             <Card
               style={{
                 border: "solid 5px",
                 borderColor: `${darkGold}`,
-                width:'80%',
-                maxWidth:'500px'
+                width: "80%",
+                maxWidth: "500px",
               }}
-              >
+            >
               <Heading>Update Profile</Heading>
-              
-<div id="fields">
-  <TextField
-                id="name"
-                name="name"
-                label="Name"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                error={formik.touched.name && Boolean(formik.errors.name)}
-                helperText={formik.touched.name && formik.errors.name}
-                margin="dense"
-                inputProps={{ style: { color: `${grey}`} }}
-              />
-              <TextField
-                id="email"
-                name="email"
-                label="Email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
-                margin="dense"
-                inputProps={{ style: { color: `${grey}`, justifySelf: 'center' } }}
-              />
-</div>
-              
-            <div>
-            <Button
-              type="submit"
-              variant="contained"
-              style={{ margin: "20px", backgroundColor: `${lightGold}` }}
-              >
-              UPDATE USER
-            </Button>
 
-            </div>
-              </Card>
+              <div id="fields">
+                <TextField
+                  id="name"
+                  name="name"
+                  label="Name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
+                  margin="dense"
+                  inputProps={{ style: { color: `${grey}` } }}
+                />
+                <TextField
+                  id="email"
+                  name="email"
+                  label="Email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  margin="dense"
+                  inputProps={{
+                    style: { color: `${grey}`, justifySelf: "center" },
+                  }}
+                />
+              </div>
+
+              <div>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  style={{ margin: "20px", backgroundColor: `${lightGold}` }}
+                >
+                  UPDATE USER
+                </Button>
+              </div>
+            </Card>
           </Box>
         </FlexContainer>
       </form>

@@ -1,120 +1,142 @@
-import React from 'react'
+import React from "react";
 
-import { 
+import {
   HomeContainer,
   GoldPaint,
   GoldBorder,
   EH,
   Handlers,
   Event,
-  LogoWrapper
-} from './Homepage.styled'
+  LogoWrapper,
+} from "./Homepage.styled";
 
-import four from '../../images/4.webp'
-import five from '../../images/5.webp'
-import six from '../../images/6.webp'
-import seven from '../../images/7.webp'
-import eight from '../../images/8.webp'
+import four from "../../images/4.webp";
+import five from "../../images/5.webp";
+import six from "../../images/6.webp";
+import seven from "../../images/7.webp";
+import eight from "../../images/8.webp";
 
-
-
-const ehVariants ={
-  hidden:{
-    opacity:0,
+const ehVariants = {
+  hidden: {
+    opacity: 0,
   },
-  visible:{
+  visible: {
     opacity: 1,
-    transition: {type:'spring',duration:2.5,ease:'easeInOut',delay:2.2}
+    transition: {
+      type: "spring",
+      duration: 2.5,
+      ease: "easeInOut",
+      delay: 2.2,
+    },
   },
-  exit:{
+  exit: {},
+};
 
-  }
-}
-
-
-const goldPaintVariants ={
-  hidden:{
-    opacity:0,
+const goldPaintVariants = {
+  hidden: {
+    opacity: 0,
   },
-  visible:{
+  visible: {
     opacity: 1,
-    transition: {type:'spring',duration:2.5,ease:'easeInOut',delay:1.2}
+    transition: {
+      type: "spring",
+      duration: 2.5,
+      ease: "easeInOut",
+      delay: 1.2,
+    },
   },
-  exit:{
+  exit: {},
+};
 
-  }
-}
-
-const goldBorderVariants ={
-  hidden:{
-    opacity:0,
+const goldBorderVariants = {
+  hidden: {
+    opacity: 0,
   },
-  visible:{
+  visible: {
     opacity: 1,
-    transition: {type:'spring',duration:2.5,ease:'easeInOut',delay:2}
+    transition: { type: "spring", duration: 2.5, ease: "easeInOut", delay: 2 },
   },
-  exit:{
+  exit: {},
+};
 
-  }
-}
-
-
-
-
-
-const eventVariants ={
-  hidden:{
-    opacity:0,
-    scale:0
+const eventVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
   },
-  visible:{
+  visible: {
     opacity: 1,
-    scale:1 ,
-    x:'-160px',
-    y:'120px',
-    transition: {type:'spring',duration:2.5,ease:'easeInOut',delay:0}
+    scale: 1,
+    x: "-160px",
+    y: "120px",
+    transition: { type: "spring", duration: 2.5, ease: "easeInOut", delay: 0 },
   },
-  exit:{
+  exit: {},
+};
 
-  }
-}
-
-const handlerVariants ={
-  hidden:{
-    opacity:0,
-    scale:0,
-    x:'-110px',
-    y:'240px',
+const handlerVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    x: "-110px",
+    y: "240px",
   },
-  visible:{
+  visible: {
     opacity: 1,
-    scale:1 ,
-    x:'-110px',
-    y:'240px',
-    transition: {type:'spring',duration:2.5,ease:'easeInOut',delay:.5}
+    scale: 1,
+    x: "-110px",
+    y: "240px",
+    transition: {
+      type: "spring",
+      duration: 2.5,
+      ease: "easeInOut",
+      delay: 0.5,
+    },
   },
-  exit:{
-
-  }
-}
-
-
-
+  exit: {},
+};
 
 const Homepage = () => {
   return (
     <HomeContainer>
-
-      <LogoWrapper >
-      <GoldPaint variants={goldPaintVariants} src={eight} initial='hidden' animate='visible' exit='exit'/>
-      <GoldBorder variants={goldBorderVariants}  src={seven} initial='hidden' animate='visible' exit='exit'/>
-      <EH src={six} variants={ehVariants} initial='hidden' animate='visible' />
-      <Event variants={eventVariants} src={four} initial='hidden' animate='visible' exit='exit'/>
-      <Handlers variants={handlerVariants}  src={five} initial='hidden' animate='visible' exit='exit'/>
+      <LogoWrapper>
+        <GoldPaint
+          variants={goldPaintVariants}
+          src={eight}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        />
+        <GoldBorder
+          variants={goldBorderVariants}
+          src={seven}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        />
+        <EH
+          src={six}
+          variants={ehVariants}
+          initial="hidden"
+          animate="visible"
+        />
+        <Event
+          variants={eventVariants}
+          src={four}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        />
+        <Handlers
+          variants={handlerVariants}
+          src={five}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        />
       </LogoWrapper>
-     
     </HomeContainer>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;
