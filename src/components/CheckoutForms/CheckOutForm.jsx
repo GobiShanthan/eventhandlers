@@ -59,7 +59,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "https://eventhandlers7.herokuapp.com/",
+        return_url: "https://eventhandlers8.herokuapp.com/",
       },
     });
 
