@@ -116,6 +116,7 @@ const SignupForm = () => {
 
             <TextField
               id="password"
+              type='password'
               name="password"
               label="Password"
               value={formik.values.password}
