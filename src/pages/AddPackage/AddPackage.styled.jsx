@@ -13,7 +13,8 @@ export const FlexContainer = styled(motion.div)`
   background-color: ${lightBlack};
 `;
 export const AddPackageContainer = styled(motion.div)`
-  height: 100vh;
+  padding-top:5vh;
+  height: 100%;
   width: 100vw;
   color: white;
   display: flex;

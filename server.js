@@ -52,15 +52,21 @@ app.use("/api/packages", require("./routes/packages"));
 
 /*--------------------------AUTHORIZATION ABOVE THIS LINE -------------------------------*/
 
+
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+
+
+
 //HANDLE CUSTOM ERRORS
 app.use(notFound)
 app.use(errorHandler)
 
 
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 
 const port = process.env.PORT || 3001;
 

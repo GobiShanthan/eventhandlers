@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const HomeContainer = styled(motion.div)`
-  height: 100%;
+  height:105%;
+  min-height: 100vh;
   width: 100vw;
   background: black;
   color: white;

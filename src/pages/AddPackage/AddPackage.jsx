@@ -33,6 +33,11 @@ import { storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
+
+
+
+
+
 const validationSchema = Yup.object({
   vendorType: Yup.string().oneOf(
     ["venue", "caterer", "photographer", "decor"],
@@ -49,6 +54,8 @@ const validationSchema = Yup.object({
 });
 
 const AddPackage = () => {
+
+
   //REACT-ROUTER- DOM
   const navigate = useNavigate();
 
@@ -196,6 +203,7 @@ const AddPackage = () => {
                   labelId="vendorType-label"
                   id="vendorType"
                   name="vendorType"
+                  required
                   value={formik.values.vendorType}
                   displayEmpty
                   // label="Vendor Type"
@@ -337,7 +345,7 @@ const AddPackage = () => {
                 )}
               </FormText>
 
-              <Map />
+              {/* <Map /> */}
 
               <FormImage>
                 <input type="file" name="image" onChange={handleChangePic} />

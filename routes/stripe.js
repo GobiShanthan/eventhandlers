@@ -5,7 +5,7 @@ const router = express.Router();
 // Don’t submit any personally identifiable information in requests made with this key.
 // Sign in to see your own test API key embedded in code samples.
 const stripe = require("stripe")(
-  ""
+  "sk_test_51Ls9WNLg4Ot6e5anY7PlWYVWCFcg9qZM8yjZTnx9DcxyRC8RCSrr1LMYuccwTMZQqH5SceQGZFuPSmlYl1eWVNQk00x487WBAs"
 );
 
 const calculateOrderAmount = (items) => {
