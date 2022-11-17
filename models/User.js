@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken"); // import the jwt library
 const bcrypt = require("bcrypt"); // import the bcrypt library
+const ObjectId = require("mongodb").ObjectId;
 
 //USER SCHEMA MODEL
 
@@ -67,5 +68,28 @@ userSchema.statics.loginUser = async function (req) {
 userSchema.statics.getVendors = async function () {
   return await this.find({ isVendor: true });
 };
+
+
+//UPDATE PACKEAGE
+userSchema.statics.updateUser = async function (req) {
+  let id = ObjectId(req.body.userId);
+  let user = await this.findById(id);
+  if (user) {
+    user.name = req.body.name ? req.body.name : user.name;
+    user.email = req.body.email ? req.body.email : user.email;
+    user.image = req.body.image ? req.body.image : user.image;
+    await user.save();
+  }
+
+  return user
+};
+
+
+
+
+
+
+
+
 
 module.exports = mongoose.model("User", userSchema);

@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = require("mongodb").ObjectId;
 
+//PACKAGE REVIEW SCHEMA
+
 const reviewSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
@@ -11,6 +13,8 @@ const reviewSchema = new Schema(
   { timestamps: true }
 );
 
+
+//PACKAGE SCHEMA 
 const packageSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
@@ -19,7 +23,6 @@ const packageSchema = new Schema(
     price: { type: Number, required: true },
     capacity: { type: String },
     image: { type: String },
-
     vendorType: { type: String, required: true },
     menu: { type: String },
     quantity: { type: String },
