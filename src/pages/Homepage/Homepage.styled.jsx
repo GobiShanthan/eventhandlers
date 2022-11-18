@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const HomeContainer = styled(motion.div)`
-  height:105%;
   min-height: 100vh;
   width: 100vw;
   background: black;
   color: white;
   background-color: #231f20;
   display: grid;
+  overflow: hidden;
 `;
 export const LogoWrapper = styled(motion.div)`
   margin-top: 14vh;
@@ -30,7 +30,6 @@ export const GoldPaint = styled(motion.img)`
 export const GoldBorder = styled(motion.img)`
   height: 500px;
   width: 500px;
-
   position: absolute;
   top: 50%;
   left: 50%;
@@ -46,7 +45,6 @@ export const EH = styled(motion.img)`
 
 export const Handlers = styled(motion.img)`
   width: 270px;
-
   position: absolute;
   top: 50%;
   left: 50%;

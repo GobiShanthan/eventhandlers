@@ -86,6 +86,19 @@ userSchema.statics.updateUser = async function (req) {
 
 
 
+//UPDATE PACKEAGE
+userSchema.statics.updateToVendor = async function (userId) {
+  console.log(userId,'its making its way to the user')
+  let id = ObjectId(userId);
+  let user = await this.findById(id);
+  if (user) {
+    user.isVendor = true;
+    await user.save();
+  }
+  return user
+};
+
+
 
 
 

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = require("mongodb").ObjectId;
+const User = require('./User')
 
 //PACKAGE REVIEW SCHEMA
 
@@ -13,8 +14,7 @@ const reviewSchema = new Schema(
   { timestamps: true }
 );
 
-
-//PACKAGE SCHEMA 
+//PACKAGE SCHEMA
 const packageSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
@@ -80,6 +80,9 @@ packageSchema.statics.createPackage = async function (req) {
     items: items && items,
   });
 
+  //UPDATE USER TO BE A VENDOR
+  await User.updateToVendor(req.user._id)
+
   return "Package created";
 };
 
@@ -101,6 +104,7 @@ packageSchema.statics.updatePackage = async function (req) {
   foundPackage = updatatedPackage;
 
   foundPackage.save();
+
 
   return "Package created";
 };

@@ -31,11 +31,6 @@ import { storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
-
-
-
-
-
 const validationSchema = Yup.object({
   vendorType: Yup.string().oneOf(
     ["venue", "caterer", "photographer", "decor"],
@@ -52,8 +47,6 @@ const validationSchema = Yup.object({
 });
 
 const AddPackage = () => {
-
-
   //REACT-ROUTER- DOM
   const navigate = useNavigate();
 
@@ -101,7 +94,8 @@ const AddPackage = () => {
           (snapshot) => {
             // Observe state change events such as progress, pause, and resume
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
               case "paused":
@@ -206,11 +200,15 @@ const AddPackage = () => {
                   label={formik.touched.vendorType}
                   placeholder="Vendor Type"
                   onChange={formik.handleChange}
-                  error={formik.touched.vendorType && Boolean(formik.errors.vendorType)}
-                  helperText={formik.touched.vendorType && formik.errors.vendorType}
+                  error={
+                    formik.touched.vendorType &&
+                    Boolean(formik.errors.vendorType)
+                  }
+                  helperText={
+                    formik.touched.vendorType && formik.errors.vendorType
+                  }
                   margin="dense"
                   inputProps={{ style: { color: `${grey}` } }}
-
                   sx={{ color: `${grey}` }}
                 >
                   <MenuItem disabled value="">
@@ -346,9 +344,7 @@ const AddPackage = () => {
                 )}
               </FormText>
 
-
               <FormImage>
-                
                 <input type="file" name="image" onChange={handleChangePic} />
               </FormImage>
               <Button
