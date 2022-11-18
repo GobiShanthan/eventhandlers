@@ -116,7 +116,7 @@ const UpdateUserForm = () => {
   });
 
   return (
-    <div style={{ backgroundColor: `${lightBlack}`, height: "100vh" }}>
+    <div >
       <form onSubmit={formik.handleSubmit} autoComplete="off">
         <FlexContainer>
           <Box

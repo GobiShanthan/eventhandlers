@@ -79,7 +79,7 @@ packageSchema.statics.createPackage = async function (req) {
     hours: hours && hours,
     items: items && items,
   });
-  console.log("created");
+
   return "Package created";
 };
 

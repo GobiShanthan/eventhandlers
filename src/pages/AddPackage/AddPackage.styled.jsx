@@ -4,17 +4,17 @@ import { motion } from "framer-motion";
 import { lightBlack } from "../../components/Colors/colors";
 
 export const FlexContainer = styled(motion.div)`
-  height: 100%;
+  min-height: 100vh;
+  height:100%;
   width: 100vw;
   color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
+
   background-color: ${lightBlack};
 `;
 export const AddPackageContainer = styled(motion.div)`
-  padding-top:5vh;
-  height: 100%;
+  min-height: 100vh;
   width: 100vw;
   color: white;
   display: flex;
@@ -31,6 +31,7 @@ export const Card = styled(motion.div)`
   align-items: center;
   text-align: center;
   margin: 10vh;
+  margin-top:200px;
 `;
 
 export const AddPackageTitle = styled(motion.div)`

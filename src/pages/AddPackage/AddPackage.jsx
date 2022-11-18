@@ -22,8 +22,6 @@ import TextField from "@mui/material/TextField";
 
 import { lightGold, darkGold, grey } from "../../components/Colors/colors";
 
-import { Map } from "../../components/Map/Map";
-
 //REDUX IMPORTS
 import { useDispatch, useSelector } from "react-redux";
 import { createPackage } from "../../redux/apiCalls/package";
@@ -103,8 +101,7 @@ const AddPackage = () => {
           (snapshot) => {
             // Observe state change events such as progress, pause, and resume
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
               case "paused":
@@ -206,10 +203,14 @@ const AddPackage = () => {
                   required
                   value={formik.values.vendorType}
                   displayEmpty
-                  // label="Vendor Type"
+                  label={formik.touched.vendorType}
                   placeholder="Vendor Type"
                   onChange={formik.handleChange}
+                  error={formik.touched.vendorType && Boolean(formik.errors.vendorType)}
+                  helperText={formik.touched.vendorType && formik.errors.vendorType}
                   margin="dense"
+                  inputProps={{ style: { color: `${grey}` } }}
+
                   sx={{ color: `${grey}` }}
                 >
                   <MenuItem disabled value="">
@@ -345,9 +346,9 @@ const AddPackage = () => {
                 )}
               </FormText>
 
-              {/* <Map /> */}
 
               <FormImage>
+                
                 <input type="file" name="image" onChange={handleChangePic} />
               </FormImage>
               <Button

@@ -3,10 +3,8 @@ import { motion } from "framer-motion";
 import { lightBlack, grey } from "../../components/Colors/colors";
 
 export const FlexContainer = styled(motion.div)`
-  padding-top: 10vh;
+  padding-top: 5vh;
   display: flex;
-  justify-content: center;
-
   flex-direction: column;
   height: 70vh;
   width: 50vw;
@@ -16,6 +14,7 @@ export const FlexContainer = styled(motion.div)`
 
 export const Card = styled(motion.div)`
   width: 70vw;
+  min-width:350px;
   display: flex;
   flex-direction: column;
   justify-content: center;

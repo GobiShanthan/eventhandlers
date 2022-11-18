@@ -24,6 +24,8 @@ const UsersPage = () => {
           display: "flex",
           justifyContent: "center",
           backgroundColor: "#231f20",
+          height:'100vh'
+
         }}
       >
         <UpdateUserForm userInfo={userInfo} />
