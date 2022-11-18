@@ -5,7 +5,7 @@ import { lightBlack } from "../../components/Colors/colors";
 
 export const FlexContainer = styled(motion.div)`
   min-height: 100vh;
-  height:100%;
+  height: 100%;
   width: 100vw;
   color: white;
   display: flex;
@@ -31,7 +31,7 @@ export const Card = styled(motion.div)`
   align-items: center;
   text-align: center;
   margin: 10vh;
-  margin-top:200px;
+  margin-top: 200px;
 `;
 
 export const AddPackageTitle = styled(motion.div)`
@@ -53,7 +53,6 @@ export const FormText = styled(motion.div)`
 export const FormImage = styled(motion.div)`
   display: grid;
   grid-template-rows: 1fr 1fr;
-
   padding: 20px;
   flex: 1;
 `;
