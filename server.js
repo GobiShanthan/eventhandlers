@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 const {notFound,errorHandler} = require('./config/error')
-//socket.io imports
+// socket.io imports
 const server = require('http').createServer(app);
 let io = require('./io')
 io.attach(server)
