@@ -9,16 +9,5 @@ services:
     plan: free # optional; defaults to starter
     numInstances: 1
     envVars:
-      - key: REACT_APP_FIREBASE_APP_ID # Imported from Heroku app
-        value: 1:87563983877:web:4bd4ef11a4262dcb68506c
-      - key: REACT_APP_FIREBASE_AUTH_DOMAIN # Imported from Heroku app
-        value: eventhandlers-29ea1.firebaseapp.com
-      - key: REACT_APP_FIREBASE_MESSAGE_SENDER_ID # Imported from Heroku app
-        value: 87563983877
-      - key: REACT_APP_FIREBASE_PROJECT_ID # Imported from Heroku app
-        value: eventhandlers-29ea1
-      - key: REACT_APP_FIREBASE_STORAGE_BUCKET # Imported from Heroku app
-        value: eventhandlers-29ea1.appspot.com
-      - key: SALT_ROUNDS # Imported from Heroku app
-        value: 6
+
 

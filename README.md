@@ -25,7 +25,7 @@ Event Handlers is your one stop shop for all your event planning needs. Book you
 
 ## Getting Started
 
-Link: [HEROKU DEPLOYMENT](https://eventhandlers8.herokuapp.com/)
+Link: [HEROKU DEPLOYMENT](https://eventhandlers8.onrender.com)
 
 As a user you can sign up to create an account and keep track of your event planning. You can search through packages offered by various vendors to find the perfect one that matches your event needs. Chat with the vendor to get additional details about packages you're interested in. Add your selected packages to your cart as you go. Once you've added everything needed for your event, you can checkout using Stripe.
 
@@ -70,7 +70,7 @@ If you are a vendor, you can create multiple packages offering different options
 - Brcypt
 
 ### Deployment Platform
-- Heroku
+- RENDER
 
 ## Next Steps
 
