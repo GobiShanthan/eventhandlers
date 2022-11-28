@@ -1,6 +1,6 @@
 import "./App.css";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+
+
 
 import { AppContainer } from "./App.styled";
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -18,13 +18,11 @@ import UserPage from "../UsersPage/UsersPage";
 
 const App = () => {
 
-const {userInfo} = useSelector((state) => state.login)
 
   return (
-    
     <AppContainer>
-      <Menu user="louis" />
-      
+      <Menu />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/vendors" element={<AllVendors />} />
@@ -37,9 +35,7 @@ const {userInfo} = useSelector((state) => state.login)
         <Route path="/userpage" element={<UserPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
-      
       </Routes>
-      
     </AppContainer>
   );
 };
